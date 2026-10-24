@@ -1,0 +1,191 @@
+{
+  "texts": [
+    "About",
+    "Work",
+    "Wenjia SHIIntegrated Designer",
+    "Car Interior Design",
+    "2022.05-06",
+    "Cooperate with Yuqing Wu, Jiancheng Qiu",
+    "Ultra Vision",
+    "Based on automotive interior designRealize driving information translation",
+    "#SystemDesign",
+    "#CarInterior#InteractionDesign",
+    "Background",
+    "Dashboard development history",
+    "Driver Information Module (DIM) is mainly used to display vehicle information display, including speedometer, fuel, electricity and other vehicle information. With the development of automotive technology, automotive instruments are constantly evolving and upgrading.With the development of technology, the instrument will be more and more inclined to digital display, and the traditional instrument panel is gradually replaced by full liquid crystal.",
+    "Mechanical",
+    "Electronic",
+    "Liquid Crystal",
+    "Intelligence",
+    "DIM Future Trend",
+    "Lightweight",
+    "Smarter, lighter, more holistic.",
+    "In the future, the instrument will become an important part of the car intelligence, it can not only provide rich information for the driver, but also through intelligent technology to achieve more convenient operation, bring more intelligent driving experience.",
+    "Integration",
+    "Define",
+    "Given the high demand for transparency of assisted driving functions and driving safety information triggered by advances in autonomous driving technology.",
+    "Based on automotive interior designRealize driving information translation",
+    "Given the high demand for transparency of assisted driving functions and driving safety information triggered by advances in autonomous driving technology.",
+    "No-drive task",
+    "High-frequency scene",
+    "Vehicle dashboard information has different display priorities in different scenarios, which depends on the driver's \"top-down\" demand for controlling vehicle information and the \"bottom-up\" safe vehicle information for protecting driving safety.With the development of vehicle driving technology, intelligent driving systems can help drivers complete different levels of information processing, which will change drivers' needs for driving and information presentation.",
+    "The AI-driven robot is fully supervised, driving the task less than 1% of the time",
+    "Intelligent driving",
+    "Life",
+    "Secondary driving task",
+    "Intelligent driving",
+    "Only 8.62% of the time was spent monitoring the driving task",
+    "Main driving task",
+    "99.85% of the driver's gaze time is spent on monitoring the driving task",
+    "Design",
+    "HMW",
+    "For",
+    "Through the interior line lighting to replace the traditional information display.",
+    "Information stratification allows the driver to feel the driving state of the vehicle more intuitively and simplifies the driver's attention allocation.",
+    "Mapping",
+    "Using interior lighting as a medium, the driving state of the car is translated to the driver in the form of abstract lines.   The speed, color and shape of the lines match the driving information of the vehicle.",
+    "interior light effect at 20Kmh",
+    "interior light effect at 120Kmh",
+    "Input",
+    "Output",
+    "Output",
+    "Speed",
+    "Slow",
+    "Fast",
+    "Speed",
+    "Big",
+    "Small",
+    "Safety",
+    "Car Passing",
+    "Safe",
+    "Noisy",
+    "Quiet",
+    "Environment",
+    "Drive slow",
+    "Drive slow",
+    "Cool tone + disturbance",
+    "Warm tone + slight disturbance",
+    "In the consideration of driving safety, the timely monitoring and processing of information outside the car is an important information that needs to be understood in the process of automatic driving.",
+    "Neutral Mode",
+    "Park Mode",
+    "Reverse Mode",
+    "HMI",
+    "The car center control large screen is symmetrical and detachable, and displays different levels of information when necessary.",
+    "Delineate interactive interface functions by viewing and blocking areas.",
+    "Blind area in one eye",
+    "Binocular blindness",
+    "Operating",
+    "Binocular vision",
+    "Prototype",
+    "Through 3D printing and hot-bending acrylic plate, and external multiple displays, Logitech steering wheel, etc., the shape and information of the model are obtained and transmitted.",
+    "System Design: Team work",
+    "Digital Effect and Communication Engineering: Wenjia Shi",
+    "Prototyping and Integration: Jiancheng QiuGuest Appearance: Shenhuan Lu"
+  ],
+  "images": [
+    {
+      "file": "01.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-c0b902a8-9e85-43fa-bbc1-c32adbd7c614.png?cX=2&cY=0&cW=1276&cH=524"
+    },
+    {
+      "file": "02.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-b7033340-49d1-471d-ab8b-25e049c6d033.png?w=447&cX=0&cY=1&cW=832&cH=508"
+    },
+    {
+      "file": "03.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-9e16ab25-42d6-485c-bac2-c4a507ed88b5.png?w=447&cX=0&cY=1&cW=832&cH=508"
+    },
+    {
+      "file": "04.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-56e244d8-30d4-49dc-bf67-3ad4fe76be1e.png?w=444&cX=1&cY=0&cW=829&cH=510"
+    },
+    {
+      "file": "05.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-f07400d3-768a-4f3e-aeea-a6ea524c32b1.png?w=1188"
+    },
+    {
+      "file": "06.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-ced96a2a-e082-45e0-b792-4b8b908eb94e.png?w=663&cX=1&cY=0&cW=932&cH=1004"
+    },
+    {
+      "file": "07.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-e58e092c-bebf-4680-9707-b6e737ee53f6.png?w=1440"
+    },
+    {
+      "file": "08.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-b047e979-f0e2-4e54-926d-5a63b082ecd0.png?w=1479&cX=0&cY=0&cW=3840&cH=1776"
+    },
+    {
+      "file": "09.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-37ef1ea6-bec0-49c8-bd31-b3d0106fa687.png?w=1479&cX=0&cY=39&cW=3839&cH=2017"
+    },
+    {
+      "file": "10.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-d8598d5e-f829-4f06-ab39-694886082239.png?w=1035&cX=0&cY=42&cW=2106&cH=1074"
+    },
+    {
+      "file": "11.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-2b58f730-e301-456e-a2b8-101273ad80ca.png?w=1035&cX=2&cY=0&cW=2101&cH=1072"
+    },
+    {
+      "file": "12.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-c76370be-990e-4390-a128-1a1676384f6f.png?w=354"
+    },
+    {
+      "file": "13.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-d1e8f4e9-a621-4b36-a800-bcd35a36d468.png?w=666&cX=0&cY=0&cW=953&cH=554"
+    },
+    {
+      "file": "14.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-d5a01852-f124-4c75-a66b-ffa30309d646.png?w=666&cX=0&cY=0&cW=953&cH=554"
+    },
+    {
+      "file": "15.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-7467bd87-470e-4151-bd77-b71af6fa5802.png?w=465&cX=0&cY=1&cW=1312&cH=1024"
+    },
+    {
+      "file": "16.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-cd0af748-324e-4196-991e-bd55420bf8db.png?w=1836&cX=1563&cY=1&cW=3575&cH=2150"
+    },
+    {
+      "file": "17.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-5b5ad736-dd5e-4b0c-a894-664dd6fe3f16.png?w=1440"
+    },
+    {
+      "file": "18.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-94effd42-25fc-4703-bae7-7a69d68743b8.png?w=396&cX=0&cY=0&cW=1252&cH=1366"
+    },
+    {
+      "file": "19.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-f45104d4-39d7-4551-869e-89047ce40a7f.png?w=1440"
+    },
+    {
+      "file": "20.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-b077c541-cbe1-4c09-94d2-acc7248d8a20.png?w=549&cX=0&cY=1&cW=1180&cH=838"
+    },
+    {
+      "file": "21.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-82067088-9896-459e-b486-549f5179ed03.png?w=597"
+    },
+    {
+      "file": "22.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-db5f6bd9-f6f1-4b75-bb9b-0260f7ac7600.png?w=1752&cX=17&cY=0&cW=2526&cH=1025"
+    },
+    {
+      "file": "23.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-e52a433e-8a1a-4243-83d6-0cb4840a9e8e.png?w=543&cX=0&cY=1&cW=996&cH=1211"
+    },
+    {
+      "file": "24.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-52845950-3e00-468f-9a01-d1c8675030d1.png?w=1146&cX=0&cY=2&cW=1200&cH=682"
+    },
+    {
+      "file": "25.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-7270dcea-563a-451c-bb8a-9a4381ed235f.png?w=1146&cX=0&cY=1&cW=1200&cH=682"
+    },
+    {
+      "file": "26.png",
+      "source": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-a5ddf370-4186-403e-8f70-0b1172151a01.png?w=1146&cX=0&cY=2&cW=1200&cH=682"
+    }
+  ]
+}

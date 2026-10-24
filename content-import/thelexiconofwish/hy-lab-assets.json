@@ -1,0 +1,37 @@
+[
+  {
+    "file": "1.png",
+    "source": "https://static.wixstatic.com/media/c18299_c3f89769f3374fc79d4960ad866cfea0~mv2.png",
+    "bytes": 4294948
+  },
+  {
+    "file": "Plant3_edited.png",
+    "source": "https://static.wixstatic.com/media/cb3b69_3219787f1862446bbc848a349d8b77e2~mv2.png",
+    "bytes": 229319
+  },
+  {
+    "file": "Plant2_edited_edited.jpg",
+    "source": "https://static.wixstatic.com/media/cb3b69_ef4b720566dd483ebd066c3ce6a7f034~mv2.jpg",
+    "bytes": 229969
+  },
+  {
+    "file": "Plant1_edited.png",
+    "source": "https://static.wixstatic.com/media/cb3b69_fbe5f6ed3bdb484ba75a7b29cb100d1a~mv2.png",
+    "bytes": 298337
+  },
+  {
+    "file": "poster.jpg",
+    "source": "https://static.wixstatic.com/media/c18299_0c76f7402a5043f795daa7f3f9ccc8fbf000.jpg",
+    "bytes": 841282
+  },
+  {
+    "file": "480p.mp4",
+    "source": "https://video.wixstatic.com/video/c18299_0c76f7402a5043f795daa7f3f9ccc8fb/480p/mp4/file.mp4",
+    "bytes": 3897229
+  },
+  {
+    "file": "1080p.mp4",
+    "source": "https://video.wixstatic.com/video/c18299_0c76f7402a5043f795daa7f3f9ccc8fb/1080p/mp4/file.mp4",
+    "bytes": 20602202
+  }
+]
