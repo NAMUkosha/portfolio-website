@@ -36,8 +36,8 @@
 
 ### AImpower
 
-- 名称保留 AImpower；用户说的 “infocus” 指首页重点展示位，不是改名为 InFocus。
-- 位于首页首屏 In focus，且是 Design 第一项。
+- AImpower.org 是合作方，项目显示名称以 Figma 封面为准：A Zoom + Web System for Stutter-Affirming Progress。内部路由仍用 aimpower。
+- In Focus 指首页下方 Design / Research 滚动展开区域；首屏标签只显示 UI/UX & accessibility，不加 In focus。
 - Figma 最终来源： https://www.figma.com/design/o41gKUr8VhjGa4pDe7xg7A/26SP_Portfolio?node-id=378-8810 。使用 Figma 工具前加载对应技能。
 - 已移除竞品分析，研究证据放在可展开区域；有研究决策、支持流程、设计演进、三端方案切换。
 - 正文最大约 600px，设计图约 960px，整体居中、内部左对齐。
@@ -68,3 +68,14 @@
 - 上一环境是 Windows PowerShell；若沙箱出现 MXC 启动错误，可按当前工具权限机制重试。新端不应照搬旧环境的临时路径、会话 ID 或后台服务状态。
 
 - Lexicon 封面：用户指定的植物图保存在 `visual-exploration/assets/lexicon/cover.png`；首页及 Gallery 使用静态图、contain 完整显示，不要改回自动播放的视频封面。项目详情中的原始影片保留。
+
+## 最新首页分类（2026-10-25）
+
+- Design 仅三项：Stutter-Affirming Progress 项目、Unity 的 Precision Management System for Shipbuilding、PomeloX。Research 仅 The Lexicon of Wish、Quipu。Gallery 九项保持不变。
+- Unity Figma：node-id=382-19451；PomeloX：node-id=382-19452（同一 26SP_Portfolio 文件）。
+- Unity 仅展示标题、简介和抽象 Gaussian 模糊预览；点击标题或预览进入现有密码弹窗。没有导出私密设计图片。解锁后为简介和邮件联系页。
+- 密码已按用户要求更新（不在交接文档重复记录），仍为原有客户端演示机制，不是服务端加密保护；正式保护需另行实现后端鉴权。UI 不再公开提示密码。
+- Private access 提供 mailto:wenjiashi616@gmail.com 申请入口。
+- new-designs.js 提供 Unity 简介及 PomeloX 精选页面；PomeloX 使用本地 assets/pomelox/ 四张真实界面素材，仅精选发现/参与/发布内容，未逐页实现全部设计。
+- Lexicon 原图最右侧 x=1665..1718 是黑色截屏边缘；CSS clip-path 裁掉右侧3.2%，不修改原文件。此封面不用 WebGL 替换，防止白底轮廓；键盘 focus-visible 保留。
+- revision=11 检查桌面1440与手机390：首页3+2分类、错误密码/解锁跳转、邮件入口、PomeloX图片及4章索引、无横向溢出和JS错误。

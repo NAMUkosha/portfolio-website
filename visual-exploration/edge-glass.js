@@ -1,7 +1,7 @@
 // One coherent image pass at glass edges; media outside the glass stays native.
 (() => {
   const roots = '#home-editorial, .film-image, #orbit, #note-reading-content, #project-content';
-  const selector = roots.split(', ').flatMap(root => [`${root} img`, `${root} video:not([controls])`]).join(', ');
+  const selector = roots.split(', ').flatMap(root => [`${root} img:not([src*="lexicon/cover.png"])`, `${root} video:not([controls])`]).join(', ');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const surface = document.createElement('canvas');
   surface.className = 'edge-glass-canvas';

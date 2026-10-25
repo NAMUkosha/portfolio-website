@@ -38,3 +38,13 @@
 #home-editorial [data-project="lexicon"].home-feature-image,
 #home-editorial [data-project="lexicon"].home-row-image{background:#fff}
 #home-editorial [data-project="lexicon"]>img{object-fit:contain}
+
+/* Keep supplied artwork's black capture margin outside its visible composition. */
+#home-editorial .home-feature-image[data-project="lexicon"],#home-editorial .home-row-image[data-project="lexicon"]{display:flex;align-items:center;justify-content:center}
+#home-editorial [data-project="lexicon"]>img{width:auto;height:100%;max-width:100%;clip-path:inset(0 3.2% 0 0)}
+#home-editorial [data-project="pomelox"].home-row-image{background:#faf2ee;display:flex;justify-content:center;padding:12px}
+#home-editorial [data-project="pomelox"]>img{width:auto;max-width:100%;object-fit:contain;border-radius:12px}
+.unity-preview{display:grid;grid-template-columns:1fr 2fr;gap:16px;padding:30px;width:100%;height:100%;background:#344149;filter:blur(16px);opacity:.65;pointer-events:none}
+.unity-preview i{display:block;background:#8e9f9d;border-radius:12px}.unity-preview i:nth-child(2){background:linear-gradient(35deg,#627d70,#b7b2a0,#4c6067)}
+.private-preview-label{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;color:#fff;letter-spacing:.04em}
+.home-feature-copy h2 button{gap:20px;line-height:1.2}.home-row-name{line-height:1.25}

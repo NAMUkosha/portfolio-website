@@ -13,17 +13,18 @@ function lexiconMarkup(){
  <section class="lex-chapter"><div class="lex-section-title"><p class="small">Contemporary wishes</p><h2>Reading what<br>people hope for.</h2></div><div class="lex-section-body">${p(30)}${p(31)}${img('12.png','Collection of contemporary wishes scored against value dimensions')}</div></section>
  <section class="lex-chapter"><div class="lex-section-title"><p class="small">Generated herbs</p><h2>A lexicon<br>of possibility.</h2></div><div class="lex-section-body">${p(32)}${p(33)}${img('13.png','Generated herb and its interpreted wish')}<div class="lex-pair">${img('14.jpg','Generated Xian herb example')}${img('15.png','Generated Xian herb example')}</div><div class="lex-plant-gallery">${img('hy-lab/Plant3_edited.png','Generated plant from HY Lab')}${img('hy-lab/Plant2_edited_edited.jpg','Generated plant from HY Lab')}${img('hy-lab/Plant1_edited.png','Generated plant from HY Lab')}</div><div class="lex-credits lex-reveal"><h3>Credits</h3><p>Team: Shenhuan Lu, Wenjia Shi, Ruiyi Li</p><p>Guidance: Yue Zou</p><p>Technical guidance: Zheng Tian, Quan Li</p></div><a class="inline-link" href="https://www.hy-lab.design/blank-1" target="_blank" rel="noopener noreferrer">Original project &middot; HY Lab</a></div></section></article>`;
 }
-let lexObserver=null,lexScroll=null,lexMotion=null;
-function stopLexiconMotion(){lexObserver?.disconnect();lexObserver=null;if(lexScroll){window.removeEventListener('scroll',lexScroll);window.removeEventListener('resize',lexScroll);lexScroll=null;}if(lexMotion){matchMedia('(prefers-reduced-motion: reduce)').removeEventListener('change',lexMotion);lexMotion=null;}}
+let lexObserver=null,lexScroll=null,lexMotion=null,lexScroller=null;
+function stopLexiconMotion(){lexObserver?.disconnect();lexObserver=null;if(lexScroll){(lexScroller||window).removeEventListener('scroll',lexScroll);window.removeEventListener('resize',lexScroll);lexScroll=null;}if(lexMotion){matchMedia('(prefers-reduced-motion: reduce)').removeEventListener('change',lexMotion);lexMotion=null;}}
 function startLexiconMotion(){
  stopLexiconMotion();const article=document.querySelector('.lexicon-case');if(!article)return;
+ lexScroller=document.querySelector('#note-reading:not([hidden])');
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  const revealAll=()=>{article.querySelectorAll('.lex-reveal').forEach(el=>el.classList.remove('awaiting'));lexObserver?.disconnect();};
  if(!preference.matches&&'IntersectionObserver' in window){
- lexObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('awaiting');lexObserver.unobserve(entry.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+ lexObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('awaiting');lexObserver.unobserve(entry.target);}});},{root:lexScroller,threshold:0,rootMargin:'0px 0px -8% 0px'});
  article.querySelectorAll('.lex-reveal').forEach(el=>{el.classList.add('awaiting');lexObserver.observe(el);});
  }
  lexMotion=()=>{if(preference.matches)revealAll();};preference.addEventListener('change',lexMotion);
  lexScroll=()=>{const r=article.getBoundingClientRect();const travel=Math.max(1,article.offsetHeight-innerHeight);article.style.setProperty('--reading',Math.max(0,Math.min(1,-r.top/travel)));};
- window.addEventListener('scroll',lexScroll,{passive:true});window.addEventListener('resize',lexScroll);lexScroll();
+ (lexScroller||window).addEventListener('scroll',lexScroll,{passive:true});window.addEventListener('resize',lexScroll);lexScroll();
 }

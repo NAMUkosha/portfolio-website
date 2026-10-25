@@ -1,13 +1,9 @@
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)'),desktop=matchMedia('(min-width:701px)');
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-const projects=[
- {id:'listening',title:'An object for listening',type:'Object & interaction',asset:1,private:true,summary:'Exploring the relationship between an object and a gesture.'},
- {id:'structure',title:'A softer structure',type:'Material & form',asset:2,summary:'An exploration of material, proportion and touch.'},
- {id:'folds',title:'Between folds',type:'Visual & spatial',asset:3,summary:'Thinking through paper, light and space.'},
- {id:'perspective',title:'A different perspective',type:'Spatial experiment',asset:4,private:true,summary:'A study of how a simple form changes with a new viewpoint.'}
-];
-projects.unshift({id:'aimpower',title:'AImpower',type:'UI/UX & accessibility',year:'2025',cover:'assets/aimpower/cover.webp',private:false,summary:'A Zoom + Web system for stutter-affirming progress.'});
+const projects=[];
+projects.unshift({id:'aimpower',title:'A Zoom + Web System for Stutter-Affirming Progress',type:'UI/UX & accessibility',year:'2025',cover:'assets/aimpower/cover.webp',private:false,summary:'A Zoom + Web system for stutter-affirming progress.'});
+projects.push({id:'unity',title:'Precision Management System for Shipbuilding',type:'Unity · Industrial UI/UX',year:'2025',private:true},{id:'pomelox',title:'PomeloX',type:'UI/UX · Mobile app',year:'2025–2026',cover:'assets/pomelox/home.png',private:false});
 projects.push({id:'lexicon',title:'The Lexicon of Wish',type:'Design Research',cover:'assets/lexicon/cover.png',private:false});
 projects.push({id:'quipu',title:'Quipu',type:'Design Research',cover:'assets/quipu/09.png',private:false});
 const notes=[
@@ -21,9 +17,20 @@ const notes=[
  {id:'gofie',title:'Gofie',year:'2023',type:'UI/UX Design',cover:'assets/gofie/11.png',back:'assets/gofie/14.png',description:'A more approachable way to play golf.'},
  {id:'ariel',title:'Ariel',year:'2022',type:'Service Design',cover:'assets/ariel/09.png',back:'assets/ariel/23.png',description:'Connecting marine waste to a circular service.'}
 ];
-projects.push(...notes.filter(n=>['ultravision','gofie','ariel','melodeck'].includes(n.id)));
+projects.push({id:'google',title:'Future of Work',type:'Google × Cornell · UX Research',year:'2026',private:true,cover:'assets/private-preview.svg',description:'A confidential research collaboration with Google and Cornell.'});
+projects.find(p=>p.id==='unity').cover='assets/private-preview.svg';
+for(const id of ['google','pomelox','unity','aimpower']){const p=projects.find(p=>p.id===id);if(!notes.some(n=>n.id===id))notes.unshift({...p,year:id==='google'||id==='pomelox'?'2026':'2025',single:true,description:p.description||p.summary||p.type});}
+for(const n of notes){const p=projects.find(p=>p.id===n.id);if(p)Object.assign(p,{...n,...p});else projects.push(n);}
+
 let category='design',page='home',unlocked=false,pending=null,year='all',active=0,arrangement='arc',angle=0,targetAngle=0,orbitFrame=0,filmDistance=0,filmFrame=0,drag=null,moved=false,canvas={x:0,y:0},returnFocus=null,homeScroll=0;
-try{unlocked=sessionStorage.getItem('wenjia-visual-unlocked')==='yes';}catch{}
+// Private content and keys remain in memory only; a reload locks the archive.
+try{sessionStorage.removeItem('wenjia-visual-unlocked');}catch{}
+let readingProjectId=null,readerOrigin='home';
+document.body.dataset.page=page;
+document.body.append($('#note-reading'));
+$('#note-reading').setAttribute('role','dialog');
+$('#note-reading').setAttribute('aria-modal','true');
+$('#note-reading').insertAdjacentHTML('afterbegin','<div class="reader-progress" aria-hidden="true"></div>');
 const selected=()=>category==='design'?projects.filter(p=>!['lexicon','quipu'].includes(p.id)):projects.filter(p=>['lexicon','quipu'].includes(p.id));
 const visibleNotes=()=>notes.filter(n=>year==='all'||n.year===year);
 const locked=p=>p.private&&!unlocked;
@@ -41,18 +48,26 @@ reduced.addEventListener('change',()=>{if(reduced.matches)$$('video').forEach(v=
 function renderWork(){renderEditorialHome();$('#access').textContent=unlocked?'Access granted · Reset':'Private access';requestAnimationFrame(observeProjectVideos);}
 function requestUnlock(action){pending=action;$('#password').value='';$('#password-error').textContent='';$('#password-dialog').showModal();}
 $('#password-close').onclick=()=>$('#password-dialog').close();
-$('#password-dialog').addEventListener('close',()=>{pending=null;});
-$('#password-form').onsubmit=e=>{e.preventDefault();if($('#password').value!=='preview'){$('#password-error').textContent='Use “preview” for this visual study.';return;}unlocked=true;try{sessionStorage.setItem('wenjia-visual-unlocked','yes');}catch{}const next=pending;pending=null;$('#password-dialog').close();renderWork();renderArchive();if(next)next();};
-$('#access').onclick=()=>{if(!unlocked){requestUnlock(null);return;}unlocked=false;try{sessionStorage.removeItem('wenjia-visual-unlocked');}catch{}closeNote();if(page==='project')location.hash='home';renderWork();renderArchive();};
-function openProject(id){const p=projects.find(p=>p.id===id);if(!p)return;if(locked(p))return requestUnlock(()=>openProject(id));location.hash=`project/${id}`;}
-function projectMarkup(p){if(p.id==='aimpower'){$('#project-content').innerHTML=aimpowerMarkup();return;}if(['ultravision','gofie','ariel','melodeck'].includes(p.id)){$('#project-content').innerHTML=p.id==='melodeck'?melodeckMarkup():importedArchiveMarkup(p.id);return;}if(p.id==='quipu'){$('#project-content').innerHTML=quipuMarkup();return;}if(p.id==='lexicon'){$('#project-content').innerHTML=lexiconMarkup();return;}$('#project-content').innerHTML=`<div class="project-layout"><div><h1>${p.title}</h1><p class="project-summary">${p.type}</p><img src="assets/study-${p.asset}.svg" alt="Illustrative project cover"></div><aside class="project-description"><h2>${p.summary}</h2><p>This space will hold the project context, your role and the decisions behind the work. Images and process can continue down the left column.</p><dl><div><dt>Discipline</dt><dd>${p.type}</dd></div><div><dt>Access</dt><dd>${p.private?'Shared privately':'Public'}</dd></div></dl><p class="draft-note">Illustrative content for this visual exploration. This is not a real project or a verified claim about Wenjia’s work.</p><a class="inline-link" href="#home">Selected work ↗</a></aside></div>`;}
+$('#password-dialog').addEventListener('close',()=>{pending=null;$('#password').value='';});
+$('#password-form').onsubmit=async e=>{e.preventDefault();const button=$('#password-form button');button.disabled=true;$('#password-error').textContent='Unlocking…';try{await privateVault.unlock($('#password').value);if(!$('#password-dialog').open){privateVault.lock();return;}$('#password').value='';unlocked=true;const next=pending;pending=null;$('#password-dialog').close();renderWork();renderArchive();if(next)next();}catch(error){$('#password-error').textContent=error.message==='INVALID_PASSWORD'?'Incorrect password. Please try again or request access by email.':'Could not load private work. Please check your connection and try again.';}finally{button.disabled=false;}};
+$('#access').onclick=()=>{if(!unlocked){requestUnlock(null);return;}closeNote();privateVault.lock();unlocked=false;renderWork();renderArchive();};
+function openProject(id){const p=projects.find(p=>p.id===id);if(!p)return;if(locked(p))return requestUnlock(()=>openProject(id));if(location.hash===`#project/${id}`){openReading(id);return;}history.replaceState({...history.state,readerOrigin:page},'');location.hash=`project/${id}`;}
+function projectMarkup(p){
+ if(p.private)return privateVault.markup(p.id);
+ if(p.id==='pomelox')return newDesignMarkup(p.id);
+ if(p.id==='aimpower')return aimpowerMarkup();
+ if(p.id==='quipu')return quipuMarkup();
+ if(p.id==='lexicon')return lexiconMarkup();
+ if(p.id==='melodeck')return melodeckMarkup();
+ return importedArchiveMarkup(p.id);
+}
 function route(){
  const hash=location.hash.slice(1)||'home',id=hash.startsWith('project/')?hash.slice(8):null;
- const dest=id?'project':['home','archive','about'].includes(hash)?hash:'home';
- if(id){const p=projects.find(p=>p.id===id);if(!p){location.hash='home';return;}if(locked(p)){history.replaceState(null,'','#home');showPage('home');requestUnlock(()=>openProject(id));return;}projectMarkup(p);}
- showPage(dest);
+ if(id){const p=projects.find(p=>p.id===id);if(!p){location.hash='home';return;}if(locked(p)){history.replaceState(null,'',`#${page}`);requestUnlock(()=>openProject(id));return;}openReading(id);return;}
+ const dest=['home','archive','about'].includes(hash)?hash:'home';
+ closeNote(false);if(dest!==page)showPage(dest);else{configureProjectTools();updateTools();if(dest==='archive')renderArchive();}
 }
-function showPage(dest){$$('video').forEach(v=>v.pause());stopLexiconMotion();if(page==='home'&&dest!=='home')homeScroll=scrollY;closeNote();page=dest;document.body.dataset.page=page;$$('.page').forEach(p=>p.hidden=p.id!==page);$$('.site-header nav a, #tool-menu nav a').forEach(a=>{const current=a.hash==='#'+(page==='project'?'home':page);if(current)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});closeTools();scrollTo({top:0,behavior:'instant'});requestAnimationFrame(()=>{if(page==='home'){measureFilm();scrollTo({top:homeScroll,behavior:'instant'});}if(page==='archive'){renderArchive();}if(page==='about'){enterAbout();}if(page==='project'&&$('.lexicon-case'))startLexiconMotion();observeProjectVideos();configureProjectTools();if(page==='project'&&$('.aimpower-case'))startAimpowerInteractions();updateTools();});}
+function showPage(dest){$$('video').forEach(v=>v.pause());stopLexiconMotion();if(page==='home'&&dest!=='home')homeScroll=scrollY;closeNote(false);page=dest;document.body.dataset.page=page;$$('.page').forEach(p=>p.hidden=p.id!==page);$$('.site-header nav a, #tool-menu nav a').forEach(a=>{const current=a.hash==='#'+(page==='project'?'home':page);if(current)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});closeTools();scrollTo({top:0,behavior:'instant'});requestAnimationFrame(()=>{if(page==='home'){measureFilm();scrollTo({top:homeScroll,behavior:'instant'});}if(page==='archive'){renderArchive();}if(page==='about'){enterAbout();}if(page==='project'&&$('.lexicon-case'))startLexiconMotion();observeProjectVideos();configureProjectTools();if(page==='project'&&$('.aimpower-case'))startAimpowerInteractions();updateTools();});}
 window.addEventListener('hashchange',route);$('#project-back').onclick=()=>{location.hash='home';};
 document.addEventListener('click',e=>{const p=e.target.closest('[data-project]');if(p)openProject(p.dataset.project);const cat=e.target.closest('[data-category]');if(cat){unfoldWork(cat);}const arr=e.target.closest('[data-arrangement]');if(arr){arrangement=arr.dataset.arrangement;$$('[data-arrangement]').forEach(b=>b.setAttribute('aria-pressed',b===arr));canvas={x:0,y:0};renderArchive();}const yr=e.target.closest('[data-year]');if(yr){year=yr.dataset.year;active=0;angle=targetAngle=0;$$('[data-year]').forEach(b=>b.setAttribute('aria-pressed',b===yr));renderArchive();}});
 let filmPosition=0,filmTime=0,filmPlan=null;
@@ -149,9 +164,28 @@ function positionOrbit(){
 }
 function animateOrbit(){cancelAnimationFrame(orbitFrame);if(reduced.matches){angle=targetAngle;positionOrbit();return;}function tick(){if(page!=='archive')return;angle+=(targetAngle-angle)*.11;positionOrbit();if(Math.abs(targetAngle-angle)>.001)orbitFrame=requestAnimationFrame(tick);else{angle=targetAngle;positionOrbit();}}orbitFrame=requestAnimationFrame(tick);}
 $('#open-note').onclick=openNote;
-function openNote(){const n=visibleNotes()[active];if(!n)return;if(locked(n))return requestUnlock(openNote);returnFocus=document.activeElement;$('#note-reading-content').innerHTML=['quipu','lexicon'].includes(n.id)?researchArchiveMarkup(n.id):n.id==='melodeck'?melodeckMarkup():['company','gpixel','steampunk','ultravision','gofie','ariel'].includes(n.id)?importedArchiveMarkup(n.id):`<div class="note-layout"><div><img src="assets/study-${n.asset}.svg" alt="Illustrative ${n.type.toLowerCase()}"><img src="assets/study-${n.asset%4+1}.svg" alt="Additional illustrative study"></div><div class="note-copy"><p class="small">${n.type} · ${n.year}</p><h2>${n.title}</h2><p>A place for an observation, an experiment, or something still in progress. A short description and the images stay together, without another page to navigate.</p><p class="draft-note">Illustrative archive content. The actual note, dates and images will be replaced with your material.</p></div></div>`;$('#note-reading').hidden=false;$('#note-reading').scrollTop=0;$('#archive').querySelector('.archive-space').inert=true;$('.site-header').inert=true;$('.archive-top').inert=true;$('.page-tools').inert=false;document.body.style.overflow='hidden';buildReadingIndex();configureProjectTools();updateTools();$('#close-note').focus({preventScroll:true});}
-function closeNote(){if($('#note-reading').hidden)return;$('#note-reading').hidden=true;$('.archive-space').inert=false;$('.site-header').inert=false;$('.archive-top').inert=false;$('.page-tools').inert=false;document.body.style.overflow='';configureProjectTools();updateTools();returnFocus?.focus({preventScroll:true});window.edgeGlassRefresh?.();}
-$('#close-note').onclick=closeNote;window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#note-reading').hidden){if(!$('#tool-menu').hidden){closeTools();$('#tool-toggle').focus();}else closeNote();return;}if(!$('#note-reading').hidden&&e.key==='Tab'){const items=[...$('#note-reading').querySelectorAll('button,a[href],input,[tabindex="0"]'),...$('.page-tools').querySelectorAll('button,a[href]')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]'));const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+function openNote(){const n=visibleNotes()[active];if(n)openProject(n.id);}
+function openReading(id){
+ const p=projects.find(p=>p.id===id);if(!p)return;if(locked(p))return requestUnlock(()=>openProject(id));
+ stopLexiconMotion();privateVault.stopImages();
+ returnFocus=document.activeElement;readerOrigin=page;readingProjectId=id;
+ const reader=$('#note-reading');reader.setAttribute('aria-label',p.title);
+ $('#note-reading-content').innerHTML=projectMarkup(p);reader.hidden=false;reader.scrollTop=0;
+ $$('.page').forEach(el=>el.inert=true);$('.site-header').inert=true;$('.page-tools').inert=false;
+ document.body.style.overflow='hidden';closeTools();buildReadingIndex();configureProjectTools();updateTools();
+ if(id==='lexicon')startLexiconMotion();if(id==='aimpower')startAimpowerInteractions();
+ if(p.private)privateVault.startImages(reader);
+ observeProjectVideos();window.edgeGlassRefresh?.();$('#close-note').focus({preventScroll:true});
+}
+function closeNote(updateHash=true){
+ if($('#note-reading').hidden)return;
+ stopLexiconMotion();privateVault.stopImages();$('#note-reading-content').querySelectorAll('video').forEach(v=>v.pause());
+ $('#note-reading').hidden=true;$('#note-reading-content').replaceChildren();readingProjectId=null;
+ $$('.page').forEach(el=>el.inert=false);$('.site-header').inert=false;$('.page-tools').inert=false;document.body.style.overflow='';
+ if(updateHash&&location.hash.startsWith('#project/'))history.replaceState(null,'',`#${readerOrigin}`);
+ closeTools();configureProjectTools();updateTools();if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});window.edgeGlassRefresh?.();
+}
+$('#close-note').onclick=()=>closeNote();window.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'&&!$('#note-reading').hidden){if(!$('#tool-menu').hidden){closeTools();$('#tool-toggle').focus();}else closeNote();return;}if(!$('#note-reading').hidden&&e.key==='Tab'){const items=[...$('#note-reading').querySelectorAll('button,a[href],input,[tabindex="0"]'),...$('.page-tools').querySelectorAll('button,a[href]')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]'));const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
 $('#archive-stage').onkeydown=e=>{if(['ArrowLeft','ArrowUp','ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();selectNote(active+(['ArrowLeft','ArrowUp'].includes(e.key)?-1:1));}};
 let wheelSum=0,wheelTime=0;$('#archive-stage').addEventListener('wheel',e=>{if(arrangement!=='arc')return;e.preventDefault();const now=performance.now();if(now-wheelTime>180)wheelSum=0;wheelTime=now;wheelSum+=e.deltaY||e.deltaX;if(Math.abs(wheelSum)>65){selectNote(active+Math.sign(wheelSum));wheelSum=0;}},{passive:false});
 $('#archive-stage').onpointerdown=e=>{drag={x:e.clientX,y:e.clientY,index:active,cx:canvas.x,cy:canvas.y};moved=false;};window.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>7)moved=true;if(!moved)return;if(arrangement==='canvas'){canvas.x=clamp(drag.cx+dx,-650,200);canvas.y=clamp(drag.cy+dy,-550,200);positionOrbit();}else{targetAngle=clamp(drag.index-dy/170,0,visibleNotes().length-1);angle=targetAngle;active=Math.round(angle);cancelAnimationFrame(orbitFrame);updateCaption();positionOrbit();}});window.addEventListener('pointerup',()=>{if(drag&&arrangement==='arc'){targetAngle=active;animateOrbit();}drag=null;setTimeout(()=>moved=false,0);});window.addEventListener('pointercancel',()=>{drag=null;});
@@ -165,6 +199,7 @@ function unfoldWork(button){
 function readingScroller(){return $('#note-reading').hidden?null:$('#note-reading');}
 function buildReadingIndex(){
  const root=$('#note-reading-content');
+ if(root.querySelector('[data-project-index]'))return;
  const first=root.firstElementChild;if(!first)return;
  first.id='reading-overview';first.dataset.projectIndex='Overview';
  const headings=[...root.querySelectorAll('h2,h3')].filter(h=>!h.closest('.note-copy'));
@@ -186,7 +221,7 @@ function configureProjectTools(){
  const menu=$('#tool-menu');menu.replaceChildren();
  if(indexed){
   const nav=document.createElement('nav');nav.setAttribute('aria-label','Project index');
-  const title=document.createElement('span');title.className='project-index-title';title.textContent=(reading?visibleNotes()[active]?.title:content?.querySelector('h1,h2')?.textContent)||'PROJECT';title.textContent+=' / INDEX';nav.append(title);
+  const title=document.createElement('span');title.className='project-index-title';title.textContent=(reading?projects.find(p=>p.id===readingProjectId)?.title:content?.querySelector('h1,h2')?.textContent)||'PROJECT';title.textContent+=' / INDEX';nav.append(title);
   projectIndexSections.forEach((section,index)=>{const button=document.createElement('button');button.dataset.section=section.id;const number=document.createElement('span');number.textContent=String(index).padStart(2,'0');button.append(number,document.createTextNode(section.dataset.projectIndex));nav.append(button);});menu.append(nav);updateProjectIndex();
  }else menu.innerHTML=defaultToolNavigation;
 }
@@ -200,7 +235,7 @@ function updateProjectIndex(){
 }
 function closeTools(){$('#tool-menu').hidden=true;$('#tool-toggle').setAttribute('aria-expanded','false');}
 function openTools(){$('#tool-menu').hidden=false;$('#tool-toggle').setAttribute('aria-expanded','true');}
-function updateTools(){const visible=!!readingScroller()||scrollY>140||page==='project';$('.page-tools').hidden=!visible;if(!visible)closeTools();if(projectIndexSections.length&&!projectIndexFrame)projectIndexFrame=requestAnimationFrame(updateProjectIndex);}
+function updateTools(){const reader=readingScroller();if(reader){const ratio=reader.scrollTop/Math.max(1,reader.scrollHeight-reader.clientHeight);reader.style.setProperty('--reader-progress',String(clamp(ratio,0,1)));}const visible=!!readingScroller()||scrollY>140||page==='project';$('.page-tools').hidden=!visible;if(!visible)closeTools();if(projectIndexSections.length&&!projectIndexFrame)projectIndexFrame=requestAnimationFrame(updateProjectIndex);}
 $('.tool-disclosure').addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')openTools();});
 $('.tool-disclosure').addEventListener('pointerleave',()=>{if(!$('.tool-disclosure').contains(document.activeElement))closeTools();});
 $('.tool-disclosure').addEventListener('focusout',e=>{if(!$('.tool-disclosure').contains(e.relatedTarget))closeTools();});
