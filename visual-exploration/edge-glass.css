@@ -1,0 +1,32 @@
+.edge-glass-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 11;
+}
+/* Only media actually drawn by the unified glass pass is replaced. */
+.edge-glass-source { opacity: 0 !important; }
+#close-note, #home-editorial .home-view, .film-image .locked-mark, #orbit .locked-mark,
+#project-content .locked-mark { z-index: 12; }
+.page-tools { z-index: 12; }
+#note-reading > .edge-glass-canvas { z-index: 0; }
+#close-note { position: fixed; }
+@media (prefers-reduced-motion: reduce) {
+  .edge-glass-canvas { display: none; }
+
+}
+/* The reading scroller has no containing-block filter; controls stay viewport-fixed. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-feature-image:has(> .edge-glass-source),
+  .home-row-image:not(.home-device-pair):has(> .edge-glass-source) { background: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .edge-glass-source { opacity: 1 !important; }
+}
+/* Keep full-height refraction behind gallery navigation and descriptive copy. */
+.archive-space > .edge-glass-canvas{z-index:2}
+#archive .archive-caption,#archive .archive-index{z-index:3}

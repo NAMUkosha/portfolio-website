@@ -204,3 +204,41 @@ dialog{background:#ffffffdb;backdrop-filter:blur(25px);box-shadow:inset 0 0 0 1p
 .gofie-watches{display:grid;grid-template-columns:1fr 1fr;gap:35px;max-width:480px;margin:35px auto 0}.gofie-watches img{height:240px}.gofie-watches figcaption{text-align:center}
 .gofie-case .gofie-source{display:block;padding:0;margin:0;border:0;background:none}
 @media(max-width:700px){.gofie-header,.gofie-section{grid-template-columns:1fr;gap:16px}.gofie-section{margin-bottom:55px}.gofie-overview{padding:25px 5%;margin-bottom:50px}.gofie-case .gofie-phones{gap:12px}.gofie-phones img,.gofie-overview img{height:clamp(140px,38vw,240px)}.gofie-mood{gap:10px}.gofie-mood img{height:110px}.gofie-watches img{height:190px}.gofie-needs{gap:20px}}
+/* Gallery: a viewport-height image field, with copy and index on shared columns. */
+body[data-page=archive]{overflow:hidden}
+body[data-page=archive] .site-header{position:relative;z-index:4}
+#archive{--gallery-gutter:clamp(32px,9vw,160px);--gallery-copy:clamp(185px,19vw,280px)}
+#archive .archive-space{position:fixed;inset:0;height:100svh;min-height:0;overflow:hidden}
+#archive .archive-top{position:fixed;left:var(--gallery-gutter);top:118px;height:auto;padding:0;z-index:3;font-size:10px;pointer-events:none}
+#archive .archive-caption{left:var(--gallery-gutter);top:50%;bottom:auto;width:var(--gallery-copy);max-height:calc(100svh - 250px);overflow:auto;transform:translateY(-50%);pointer-events:auto;scrollbar-width:thin}
+#archive .archive-caption h1{font-size:clamp(23px,2.2vw,32px);max-width:none;line-height:1.2;margin:12px 0 16px}
+#archive .archive-caption #note-type{font-size:11px;line-height:1.6}
+#archive .archive-caption #note-description{font-size:13px;line-height:1.8;color:#888;max-width:26ch;margin-top:24px}
+#archive .archive-caption button{margin-top:24px}
+#archive #archive-stage{left:calc(var(--gallery-gutter) + var(--gallery-copy) + 35px);right:23%;top:0;bottom:0}
+#archive .archive-index{right:6%;width:15%;top:25%;bottom:10%;height:auto;overflow:auto}
+#archive .years{display:flex;flex-wrap:wrap;gap:5px 17px;margin-bottom:24px}
+#archive .archive-choice{padding:10px 0}
+/* No backdrop filter on the scroll container: fixed descendants must use the viewport. */
+#note-reading{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none;overscroll-behavior:contain}
+#note-reading #close-note{position:fixed;top:22px;right:clamp(24px,5vw,80px);transform:none;transition:none;z-index:15;padding:10px 14px;background:#fffffff2;border-radius:20px}
+#note-reading [data-project-index]{scroll-margin-top:70px}
+#tool-top svg{display:block}
+@media(max-width:1050px) and (min-width:701px){#archive{--gallery-gutter:5vw;--gallery-copy:180px}#archive #archive-stage{left:calc(5vw + 200px);right:21%}#archive .archive-index{right:4%;width:15%}}
+@media(max-width:700px){
+ #archive{--gallery-gutter:7vw;--gallery-copy:65vw}
+ #archive .archive-top{left:7%;top:102px}
+ #archive #archive-stage{left:0;right:0;top:0;bottom:0}
+ #archive .archive-caption{left:7%;top:auto;bottom:24px;width:65%;max-height:32svh;transform:none;padding:15px 18px;background:#fffffff0;border-radius:8px;z-index:3}
+ #archive .archive-caption h1{font-size:23px;margin:7px 0 8px}
+ #archive .archive-caption #note-description{font-size:11px;line-height:1.65;margin-top:12px}
+ #archive .archive-caption button{margin-top:14px}
+ #archive .archive-index{left:7%;right:7%;top:132px;bottom:auto;width:auto;height:auto;display:block;z-index:3;overflow:visible;pointer-events:none}
+ #archive .years{margin-bottom:5px;gap:18px;pointer-events:auto;width:fit-content}
+ #archive #archive-list{display:flex;gap:18px;overflow:auto;pointer-events:auto;background:#ffffffc9}
+ #archive .archive-choice{width:auto;white-space:nowrap;padding:10px 0;font-size:11px}
+ #note-reading{padding-left:6%;padding-right:6%}
+ #note-reading #close-note{top:16px;right:6%}
+}
+.orbit-note.lexicon-note .photo-front{background:#fff}
+.orbit-note.lexicon-note .photo-front img{object-fit:contain}
