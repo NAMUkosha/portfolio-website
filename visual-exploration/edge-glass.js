@@ -158,10 +158,14 @@
       const r = clip.getBoundingClientRect();
       view = { left: Math.max(0, r.left), top: Math.max(0, r.top), right: Math.min(screenWidth, r.right), bottom: Math.min(screenHeight, r.bottom) };
     }
+    // The home column is a layout inset, not a refracting side rail.
+    const homeColumn = clip?.classList.contains('home-collection-pin');
+    if (homeColumn) { view.left = 0; view.right = screenWidth; }
     const viewWidth = view.right - view.left, viewHeight = view.bottom - view.top;
     if (viewWidth < 2 || viewHeight < 2) return null;
     const optics = [Math.min(10, width * 0.04, viewWidth * 0.02), Math.min(14, height * 0.05, viewHeight * 0.025), Math.min(0.04, 16 / width), Math.min(0.04, 12 / height)];
     const bands = [Math.min(38, viewWidth * 0.08, width * 0.14), Math.min(52, viewHeight * 0.08, height * 0.16)];
+    if (homeColumn) bands[0] = 1;
     const expansion = Math.min(26, Math.max(width, height) * 0.08) + 4;
     const meetsGlass = box.left < view.left + bands[0] || box.right > view.right - bands[0]
       || box.top < view.top + bands[1] || box.bottom > view.bottom - bands[1];

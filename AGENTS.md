@@ -1,6 +1,6 @@
 # Agent 交接说明
 
-更新：2026-10-25。请先读本文件，再修改项目；用户在新对话中的明确要求优先。
+更新：2026-10-26。请先读本文件，再修改项目；用户在新对话中的明确要求优先。
 
 ## 项目与启动
 
@@ -48,11 +48,11 @@
 
 ### Gallery / Archive
 
-- 真实项目共 9 个：Melodeck、Company、G-PIXEL、Quipu、The Lexicon of Wish、Steampunk、Ultra Vision、Gofie、Ariel。
-- 占位项目已删除。年份从 `notes` 数据自动生成，目前 All / 2024 / 2023 / 2022。无项目的年份不显示；无效筛选回退 All。
+- Gallery 为项目数据库，目前 13 项：原有九项，加上 Stutter-Affirming Progress、Unity、PomeloX、Google Future of Work。所有首页项目必须也存在于 Gallery。
+- 占位项目已删除。年份从 `notes` 数据自动生成，目前 All / 2026 / 2025 / 2024 / 2023 / 2022。无项目的年份不显示；无效筛选回退 All。
 - 新增项目时更新 `notes`、本地素材和对应内容渲染；年份无需手改 HTML。可用 `description` 字段增加左侧描述。
 - 图片画框从视口顶部延伸到底部；左侧描述按网格内缩，手机端在底部显示。
-- 阅读层是独立滚动容器 `#note-reading`。Close 固定于视口顶部，Index 和回顶操作此容器，不是 window。
+- 所有项目统一使用 `#note-reading` 阅读窗口，运行时移到 body 下，首页和 Gallery 调用相同的 projectMarkup。Close 固定于视口顶部，Index、进度条和回顶操作此容器，不是 window；关闭恢复来源页及滚动位置。
 - 不要给 `#note-reading` 加会改变 fixed 定位参照的 filter / backdrop-filter / transform，也不要恢复滚动位置补偿 Close 的做法。
 - 章节索引由内容生成。查找标题所属 section 时必须限制在内容根节点以内，不能误选或重命名外层 `#note-reading`。
 - Gallery 的玻璃 canvas 放在 `.archive-space` 内，低于描述/年份/导航；阅读时转入阅读层，避免图片遮挡工具。
@@ -69,13 +69,37 @@
 
 - Lexicon 封面：用户指定的植物图保存在 `visual-exploration/assets/lexicon/cover.png`；首页及 Gallery 使用静态图、contain 完整显示，不要改回自动播放的视频封面。项目详情中的原始影片保留。
 
-## 最新首页分类（2026-10-25）
+## 最新状态（2026-10-26，revision=13）
 
-- Design 仅三项：Stutter-Affirming Progress 项目、Unity 的 Precision Management System for Shipbuilding、PomeloX。Research 仅 The Lexicon of Wish、Quipu。Gallery 九项保持不变。
-- Unity Figma：node-id=382-19451；PomeloX：node-id=382-19452（同一 26SP_Portfolio 文件）。
-- Unity 仅展示标题、简介和抽象 Gaussian 模糊预览；点击标题或预览进入现有密码弹窗。没有导出私密设计图片。解锁后为简介和邮件联系页。
-- 密码已按用户要求更新（不在交接文档重复记录），仍为原有客户端演示机制，不是服务端加密保护；正式保护需另行实现后端鉴权。UI 不再公开提示密码。
-- Private access 提供 mailto:wenjiashi616@gmail.com 申请入口。
-- new-designs.js 提供 Unity 简介及 PomeloX 精选页面；PomeloX 使用本地 assets/pomelox/ 四张真实界面素材，仅精选发现/参与/发布内容，未逐页实现全部设计。
-- Lexicon 原图最右侧 x=1665..1718 是黑色截屏边缘；CSS clip-path 裁掉右侧3.2%，不修改原文件。此封面不用 WebGL 替换，防止白底轮廓；键盘 focus-visible 保留。
-- revision=11 检查桌面1440与手机390：首页3+2分类、错误密码/解锁跳转、邮件入口、PomeloX图片及4章索引、无横向溢出和JS错误。
+- Design 三项：Stutter-Affirming Progress、Unity 的 Precision Management System for Shipbuilding、PomeloX。
+- Research 三项：Google 的 Future of Work、The Lexicon of Wish、Quipu。Google 与 Unity 均保密。
+- 首页项目介绍使用 assets/logos/：Unity；PomeloX 的 Chinese Union；AImpower 的 Cornell + AImpower.org；Google 的 Google + Cornell。标识不参与边缘玻璃效果。
+- Unity Figma：同一 26SP_Portfolio 文件的 node-id=382-19451；PomeloX：382-19452。
+- Google 原稿：https://www.figma.com/slides/I58B611kxIqy9HxKeufRPc 。Google 案例说明团队研究，不能擅自归为个人完成。
+- Unity 解锁后有完整 12 页原稿及章节说明；Google 有研究到三个设计方向的精选叙事和完整 34 页正式演示稿（不含未编号的备选草稿）。原稿作为文档图片展示，可滑动翻页和放大；不再显示文字稿入口。
+- private-cases.js 管理解密、私密案例阅读和图片按需加载。assets/private/ 下只有 AES-256-GCM 密文、salt 和 PBKDF2 参数（SHA-256，310000 次）。正文、图片均加密；公开 JS 不保存密码。
+- 密码沿用用户指定值，不在交接文档记录。解密密钥仅在当前页面内存，刷新或 Reset 重新锁定；旧 sessionStorage 的 yes 标记不能解锁。不等同于服务器账户鉴权。
+- 若修改密码，必须用原密码解密后对正文和全部图片重新加密，并同步生成 config.json，不能只改表单校验。不要将未加密的私密原稿放入网站目录或 Git。
+- 原始 Figma 导出及构建临时文件在本机临时目录，不能依赖它们永久存在；跨端需要从上述 Figma 源重新导出。网页运行所需的密文已保存在仓库工作区。
+- new-designs.js 只负责 PomeloX 精选页面。Unity 原有简介占位页已移除。
+- 所有项目由统一 projectMarkup 渲染。Lexicon 在 Gallery 也使用首页原本的完整 lexiconMarkup（含影片和研究过程），Quipu 同样统一，不能再恢复 researchArchiveMarkup 的旧简版。
+- #note-reading 带 dialog 语义、背景 inert、焦点返回与 Escape 关闭；图片放大弹窗的 Escape 不应同时关闭项目阅读窗口。
+- buildReadingIndex 遇到已定义的 data-project-index 时必须保留原章节 ID，以免破坏 AImpower 内部跳转；其他旧项目自动生成索引。
+- Private access 保留 mailto:wenjiashi616@gmail.com 申请入口。
+- Lexicon 原图最右侧 x=1665..1718 是黑色截屏边缘；CSS clip-path 裁掉右侧3.2%，不修改原文件。此封面不做 WebGL 替换，键盘 focus-visible 保留。
+- revision=13 已验证 1440px 和 390px：首页3+3分类、13项Gallery、年份筛选、合作方logo、Lexicon两入口内容一致、滚动位置恢复、固定Close、进度、索引/回顶、错误密码与解锁/Reset、Unity12页和Google34页翻页、图片放大/Escape、AImpower标签切换、无横向溢出及JS/资源错误。JS语法与git diff --check通过。
+- 未提交、未推送、未部署。最新本地预览：http://127.0.0.1:4173/?revision=13#home 。
+
+## Google 与私密封面更新（2026-10-26，revision=14）
+
+- Google 正文改为 8 个原生网页章节：三钻过程、八趋势气泡图、访谈发现、方案收敛、共享账户视图、AI 回退、上下文交接、下一步验证。整页幻灯片只保留在末尾完整演示稿中。
+- 三钻、气泡、研究发现和方案组件支持点击及键盘切换；回退方案有勾选进度。交互是对团队提案的网页解释，不应写成已经上线或有验证成效。
+- 正文 HTML 位于加密 manifest 的 google.body；private-cases.js 负责通用交互。不要将解密正文直接保存到公开 JS。Google 界面独立素材来自 Slides 的 330:1406（位于 324:283），加密文件 google-key.enc。
+- Google / Unity 首页使用真实关键图的预先模糊预览 assets/google-preview.png、unity-preview.png；logo 独立覆盖，始终清晰。解锁后 hydrateCovers 加载内存 Blob 原图，首页和 Gallery 同步。未解锁提示 Enter password to view。
+- 公开预览已烘焙模糊，不含可直接还原的清晰源图。清晰素材仍加密。Google cover=google-key.enc；Unity cover=unity-07.enc。
+- 两个项目共用演示稿浏览器：图片左右滑动、侧边箭头、下方页码下拉、方向键翻页、点击放大。无 Read page text。相邻页预取，新图解码完成前保留当前页，避免闪白。
+- Private access 邮件申请文案明确分两行。Google 手机阅读时索引及回顶位于右下角，避免遮住趋势图；章节索引采用点击切换，避免悬停先打开再被点击关闭。
+- 本轮保持统一阅读窗口、固定 Close、顶端进度条、项目加密及两入口一致。未提交或部署。
+- revision=14 已验证 1440px / 390px：全部原生图表与标签、勾选进度、解锁前后封面、真实触摸滑动、键盘/箭头翻页、手机索引展开、邮件换行、无横向溢出和 JS/资源错误；47 个加密图片及 manifest 完整性、JS 语法、git diff --check 通过。
+- revision=15：首页 Google / Unity 私密封面使用 object-fit:cover 铺满预览区，容器背景透明，避免 contain 留出灰边。Logo 独立保持清晰；两个 HTML 入口 home.css 版本同步。已检查桌面1440及手机390。
+- revision=16：保密状态下 Google / Unity 的公司 Logo 直接叠在模糊封面上，移除白色圆角底框；已解锁状态不变。
