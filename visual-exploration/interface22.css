@@ -1,0 +1,81 @@
+/* Revision 22: opening hierarchy, focused collection bands and fixed glass controls. */
+#home-editorial{--home-gutter:5vw;max-width:none;padding-left:var(--home-gutter);padding-right:var(--home-gutter)}
+.home-opening{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:8vw;align-items:start;padding-top:28px}
+.home-bio{padding:0;max-width:650px}
+#home-editorial .home-bio>.home-eyebrow{font-size:16px;color:#333;margin:0 0 28px}
+.home-bio h1{font-size:clamp(38px,4.5vw,66px);line-height:1.12;letter-spacing:-.045em;margin:0 0 28px}
+.home-bio>p:not(.home-eyebrow){font-size:clamp(16px,1.35vw,19px);line-height:1.75;color:#606060;max-width:460px}
+.home-bio>a{font-size:13px;margin-top:30px}
+.home-opening>.home-feature{margin-top:0}
+.home-selection-label{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#666;margin:0 0 20px}
+.home-opening .home-feature-copy h2{font-size:clamp(20px,2vw,26px)}
+.home-opening .home-feature-copy>p{font-size:13px;line-height:1.7}
+.home-collection-pin{box-sizing:border-box;width:calc(100% + 2 * var(--home-gutter));margin-left:calc(-1 * var(--home-gutter));padding-left:var(--home-gutter);padding-right:var(--home-gutter)}
+.home-collection+.home-collection{margin-top:64px}
+.home-collection-pin .home-group-toggle{position:relative;isolation:isolate;padding:24px 0;margin:0 0 22px;transition:color .55s ease;perspective:800px}
+.home-group-toggle::before{content:"";position:absolute;z-index:-1;inset:0 calc(-1 * var(--home-gutter));background:#202020;transform-origin:top;transform:rotateX(-12deg) scaleY(0);transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.home-group-toggle[aria-expanded=true]{color:#fff}
+.home-group-toggle[aria-expanded=true]::before{transform:rotateX(0) scaleY(1)}
+.home-collection-pin .home-row-toggle{padding:25px 0;transition:color .4s}
+.home-project-row:not([data-focused=true]) .home-row-name{color:#8a8a8a}
+.home-project-row[data-focused=true] .home-row-name{color:#202020;font-weight:500}
+.home-collection-pin .home-row-image{height:clamp(145px,calc(100svh - 470px),340px);margin-bottom:32px}
+.home-collection-pin .home-row-description{padding:22px 0 32px}
+.site-header #access{position:static;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;min-height:38px;max-width:none;border-radius:24px;white-space:nowrap;line-height:1.2;color:#fff;background:linear-gradient(135deg,#373737e8,#101010e8);border:1px solid #ffffff38;box-shadow:inset 0 1px 1px #ffffff40,0 4px 16px #00000014;backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);transition:background .55s,color .55s,box-shadow .55s}
+.site-header #access svg{display:block;flex:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.site-header #access[data-state=unlocked]{color:#444;background:linear-gradient(135deg,#ffffffec,#ffffff87);border-color:#fff;box-shadow:inset 0 1px 2px #fff,0 5px 20px #0000000d,0 0 0 1px #00000007;cursor:default}
+.page-tools #tool-toggle{translate:none!important;transform:none!important;transition:background .3s,box-shadow .3s}
+.page-tools:not(.is-project-index) #tool-menu{top:50%;transform:translateY(-50%);width:148px}
+.page-tools:not(.is-project-index) #tool-menu nav{height:auto;flex-direction:column;align-items:stretch;gap:0;padding:13px 12px;border-radius:20px;transform-origin:right center}
+.page-tools:not(.is-project-index) #tool-menu nav a{padding:12px 14px;width:100%;box-sizing:border-box}
+.page-tools:not(.is-project-index) #tool-menu nav a:hover{background:#ffffff85;text-decoration:none;border-radius:8px}
+#archive .archive-top{display:none}
+#archive .archive-index{position:fixed;top:130px;bottom:40px;width:clamp(180px,18vw,240px);right:5%;display:flex;flex-direction:column;gap:22px;overflow:hidden;scrollbar-width:none}
+#archive .archive-index::-webkit-scrollbar,#archive #archive-list::-webkit-scrollbar{display:none}
+#archive .years{flex:none;margin:0;gap:12px 18px;position:relative;z-index:1}
+#archive #archive-list{--archive-row:clamp(52px,7.6svh,76px);flex:none;height:calc(7 * var(--archive-row));max-height:calc(100svh - 250px);overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;padding:8px 0;box-sizing:border-box;mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent)}
+#archive .archive-choice{box-sizing:border-box;min-height:var(--archive-row);height:var(--archive-row);padding:8px 0;display:flex;align-items:center;font-size:12px;line-height:1.25;white-space:normal;overflow:hidden;flex-shrink:0}
+@media(max-width:700px){
+ #home-editorial{--home-gutter:7vw}
+ .home-opening{grid-template-columns:1fr;gap:50px;padding-top:0}
+ .home-bio h1{font-size:clamp(38px,9vw,58px)}
+ .home-bio>p:not(.home-eyebrow){font-size:16px}
+ .home-opening>.home-feature{width:100%;max-width:520px;justify-self:start}
+ .home-collection+.home-collection{margin-top:44px}
+ .home-collection-pin .home-group-toggle{padding:20px 0;margin-bottom:16px}
+ .home-collection-pin .home-row-toggle{padding:21px 0}
+ .home-collection-pin .home-row-image{height:clamp(125px,24svh,220px);margin-bottom:0}
+ .home-collection-pin .home-row-description{padding:16px 0 25px}
+ .site-header #access{padding:9px 10px;gap:6px;min-height:34px;font-size:9px;margin-right:0}
+ .site-header #access svg{width:12px;height:12px}
+ #archive .archive-index{top:110px;left:7%;right:7%;bottom:auto;width:auto;gap:10px;overflow:visible;pointer-events:none}
+ #archive .years{display:flex;flex-wrap:nowrap;gap:14px;pointer-events:auto}
+ #archive #archive-list{display:flex;flex-direction:row;width:100%;height:42px;max-height:42px;overflow-x:auto;overflow-y:hidden;gap:22px;padding:0;mask-image:linear-gradient(to right,transparent,#000 4%,#000 96%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 4%,#000 96%,transparent);pointer-events:auto;background:#ffffffb8}
+ #archive .archive-choice{height:42px;min-height:42px;white-space:nowrap;width:auto;flex-shrink:0;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.home-group-toggle::before,.home-collection-pin .home-group-toggle,.site-header #access{transition:none}}
+/* Revision 23: quieter categories and compact Archive index. */
+.site-header #access[data-state=locked]{background:rgba(20,20,20,.77);box-shadow:inset 0 1px 1px #ffffff38,0 4px 16px #00000012}
+.home-collection-pin .home-group-toggle{color:#a2a2a2;perspective:none;transition:color .55s ease}
+.home-group-toggle::before{inset:auto auto 7px 0;width:32px;height:2px;background:#333;transform:scaleX(0);transform-origin:left;transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.home-group-toggle[aria-expanded=true]{color:#252525}
+.home-group-toggle[aria-expanded=true]::before{transform:scaleX(1)}
+.home-toggle-mark{font-size:18px;color:#999}
+.home-contact{justify-content:flex-end}
+#home-editorial [data-project=pomelox].home-row-image{background:#f5f3f2;padding:20px;align-items:center;overflow:visible}
+.home-device-glass{display:block;height:100%;width:auto;max-width:90%;padding:5px;border:1px solid #ffffffc9;border-radius:20px;background:#ffffff45;backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px #ffffff80,0 3px 4px #00000008,0 12px 28px #51444818}
+#home-editorial .home-device-glass img{width:auto;max-width:100%;height:100%;object-fit:contain;border-radius:15px}
+#archive .archive-index{gap:38px}
+#archive #archive-list{--archive-row:clamp(48px,6.2svh,60px);height:calc(5 * var(--archive-row));padding:0}
+#archive .archive-choice{padding:4px 0}
+/* The list shares the caption's viewport centre; years remain independently anchored. */
+@media(min-width:701px){
+ #archive .archive-index{top:0;bottom:0;overflow:visible;pointer-events:none}
+ #archive .years{position:absolute;top:130px;left:0;right:0;pointer-events:auto}
+ #archive #archive-list{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);pointer-events:auto}
+}
+@media(max-width:700px){
+ #archive .archive-index{gap:12px}
+ #archive #archive-list{height:42px;padding:0}
+ #archive .archive-choice{padding:4px 0}
+}

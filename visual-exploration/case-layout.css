@@ -1,0 +1,44 @@
+/* Shared reading grid. All case headings and full-width media share one baseline. */
+#note-reading-content{--case-width:1040px;--copy-width:660px;--heading-width:740px}
+#note-reading-content>:is(.private-case,.aimpower-case,.lexicon-case,.new-design-case,.note-layout,.gofie-case){width:100%;max-width:var(--case-width);margin-left:auto;margin-right:auto;padding-left:0;padding-right:0;box-sizing:border-box}
+#note-reading-content :is(.private-case>header,.private-copy,.aimpower-header,.aim-chapter-heading,.aim-reading,.aim-copy,.new-design-case>header,.new-design-case .case-copy){margin-left:0;margin-right:0;text-align:left}
+#note-reading-content :is(.private-case>header,.private-copy,.new-design-case>header,.new-design-case .case-copy){max-width:none}
+#note-reading-content :is(.private-case>header,.private-copy,.new-design-case>header,.new-design-case .case-copy)>p{max-width:var(--copy-width)}
+#note-reading-content :is(.private-copy h2,.new-design-case .case-copy h2,.aim-chapter-heading){max-width:var(--heading-width)}
+#note-reading-content .new-design-case details{margin-left:0;margin-right:0;max-width:var(--copy-width)}
+#note-reading-content .lex-hero{grid-template-columns:1fr;gap:38px;min-height:0;margin-bottom:64px}
+#note-reading-content .lex-hero h1{max-width:900px}
+#note-reading-content .lex-question{max-width:var(--copy-width)}
+#note-reading-content .lex-hero figure{width:100%;margin:0}
+#note-reading-content .lex-chapter{grid-template-columns:1fr;gap:30px;padding:52px 0 60px}
+#note-reading-content .lex-section-title{position:static;max-width:var(--heading-width)}
+#note-reading-content .lex-section-body{min-width:0;width:100%}
+#note-reading-content .lex-section-body>p{max-width:var(--copy-width)}
+#note-reading-content .quipu-case .quipu-context{grid-template-columns:1fr;padding-inline:0}
+#note-reading-content .quipu-context-copy{max-width:var(--copy-width)}
+#note-reading-content .quipu-case .quipu-system-intro{max-width:var(--copy-width);margin-left:0;text-align:left}
+#note-reading-content .note-layout{grid-template-columns:minmax(0,1fr);gap:45px}
+#note-reading-content .note-layout>.note-copy{grid-row:1;position:static;max-width:var(--copy-width);width:100%}
+#note-reading-content .note-layout :is(.project-story,.import-paragraph){max-width:var(--copy-width)}
+#note-reading-content .note-layout :is(.melodeck-images,.import-story){min-width:0;width:100%}
+/* Close is always a plain text control; keyboard focus uses an underline. */
+#note-reading #close-note,#note-reading #close-note:is(:hover,:focus,:focus-visible,:active){appearance:none;border:0;outline:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+#note-reading #close-note:focus-visible{text-decoration:underline;text-underline-offset:5px}
+.private-deck .deck-arrow svg{width:22px;height:22px;display:block;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* One glass disclosure for every project index, with a forgiving pointer bridge. */
+.page-tools #tool-toggle{transition:translate .45s cubic-bezier(.2,1.6,.3,1),background .25s,box-shadow .25s}
+.page-tools #tool-toggle[aria-expanded=true]{background:#ffffffb8;box-shadow:inset 0 1px 2px #fff,0 5px 22px #00000010}
+.page-tools #tool-menu nav{animation:none;transform-origin:right center;background:linear-gradient(130deg,#ffffffe0,#ffffffa3 45%,#f1f2f3a8);border:1px solid #ffffffed;backdrop-filter:blur(28px) saturate(1.35);-webkit-backdrop-filter:blur(28px) saturate(1.35);box-shadow:inset 0 1px 2px #fff,inset 0 -1px 1px #ffffffb0,0 12px 42px #00000014,0 0 0 1px #00000008}
+.page-tools.is-project-index #tool-menu nav{border-radius:20px}
+.page-tools.is-project-index #tool-menu button[data-section]{transition:background .2s,color .2s}
+@media(max-width:700px){
+ #note-reading-content .lex-chapter{padding:32px 0;gap:22px}
+ #note-reading-content .lex-hero{gap:28px;margin-bottom:40px}
+ #note-reading-content .note-layout{gap:30px}
+ .page-tools #tool-menu nav{transform-origin:bottom right}
+}
+@media(prefers-reduced-motion:reduce){.page-tools #tool-toggle{transition:none}}
+
+#note-reading-content :is(.gofie-header,.gofie-section){grid-template-columns:1fr;gap:28px}
+#note-reading-content .gofie-section>h2{max-width:var(--heading-width)}
+#note-reading-content .gofie-watches{margin-left:0;margin-right:0}
