@@ -101,7 +101,7 @@
 .page-tools.is-project-index #tool-menu button[data-section]{width:100%;display:flex;align-items:baseline;gap:12px;padding:9px 12px;text-align:left;font-size:12px;line-height:1.4;border-radius:6px;color:#888}
 .page-tools.is-project-index #tool-menu button[data-section] span{font-size:9px;font-variant-numeric:tabular-nums;color:#aaa}
 .page-tools.is-project-index #tool-menu button[data-section]:hover{background:#fff7;color:#333}
-.page-tools.is-project-index #tool-menu button[aria-current="location"]{background:#edf4ef;color:#2d6a4f}
+.page-tools.is-project-index #tool-menu button[aria-current="location"]{background:#e5e5e5;color:#333}
 @media(max-width:1150px) and (min-width:701px){.aimpower-case{width:calc(100% - 130px);padding-left:10px;padding-right:10px}}
 @media(max-width:700px){
  .aimpower-case{padding:20px 6% 65px}.aimpower-header{margin:20px 0 35px}.aimpower-header h1{font-size:52px}.aimpower-subtitle{font-size:28px}.aim-lead{font-size:15px}
