@@ -3,21 +3,21 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)'),desktop=matchMedia(
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const projects=[];
 projects.unshift({id:'aimpower',title:'A Zoom + Web System for Stutter-Affirming Progress',type:'UI/UX & accessibility',year:'2025',cover:'assets/aimpower/cover.webp',private:false,summary:'A Zoom + Web system for stutter-affirming progress.'});
-projects.push({id:'unity',title:'Precision Management System for Shipbuilding',type:'Unity · Industrial UI/UX',year:'2025',private:true},{id:'pomelox',title:'PomeloX',type:'UI/UX · Mobile app',year:'2025–2026',cover:'assets/pomelox/home.png',private:false});
+projects.push({id:'unity',title:'Precision Management System for Shipbuilding',type:'Unity · Industrial UI/UX',year:'2025',private:true,cover:'assets/unity-cover-blur.png'},{id:'pomelox',title:'PomeloX',type:'UI/UX · Mobile app',year:'2025–2026',cover:'assets/pomelox/home.png',private:false});
 projects.push({id:'lexicon',title:'The Lexicon of Wish',type:'Design Research',cover:'assets/lexicon/cover.png',private:false});
-projects.push({id:'quipu',title:'Quipu',type:'Design Research',cover:'assets/quipu/09.png',private:false});
+projects.push({id:'quipu',title:'Quipu',type:'Design Research',cover:'assets/quipu/cover.png',private:false});
 const notes=[
  {id:'melodeck',title:'Melodeck',year:'2024',type:'Product Design',cover:'assets/melodeck/01.png',back:'assets/melodeck/04.png',description:'A skateboard that turns city surfaces into sound.'},
  {id:'company',title:'Company',year:'2022',type:'Poster Design',cover:'assets/company/01.png',single:true,description:'Fifty years of a musical, explored through visual information design.'},
  {id:'gpixel',title:'G-PIXEL',year:'2022',type:'Brand Design',cover:'assets/gpixel/gallery-front.png',back:'assets/gpixel/gallery-back.png'},
- {id:'quipu',title:'Quipu',year:'2024',type:'Design Research',cover:'assets/quipu/09.png',back:'assets/quipu/12.png',description:'Recorded physically. Stored digitally.'},
- {id:'lexicon',title:'The Lexicon of Wish',year:'2023',type:'Design Research',cover:'assets/lexicon/cover.png',back:'assets/lexicon/hy-lab/Plant3_edited.png',description:'Giving contemporary wishes a new visual language.'},
+ {id:'quipu',title:'Quipu',year:'2024',type:'Design Research',cover:'assets/quipu/cover.png',back:'assets/quipu/12.png',description:'Recorded physically. Stored digitally.'},
+ {id:'lexicon',title:'The Lexicon of Wish',year:'2023',type:'Design Research',cover:'assets/lexicon/cover.png',back:'assets/lexicon/hy-lab/poster.jpg',description:'Giving contemporary wishes a new visual language.'},
  {id:'steampunk',title:'Steampunk',year:'2022',type:'Poster Design',cover:'assets/steampunk/01.png',single:true,description:'Steam aesthetics meet Victorian elegance.'},
  {id:'ultravision',title:'Ultra Vision',year:'2022',type:'Car Interior & Interaction Design',cover:'assets/ultravision/08.png',back:'assets/ultravision/24.png',description:'Making driving information part of the interior.'},
  {id:'gofie',title:'Gofie',year:'2023',type:'UI/UX Design',cover:'assets/gofie/11.png',back:'assets/gofie/14.png',description:'A more approachable way to play golf.'},
  {id:'ariel',title:'Ariel',year:'2022',type:'Service Design',cover:'assets/ariel/09.png',back:'assets/ariel/23.png',description:'Connecting marine waste to a circular service.'}
 ];
-projects.push({id:'google',title:'Future of Work',type:'Google × Cornell · UX Research',year:'2026',private:true,cover:'assets/google-preview.png',description:'Exploring how people and AI coordinate work across teams. Enter password to view.'});
+projects.push({id:'google',title:'Future of Work',type:'Google × Cornell · UX Research',year:'2026',private:true,cover:'assets/google-cover-blur.png',description:'Exploring how people and AI coordinate work across teams. Enter password to view.'});
 projects.find(p=>p.id==='unity').cover='assets/unity-preview.png';
 for(const id of ['google','pomelox','unity','aimpower']){const p=projects.find(p=>p.id===id);if(!notes.some(n=>n.id===id))notes.unshift({...p,year:id==='google'||id==='pomelox'?'2026':'2025',single:true,description:p.description||p.summary||p.type});}
 for(const n of notes){const p=projects.find(p=>p.id===n.id);if(p)Object.assign(p,{...n,...p});else projects.push(n);}
@@ -47,7 +47,7 @@ reduced.addEventListener('change',()=>{if(reduced.matches)$$('video').forEach(v=
 
 function renderWork(){
  renderEditorialHome();const access=$('#access');
- access.dataset.state=unlocked?'unlocked':'locked';access.setAttribute('aria-disabled',String(unlocked));
+ access.hidden=unlocked;access.dataset.state=unlocked?'unlocked':'locked';access.setAttribute('aria-disabled',String(unlocked));
  access.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${unlocked?'M8 10V7a4 4 0 0 1 7.5-2':'M8 10V7a4 4 0 0 1 8 0v3'}"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg><span>${unlocked?'Access granted':'Private access'}</span>`;
  requestAnimationFrame(observeProjectVideos);
 }
@@ -64,6 +64,7 @@ function projectMarkup(p){
  if(p.id==='quipu')return quipuMarkup();
  if(p.id==='lexicon')return lexiconMarkup();
  if(p.id==='melodeck')return melodeckMarkup();
+ if(p.id==='ultravision')return ultraVisionMarkup();
  return importedArchiveMarkup(p.id);
 }
 function route(){
@@ -136,7 +137,7 @@ function renderArchive(){
  if(year!=='all'&&!years.includes(year))year='all';
  $('.years').innerHTML=['all',...years].map(y=>`<button data-year="${y}" aria-pressed="${y===year}">${y==='all'?'All':y}</button>`).join('');
  const list=visibleNotes();active=clamp(active,0,Math.max(0,list.length-1));angle=targetAngle=active;
-$('#orbit').innerHTML=list.map((n,i)=>{const front=n.cover||`assets/study-${n.asset}.svg`;const back=n.back||(n.id==='melodeck'?'assets/melodeck/04.png':n.id==='gpixel'?'assets/gpixel/12.png':(n.id==='company'||n.single)?front:`assets/study-${n.asset%4+1}.svg`);return `<button class="orbit-note photo-note ${n.id==='lexicon'?'lexicon-note':n.id==='steampunk'?'poster-note':n.id==='gpixel'?'square-note':n.id==='gofie'?'gofie-note':n.id==='company'?'company-note':''} ${(n.id==='company'||n.single)?'single-photo':'paired-photos'} ${locked(n)?'locked':''}" style="--photo-width:${[235,225,210,230][i%4]}px;--photo-height:${[158,165,175,155][i%4]}px;--back-angle:${i%2?7:-7}deg" data-orbit="${i}" aria-label="${n.title}${locked(n)?', private':''}" aria-pressed="${i===active}"><span class="photo-stack">${(n.id==='company'||n.single)?'':`<span class="stack-photo photo-back"><img src="${back}" alt="" draggable="false"></span>`}<span class="stack-photo photo-front"><img ${n.private?`data-private-cover="${n.id}"`:""} src="${front}" alt="${n.cover?n.title:'Illustrative archive image'}" draggable="false">${locked(n)?'<span class="locked-mark"><span>Private ↗</span></span>':''}</span></span></button>`;}).join('');$('#archive-list').innerHTML=list.map((n,i)=>`<button class="archive-choice" data-choice="${i}" aria-current="${active===i}">${n.title}${locked(n)?'<span class="private-symbol">⌑</span>':''}</button>`).join('');$$('[data-choice]').forEach(b=>b.onclick=()=>selectNote(Number(b.dataset.choice)));$$('[data-orbit]').forEach(b=>b.onclick=()=>{if(moved)return;const i=Number(b.dataset.orbit);if(i===active)openNote();else selectNote(i);});privateVault.hydrateCovers($('#orbit'));attachArchivePressure();updateCaption();positionOrbit();}
+$('#orbit').innerHTML=list.map((n,i)=>{const front=n.cover||`assets/study-${n.asset}.svg`;const back=n.back||(n.id==='melodeck'?'assets/melodeck/04.png':n.id==='gpixel'?'assets/gpixel/12.png':(n.id==='company'||n.single)?front:`assets/study-${n.asset%4+1}.svg`);return `<button class="orbit-note photo-note ${n.id==='pomelox'?'pomelox-note':n.id==='unity'?'unity-note':n.id==='lexicon'?'lexicon-note':n.id==='steampunk'?'poster-note':n.id==='gpixel'?'square-note':n.id==='gofie'?'gofie-note':n.id==='company'?'company-note':''} ${(n.id==='company'||n.single)?'single-photo':'paired-photos'} ${locked(n)?'locked':''}" style="--photo-width:${[235,225,210,230][i%4]}px;--photo-height:${[158,165,175,155][i%4]}px;--back-angle:${i%2?7:-7}deg" data-orbit="${i}" aria-label="${n.title}${locked(n)?', private':''}" aria-pressed="${i===active}"><span class="photo-stack">${(n.id==='company'||n.single)?'':`<span class="stack-photo photo-back"><img src="${back}" alt="" draggable="false"></span>`}<span class="stack-photo photo-front">${locked(n)?`<span class="archive-private-cover" data-edge-glass="off"><img class="archive-private-preview" src="assets/${n.id}-cover-blur.png" alt="${n.title} private preview"><img class="archive-private-logo" src="assets/logos/${n.id==='unity'?'unity-white':'google'}.png" alt="${n.id==='unity'?'Unity':'Google'}"></span>`:n.id==='pomelox'?`<span class="gallery-phones" data-edge-glass="off">${['checkin','home','profile'].map((file,j)=>`<span class="gallery-phone"><img src="assets/pomelox/${file}.png" alt="PomeloX ${file} interface" draggable="false"></span>`).join('')}</span>`:n.id==='unity'?`<span class="gallery-unity" data-edge-glass="off"><img class="unity-model" data-private-cover="unity-model" src="assets/unity-model-blur.png" alt="Shipbuilding digital model" draggable="false"><img class="unity-monitor" data-private-cover="unity-monitor" src="assets/unity-monitor-blur.png" alt="Precision management desktop interface" draggable="false"></span>`:`<img src="${front}" ${n.private?`data-private-cover="${n.id}"`:""} alt="${n.cover?n.title:'Illustrative archive image'}" draggable="false">`}${locked(n)?'<span class="locked-mark"><span>Private ↗</span></span>':''}</span></span></button>`;}).join('');$('#archive-list').innerHTML=list.map((n,i)=>`<button class="archive-choice" data-choice="${i}" aria-current="${active===i}">${n.title}${locked(n)?'<span class="private-symbol">⌑</span>':''}</button>`).join('');$$('[data-choice]').forEach(b=>b.onclick=()=>selectNote(Number(b.dataset.choice)));$$('[data-orbit]').forEach(b=>b.onclick=()=>{if(moved)return;const i=Number(b.dataset.orbit);if(i===active)openNote();else selectNote(i);});privateVault.hydrateCovers($('#orbit'));attachArchivePressure();updateCaption();positionOrbit();}
 function resetArchivePressure(button){
  button.style.setProperty('--press-x','0deg');button.style.setProperty('--press-y','0deg');button.style.setProperty('--press-z','0px');button.style.setProperty('--shadow-x','5px');button.style.setProperty('--shadow-y','9px');button.classList.remove('is-pressed');
 }
@@ -159,7 +160,7 @@ function attachArchivePressure(){
 function syncArchiveIndex(){
  const list=$('#archive-list'),buttons=$$('[data-choice]'),button=buttons[active];
  if(!button||!list.clientHeight)return;
- const top=button.offsetTop-list.offsetTop-(list.clientHeight-button.offsetHeight)/2;
+ const top=button.getBoundingClientRect().top-list.getBoundingClientRect().top+list.scrollTop-(list.clientHeight-button.offsetHeight)/2;
  list.scrollTo({top:Math.max(0,top),behavior:reduced.matches?'instant':'smooth'});
 }
 let indexWheelTotal=0,indexWheelAt=0;

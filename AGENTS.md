@@ -155,3 +155,25 @@
 - 按最新反馈完整移除 Tiles 平铺视图、Carousel/Tiles切换入口及对应JS/CSS，Archive仅保留原轮播。
 - 桌面右侧5项项目列表以视口50%垂直居中，与左侧介绍的中心线一致；年份仍独立固定在顶部。手机紧凑索引保持。
 - 已检查左右中心坐标一致、项目切换、2026筛选及390px手机无横向溢出；JS语法与git diff --check通过。未提交或部署。
+
+## 首页批注与封面（revision=25，2026-10-28）
+- Private access 居中，手机另起居中行；标识改为 Wenjia SHI，介绍改为 Hi, I'm Wenjia Shi。
+- 首页第二精选项目改为 Google；Google 使用用户提供的 assets/google-cover.png 公开封面，解锁不再替换此封面，正文加密保持。
+- Quipu 首页、Archive 与详情首图统一 assets/quipu/cover.png。
+- html scrollbar-gutter:stable 避免页面切换因滚动条消失而横移。
+- 分类保留全局滚动展开，标题随滚动到顶并由下一分类顶替。
+- 桌面与390px手机已浏览；首页/Archive标识x坐标相同，Quipu新图加载成功，手机无横向溢出。JS语法及差异检查通过。未提交或部署。预览端口4174。
+
+## 首页与私密封面（revision=29，2026-10-28）
+- Design / Research 改为独立的全局滚动场景：分类标题吸顶，由下一分类顶替；当前分类三个项目标题始终可见，滚动切换展开项，点击标题可展开或收起。桌面和390px手机检查通过。
+- Google 换用用户提供的新比例封面；Unity 换用新首页封面、白色Unity标识及外高桥造船厂标识。首页 AImpower/Google 的 Cornell 标识移除。Google 封面参与轻微边缘玻璃形变。
+- Google/Unity新封面及Unity Gallery的电脑、船舶图以既有密码和salt加密为 AES-256-GCM 密文；公开目录只保留低分辨率模糊预览。明文不在网站目录，密码不在代码或文档。
+- PomeloX Gallery 改为三张手机界面组合，设备各有轻薄玻璃边框；Unity Gallery 改为电脑与船舶模型组合。手机隐藏非当前轮播图片，避免上方遮挡。
+- 验证了新图解锁后加载、无脚本错误、手机无横向溢出、JS语法与git diff --check。未提交、推送或部署。预览 http://127.0.0.1:4174/?revision=29#home 。
+
+## 首页简化与 Archive 索引（revision=31，2026-10-28）
+- 首页整个 #home-editorial 关闭边缘玻璃，所有首页图片原生显示；Gallery 和案例原有处理不变。
+- 解锁成功后隐藏顶栏访问按钮，刷新后恢复解锁状态时同样隐藏。
+- 首页首屏已有 AImpower/Google，分类中不重复；Design 留 Unity/PomeloX，Research 留 Lexicon/Quipu。分类继续吸顶并由下一分类顶替，项目展开高度和透明度按全局滚动连续插值且有缓动；标题同时可见。
+- Archive 桌面右侧列表上下加入中心留白，滚动定位改按按钮实际视口位置计算；首项、中间项、末项均能居中，当前标题保持高亮。手机布局不改。
+- 已检查桌面/390px手机、解锁按钮隐藏、滚动分类、Archive首尾与中间项目居中、无横向溢出和JS错误；node --check及git diff --check通过。未提交或部署。预览 http://127.0.0.1:4174/?revision=31#home 。

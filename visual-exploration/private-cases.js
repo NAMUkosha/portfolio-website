@@ -73,6 +73,6 @@ const privateVault=(()=>{
    const trigger=e.target.closest('[data-private-open]');if(!trigger)return;const source=trigger.querySelector('img');await load(source);if(signal.aborted||!source.dataset.loaded)return;const large=dialog.querySelector('img');large.src=source.src;large.alt=source.alt;dialog.showModal();
   },{signal});
  }
- async function hydrateCovers(root=document){if(!key||!content)return;const generation=epoch;await Promise.all([...root.querySelectorAll('[data-private-cover]')].map(async img=>{try{const file=content[img.dataset.privateCover]?.cover;if(!file)return;const url=await imageURL(file);if(generation===epoch&&img.isConnected){img.src=url;img.dataset.unlocked='true';}}catch{ /* The safe preview stays visible if loading fails. */ }}));}
+ async function hydrateCovers(root=document){if(!key||!content)return;const generation=epoch;await Promise.all([...root.querySelectorAll('[data-private-cover]')].map(async img=>{try{const name=img.dataset.privateCover;const file=({google:'new-google-cover.enc',unity:'new-unity-cover.enc','unity-model':'new-unity-model.enc','unity-monitor':'new-unity-monitor.enc'})[name]||content[name]?.cover;if(!file)return;const url=await imageURL(file);if(generation===epoch&&img.isConnected){img.src=url;img.dataset.unlocked='true';}}catch{ /* The safe preview stays visible if loading fails. */ }}));}
  return {unlock,restore,lock,markup,startImages,stopImages,hydrateCovers};
 })();
