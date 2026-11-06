@@ -1,0 +1,71 @@
+{
+  "reports": [
+    {
+      "name": "greeting",
+      "active": "-1",
+      "view": "home",
+      "width": 1440,
+      "overflow": false,
+      "cards": 15,
+      "title": "Hi, I'm Wenjia Shi"
+    },
+    {
+      "name": "light-wheel",
+      "active": "0",
+      "view": "home",
+      "width": 1440,
+      "overflow": false,
+      "cards": 15,
+      "title": "A Zoom + Web System for Stutter-Affirming Progress"
+    },
+    {
+      "name": "reader",
+      "open": true
+    },
+    {
+      "name": "archive",
+      "active": "0",
+      "view": "archive",
+      "width": 1440,
+      "overflow": false,
+      "cards": 15,
+      "title": "A Zoom + Web System for Stutter-Affirming Progress"
+    },
+    {
+      "name": "year",
+      "titles": [
+        "The Lexicon of Wish",
+        "Flexi",
+        "Abi",
+        "Gofie"
+      ]
+    },
+    {
+      "name": "locked",
+      "dialog": true
+    },
+    {
+      "name": "mobile",
+      "active": "0",
+      "view": "home",
+      "width": 390,
+      "overflow": false,
+      "cards": 15,
+      "title": "A Zoom + Web System for Stutter-Affirming Progress"
+    },
+    {
+      "name": "mobile-archive",
+      "active": "0",
+      "view": "archive",
+      "width": 390,
+      "overflow": false,
+      "cards": 15,
+      "title": "A Zoom + Web System for Stutter-Affirming Progress"
+    },
+    {
+      "name": "about",
+      "visible": true
+    }
+  ],
+  "errors": []
+}

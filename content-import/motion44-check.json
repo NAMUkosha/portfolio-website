@@ -1,0 +1,19 @@
+{
+  "reports": [
+    {
+      "name": "one-step-700ms",
+      "active": "4",
+      "transform": "translate(378.64px, 164.5px) rotate(0deg) scale(0.8496)"
+    },
+    {
+      "name": "next-step",
+      "active": "5",
+      "transform": "translate(378.64px, 164.5px) rotate(0deg) scale(0.8496)"
+    },
+    {
+      "name": "mobile",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

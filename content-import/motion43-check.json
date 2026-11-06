@@ -1,0 +1,89 @@
+{
+  "reports": [
+    {
+      "name": "forward",
+      "seen": {
+        "seen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "active": "14"
+      }
+    },
+    {
+      "name": "reverse",
+      "seen": {
+        "seen": [
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "active": "0"
+      }
+    },
+    {
+      "name": "neighbors",
+      "visible": [
+        {
+          "i": 4,
+          "opacity": 0.52,
+          "top": 6.0048747062683105,
+          "bottom": 340.64311933517456
+        },
+        {
+          "i": 5,
+          "opacity": 1,
+          "top": 291.71002197265625,
+          "bottom": 631.550048828125
+        },
+        {
+          "i": 6,
+          "opacity": 0.52,
+          "top": 582.6168212890625,
+          "bottom": 917.255126953125
+        }
+      ]
+    },
+    {
+      "name": "stack",
+      "layers": 3
+    },
+    {
+      "name": "labels",
+      "count": 0
+    },
+    {
+      "name": "copy",
+      "ghosts": 0
+    },
+    {
+      "name": "mobile",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "https://www.wenjiashi.space/flexi/",
+    "https://www.wenjiashi.space/abi/"
+  ],
+  "images": [
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-4bb76157-57aa-478d-a07e-6aa66bf0b770.jpg?w=1600",
+      "path": "visual-exploration/assets/flexi/0.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-563bdcd7-f0cf-49ae-92e5-009478bbd0cf.jpg?w=1600",
+      "path": "visual-exploration/assets/flexi/1.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-79a2e2c1-0160-4f81-b5d9-9a7d8ae6702a.jpg?w=1600",
+      "path": "visual-exploration/assets/flexi/2.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-199fd8ff-83be-462c-81bc-ee40ca1bec58.jpg?w=1600",
+      "path": "visual-exploration/assets/flexi/3.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-9bf034aa-05f2-4f10-aaab-b93d5074414a.png?w=1600",
+      "path": "visual-exploration/assets/abi/0.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-5e3645c1-a987-4bc8-b335-23c974614fed.png?w=1600",
+      "path": "visual-exploration/assets/abi/1.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-227938f6-7703-4458-a65c-2e0c3c11ceac.png?w=1600",
+      "path": "visual-exploration/assets/abi/2.jpg"
+    },
+    {
+      "url": "https://i-p.rmcdn.net/6729224773325a92ba8948d1/5088904/image-7072e5e3-0e5b-404b-9bdd-721f2c4353e9.png?w=1600",
+      "path": "visual-exploration/assets/abi/3.jpg"
+    }
+  ],
+  "notes": "Brief concept summaries. Qualitative HTML diagrams redrawn from original project text; no unsupported numerical or clinical claims imported."
+}

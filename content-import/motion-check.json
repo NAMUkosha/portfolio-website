@@ -1,0 +1,35 @@
+{
+  "reports": [
+    {
+      "width": 1440,
+      "mode": "",
+      "cards": 5
+    },
+    {
+      "width": 1440,
+      "mode": "is-archive",
+      "cards": 5
+    },
+    {
+      "width": 1440,
+      "mode": "",
+      "cards": 5
+    },
+    {
+      "width": 969,
+      "mode": "",
+      "cards": 5
+    },
+    {
+      "width": 689,
+      "mode": "is-archive",
+      "cards": 5
+    },
+    {
+      "width": 640,
+      "mode": "",
+      "cards": 5
+    }
+  ],
+  "errors": []
+}

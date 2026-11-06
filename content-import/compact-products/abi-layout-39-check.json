@@ -1,0 +1,133 @@
+{
+  "reports": [
+    {
+      "width": 1440,
+      "pageOverflow": false,
+      "readerOverflow": false,
+      "forms": [
+        {
+          "width": 392,
+          "height": 340.859375,
+          "top": 2628.578125
+        },
+        {
+          "width": 392,
+          "height": 340.859375,
+          "top": 2628.578125
+        }
+      ],
+      "scenes": [
+        {
+          "width": 330.65625,
+          "height": 247.984375,
+          "top": 6399.578125
+        },
+        {
+          "width": 330.671875,
+          "height": 248,
+          "top": 6399.578125
+        },
+        {
+          "width": 330.65625,
+          "height": 247.984375,
+          "top": 6399.578125
+        }
+      ],
+      "construction": [
+        {
+          "width": 351,
+          "height": 300,
+          "top": 6719.078125
+        },
+        {
+          "width": 429,
+          "height": 300,
+          "top": 6719.078125
+        }
+      ],
+      "map": [
+        {
+          "width": 720,
+          "height": 678,
+          "top": 4931.234375
+        }
+      ],
+      "missingImages": [],
+      "expanded": {
+        "state": "true",
+        "width": 1040,
+        "readerOverflow": false
+      },
+      "collapsed": {
+        "state": "false",
+        "width": 720,
+        "scrollLeft": 0
+      }
+    },
+    {
+      "width": 390,
+      "pageOverflow": false,
+      "readerOverflow": false,
+      "forms": [
+        {
+          "width": 161.609375,
+          "height": 140.515625,
+          "top": -1689.40625
+        },
+        {
+          "width": 161.609375,
+          "height": 140.515625,
+          "top": -1689.40625
+        }
+      ],
+      "scenes": [
+        {
+          "width": 247.109375,
+          "height": 185.328125,
+          "top": 2210.25
+        },
+        {
+          "width": 247.109375,
+          "height": 185.328125,
+          "top": 2210.25
+        },
+        {
+          "width": 247.109375,
+          "height": 185.328125,
+          "top": 2210.25
+        }
+      ],
+      "construction": [
+        {
+          "width": 147.234375,
+          "height": 180,
+          "top": 2471.078125
+        },
+        {
+          "width": 179.984375,
+          "height": 180,
+          "top": 2471.078125
+        }
+      ],
+      "map": [
+        {
+          "width": 343.21875,
+          "height": 323.1875,
+          "top": 367.5
+        }
+      ],
+      "missingImages": [],
+      "expanded": {
+        "state": "true",
+        "width": 1000,
+        "readerOverflow": false
+      },
+      "collapsed": {
+        "state": "false",
+        "width": 343,
+        "scrollLeft": 0
+      }
+    }
+  ],
+  "errors": []
+}

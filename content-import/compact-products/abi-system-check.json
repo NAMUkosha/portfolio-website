@@ -1,0 +1,27 @@
+{
+  "reports": [
+    {
+      "width": 1440,
+      "pageOverflow": false,
+      "readerOverflow": false,
+      "mapWidth": 1040,
+      "viewportWidth": 1040,
+      "modules": 5,
+      "overflow": [],
+      "caption": true
+    },
+    {
+      "width": 390,
+      "pageOverflow": false,
+      "readerOverflow": false,
+      "mapWidth": 1000,
+      "viewportWidth": 343,
+      "modules": 5,
+      "overflow": [],
+      "caption": true
+    }
+  ],
+  "errors": [
+    "http://127.0.0.1:4175/favicon.ico"
+  ]
+}

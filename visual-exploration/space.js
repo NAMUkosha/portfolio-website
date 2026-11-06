@@ -7,6 +7,8 @@ projects.push({id:'unity',title:'Precision Management System for Shipbuilding',t
 projects.push({id:'lexicon',title:'The Lexicon of Wish',type:'Design Research',cover:'assets/lexicon/cover.png',private:false});
 projects.push({id:'quipu',title:'Quipu',type:'Design Research',cover:'assets/quipu/cover.png',private:false});
 const notes=[
+ {id:'flexi',title:'Flexi',year:'2023',type:'Product Design',cover:'assets/flexi/0.jpg',back:'assets/flexi/1.jpg',description:'One modular system for automatic and hands-on cleaning.'},
+ {id:'abi',title:'Abi',year:'2023',type:'Product Design · Health concept',cover:'assets/abi/0.jpg',back:'assets/abi/3.jpg',description:'A wearable concept that makes health awareness more tangible.'},
  {id:'melodeck',title:'Melodeck',year:'2024',type:'Product Design',cover:'assets/melodeck/01.png',back:'assets/melodeck/04.png',description:'A skateboard that turns city surfaces into sound.'},
  {id:'company',title:'Company',year:'2022',type:'Poster Design',cover:'assets/company/01.png',single:true,description:'Fifty years of a musical, explored through visual information design.'},
  {id:'gpixel',title:'G-PIXEL',year:'2022',type:'Brand Design',cover:'assets/gpixel/gallery-front.png',back:'assets/gpixel/gallery-back.png'},
@@ -15,7 +17,7 @@ const notes=[
  {id:'steampunk',title:'Steampunk',year:'2022',type:'Poster Design',cover:'assets/steampunk/01.png',single:true,description:'Steam aesthetics meet Victorian elegance.'},
  {id:'ultravision',title:'Ultra Vision',year:'2022',type:'Car Interior & Interaction Design',cover:'assets/ultravision/08.png',back:'assets/ultravision/24.png',description:'Making driving information part of the interior.'},
  {id:'gofie',title:'Gofie',year:'2023',type:'UI/UX Design',cover:'assets/gofie/11.png',back:'assets/gofie/14.png',description:'A more approachable way to play golf.'},
- {id:'ariel',title:'Ariel',year:'2022',type:'Service Design',cover:'assets/ariel/09.png',back:'assets/ariel/23.png',description:'Connecting marine waste to a circular service.'}
+ {id:'ariel',title:'Ariel',year:'2022',type:'Service Design',cover:'assets/ariel/09.png',back:'assets/ariel/23.png',description:'A beach-to-product recycling service connecting collection, progress and rewards.'}
 ];
 projects.push({id:'google',title:'Future of Work',type:'Google × Cornell · UX Research',year:'2026',private:true,cover:'assets/google-cover-blur.png',description:'Exploring how people and AI coordinate work across teams. Enter password to view.'});
 projects.find(p=>p.id==='unity').cover='assets/unity-preview.png';
@@ -58,6 +60,8 @@ $('#password-form').onsubmit=async e=>{e.preventDefault();const button=$('#passw
 $('#access').onclick=()=>{if(!unlocked)requestUnlock(null);};
 function openProject(id){const p=projects.find(p=>p.id===id);if(!p)return;if(locked(p))return requestUnlock(()=>openProject(id));if(location.hash===`#project/${id}`){openReading(id);return;}history.replaceState({...history.state,readerOrigin:page},'');location.hash=`project/${id}`;}
 function projectMarkup(p){
+ if(p.id==='ariel')return arielMarkup();
+ if(['flexi','abi'].includes(p.id))return compactProductMarkup(p.id);
  if(p.private)return privateVault.markup(p.id);
  if(p.id==='pomelox')return newDesignMarkup(p.id);
  if(p.id==='aimpower')return aimpowerMarkup();

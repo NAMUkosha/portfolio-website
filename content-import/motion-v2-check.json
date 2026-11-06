@@ -1,0 +1,221 @@
+{
+  "reports": [
+    {
+      "name": "initial",
+      "width": 1440,
+      "view": "home",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Common ground",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Common ground",
+        "Soft systems",
+        "Field notes"
+      ]
+    },
+    {
+      "name": "wheel-1",
+      "width": 1440,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Soft systems",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Soft systems",
+        "Field notes",
+        "In between"
+      ]
+    },
+    {
+      "name": "wheel-2",
+      "width": 1440,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Field notes",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Field notes",
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "wheel-3",
+      "width": 1440,
+      "view": "home",
+      "active": 3,
+      "moreVisible": false,
+      "title": "In between",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "wheel-4",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "After hours"
+      ]
+    },
+    {
+      "name": "home-end-clamped",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "After hours"
+      ]
+    },
+    {
+      "name": "archive-last",
+      "width": 1440,
+      "view": "archive",
+      "active": 4,
+      "moreVisible": false,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Field notes",
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "archive-end-clamped",
+      "width": 1440,
+      "view": "archive",
+      "active": 4,
+      "moreVisible": false,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Field notes",
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "archive-start-clamped",
+      "width": 1440,
+      "view": "archive",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Common ground",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Common ground",
+        "Soft systems"
+      ]
+    },
+    {
+      "name": "home-return",
+      "width": 1440,
+      "view": "home",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Common ground",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Common ground",
+        "Soft systems",
+        "Field notes"
+      ]
+    },
+    {
+      "name": "mobile-home",
+      "width": 390,
+      "view": "home",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Common ground",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Common ground",
+        "Soft systems"
+      ]
+    },
+    {
+      "name": "mobile-swipe",
+      "width": 390,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Soft systems",
+      "overflow": false,
+      "glass": true,
+      "refracted": 3,
+      "visible": [
+        "Soft systems",
+        "Field notes"
+      ]
+    },
+    {
+      "name": "mobile-archive",
+      "width": 390,
+      "view": "archive",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Soft systems",
+      "overflow": false,
+      "glass": true,
+      "refracted": 3,
+      "visible": [
+        "Common ground",
+        "Soft systems",
+        "Field notes",
+        "In between"
+      ]
+    },
+    {
+      "name": "reduced-motion",
+      "width": 390,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Soft systems",
+      "overflow": false,
+      "glass": false,
+      "refracted": 0,
+      "visible": [
+        "Soft systems",
+        "Field notes"
+      ]
+    }
+  ],
+  "errors": []
+}

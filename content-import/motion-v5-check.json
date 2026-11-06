@@ -1,0 +1,259 @@
+{
+  "reports": [
+    {
+      "name": "initial",
+      "width": 1440,
+      "view": "home",
+      "active": -1,
+      "moreVisible": false,
+      "title": "Hi, I’m Wenjia Shi.",
+      "overflow": false,
+      "glass": true,
+      "refracted": 0,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work",
+        "Precision Management"
+      ]
+    },
+    {
+      "name": "input-during-motion",
+      "width": 1440,
+      "view": "home",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Stutter-Affirming Progress",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work",
+        "Precision Management"
+      ]
+    },
+    {
+      "name": "wheel-0",
+      "width": 1440,
+      "view": "home",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Stutter-Affirming Progress",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work"
+      ]
+    },
+    {
+      "name": "wheel-1",
+      "width": 1440,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Future of Work",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work",
+        "Precision Management"
+      ]
+    },
+    {
+      "name": "wheel-2",
+      "width": 1440,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Precision Management",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Future of Work",
+        "Precision Management",
+        "The Lexicon of Wish"
+      ]
+    },
+    {
+      "name": "wheel-3",
+      "width": 1440,
+      "view": "home",
+      "active": 3,
+      "moreVisible": false,
+      "title": "The Lexicon of Wish",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Precision Management",
+        "The Lexicon of Wish",
+        "Quipu"
+      ]
+    },
+    {
+      "name": "wheel-4",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "Quipu",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "The Lexicon of Wish",
+        "Quipu"
+      ]
+    },
+    {
+      "name": "home-end-clamped",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "Quipu",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "The Lexicon of Wish",
+        "Quipu"
+      ]
+    },
+    {
+      "name": "archive-last",
+      "width": 1440,
+      "view": "archive",
+      "active": 4,
+      "moreVisible": false,
+      "title": "Quipu",
+      "overflow": false,
+      "glass": true,
+      "refracted": 3,
+      "visible": [
+        "Precision Management",
+        "The Lexicon of Wish",
+        "Quipu",
+        "Open forms"
+      ]
+    },
+    {
+      "name": "archive-end-clamped",
+      "width": 1440,
+      "view": "archive",
+      "active": 8,
+      "moreVisible": false,
+      "title": "Everyday traces",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Small signals",
+        "Shared futures",
+        "Everyday traces"
+      ]
+    },
+    {
+      "name": "archive-start-clamped",
+      "width": 1440,
+      "view": "archive",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Stutter-Affirming Progress",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work"
+      ]
+    },
+    {
+      "name": "home-return",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "Quipu",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "The Lexicon of Wish",
+        "Quipu"
+      ]
+    },
+    {
+      "name": "mobile-home",
+      "width": 390,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Future of Work",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work",
+        "Precision Management"
+      ]
+    },
+    {
+      "name": "mobile-swipe",
+      "width": 390,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Precision Management",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Future of Work",
+        "Precision Management",
+        "The Lexicon of Wish"
+      ]
+    },
+    {
+      "name": "mobile-archive",
+      "width": 390,
+      "view": "archive",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Precision Management",
+      "overflow": false,
+      "glass": true,
+      "refracted": 4,
+      "visible": [
+        "Stutter-Affirming Progress",
+        "Future of Work",
+        "Precision Management",
+        "The Lexicon of Wish",
+        "Quipu"
+      ]
+    },
+    {
+      "name": "reduced-motion",
+      "width": 390,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Precision Management",
+      "overflow": false,
+      "glass": false,
+      "refracted": 0,
+      "visible": [
+        "Future of Work",
+        "Precision Management",
+        "The Lexicon of Wish"
+      ]
+    }
+  ],
+  "errors": []
+}

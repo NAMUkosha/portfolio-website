@@ -1,0 +1,227 @@
+{
+  "reports": [
+    {
+      "name": "initial",
+      "width": 1440,
+      "view": "home",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Common ground",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Common ground",
+        "Soft systems"
+      ]
+    },
+    {
+      "name": "wheel-1",
+      "width": 1440,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Soft systems",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Common ground",
+        "Soft systems",
+        "Field notes"
+      ]
+    },
+    {
+      "name": "wheel-2",
+      "width": 1440,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Field notes",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Soft systems",
+        "Field notes",
+        "In between"
+      ]
+    },
+    {
+      "name": "wheel-3",
+      "width": 1440,
+      "view": "home",
+      "active": 3,
+      "moreVisible": false,
+      "title": "In between",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Field notes",
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "wheel-4",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "home-end-clamped",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "archive-last",
+      "width": 1440,
+      "view": "archive",
+      "active": 4,
+      "moreVisible": false,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 3,
+      "visible": [
+        "Field notes",
+        "In between",
+        "After hours",
+        "Open forms"
+      ]
+    },
+    {
+      "name": "archive-end-clamped",
+      "width": 1440,
+      "view": "archive",
+      "active": 8,
+      "moreVisible": false,
+      "title": "Everyday traces",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Small signals",
+        "Shared futures",
+        "Everyday traces"
+      ]
+    },
+    {
+      "name": "archive-start-clamped",
+      "width": 1440,
+      "view": "archive",
+      "active": 0,
+      "moreVisible": false,
+      "title": "Common ground",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "Common ground",
+        "Soft systems"
+      ]
+    },
+    {
+      "name": "home-return",
+      "width": 1440,
+      "view": "home",
+      "active": 4,
+      "moreVisible": true,
+      "title": "After hours",
+      "overflow": false,
+      "glass": true,
+      "refracted": 1,
+      "visible": [
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "mobile-home",
+      "width": 390,
+      "view": "home",
+      "active": 1,
+      "moreVisible": false,
+      "title": "Soft systems",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Common ground",
+        "Soft systems",
+        "Field notes"
+      ]
+    },
+    {
+      "name": "mobile-swipe",
+      "width": 390,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Field notes",
+      "overflow": false,
+      "glass": true,
+      "refracted": 2,
+      "visible": [
+        "Soft systems",
+        "Field notes",
+        "In between"
+      ]
+    },
+    {
+      "name": "mobile-archive",
+      "width": 390,
+      "view": "archive",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Field notes",
+      "overflow": false,
+      "glass": true,
+      "refracted": 4,
+      "visible": [
+        "Common ground",
+        "Soft systems",
+        "Field notes",
+        "In between",
+        "After hours"
+      ]
+    },
+    {
+      "name": "reduced-motion",
+      "width": 390,
+      "view": "home",
+      "active": 2,
+      "moreVisible": false,
+      "title": "Field notes",
+      "overflow": false,
+      "glass": false,
+      "refracted": 0,
+      "visible": [
+        "Soft systems",
+        "Field notes",
+        "In between"
+      ]
+    }
+  ],
+  "errors": []
+}
