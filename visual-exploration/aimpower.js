@@ -6,7 +6,7 @@ function aimpowerMarkup(){
  const heading=(num,title,desc='')=>`<header class="aim-chapter-heading"><p class="small">${num}</p><h2>${title}</h2>${desc?`<p>${desc}</p>`:''}</header>`;
  const card=(title,text)=>`<div class="aim-card"><h3>${title}</h3><p>${text}</p></div>`;
  const tabs=(id,items)=>`<div class="aim-tabs" data-aim-tabs><div class="aim-tab-list" role="tablist" aria-label="${id.replaceAll('-',' ')}">${items.map((item,i)=>`<button role="tab" id="${id}-tab-${i}" aria-controls="${id}-panel-${i}" aria-selected="${i===0}" tabindex="${i===0?0:-1}">${item.label}</button>`).join('')}</div>${items.map((item,i)=>`<div class="aim-tab-panel" role="tabpanel" id="${id}-panel-${i}" aria-labelledby="${id}-tab-${i}" ${i?'hidden':''}>${item.content}</div>`).join('')}</div>`;
- return `<article class="aimpower-case" data-edge-glass="off">
+ return `<article class="aimpower-case">
  <section id="aim-overview" data-project-index="Overview">
  <header class="aimpower-header"><p class="small">Design Lead · Accessibility · AImpower.org · 2025–2026</p><h1>A Zoom + Web System for Stutter-Affirming Progress</h1><p class="aimpower-subtitle">Helping people feel confident<br>in the conversations that matter.</p><p class="aim-lead">I led design for a Zoom + web system that connects in-meeting support with reflection and therapy goals.</p><a class="inline-link" href="${prototype}" target="_blank" rel="noopener noreferrer">Try the prototype ↗</a></header>
  <figure class="aimpower-figure aimpower-hero"><img src="assets/aimpower/cover.webp" alt="AImpower Zoom plugin alongside a live conversation" width="1920" height="1080" fetchpriority="high" decoding="async"></figure>

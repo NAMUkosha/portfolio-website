@@ -141,7 +141,7 @@ function renderArchive(){
  if(year!=='all'&&!years.includes(year))year='all';
  $('.years').innerHTML=['all',...years].map(y=>`<button data-year="${y}" aria-pressed="${y===year}">${y==='all'?'All':y}</button>`).join('');
  const list=visibleNotes();active=clamp(active,0,Math.max(0,list.length-1));angle=targetAngle=active;
-$('#orbit').innerHTML=list.map((n,i)=>{const front=n.cover||`assets/study-${n.asset}.svg`;const back=n.back||(n.id==='melodeck'?'assets/melodeck/04.png':n.id==='gpixel'?'assets/gpixel/12.png':(n.id==='company'||n.single)?front:`assets/study-${n.asset%4+1}.svg`);return `<button class="orbit-note photo-note ${n.id==='pomelox'?'pomelox-note':n.id==='unity'?'unity-note':n.id==='lexicon'?'lexicon-note':n.id==='steampunk'?'poster-note':n.id==='gpixel'?'square-note':n.id==='gofie'?'gofie-note':n.id==='company'?'company-note':''} ${(n.id==='company'||n.single)?'single-photo':'paired-photos'} ${locked(n)?'locked':''}" style="--photo-width:${[235,225,210,230][i%4]}px;--photo-height:${[158,165,175,155][i%4]}px;--back-angle:${i%2?7:-7}deg" data-orbit="${i}" aria-label="${n.title}${locked(n)?', private':''}" aria-pressed="${i===active}"><span class="photo-stack">${(n.id==='company'||n.single)?'':`<span class="stack-photo photo-back"><img src="${back}" alt="" draggable="false"></span>`}<span class="stack-photo photo-front">${locked(n)?`<span class="archive-private-cover" data-edge-glass="off"><img class="archive-private-preview" src="assets/${n.id}-cover-blur.png" alt="${n.title} private preview"><img class="archive-private-logo" src="assets/logos/${n.id==='unity'?'unity-white':'google'}.png" alt="${n.id==='unity'?'Unity':'Google'}"></span>`:n.id==='pomelox'?`<span class="gallery-phones" data-edge-glass="off">${['checkin','home','profile'].map((file,j)=>`<span class="gallery-phone"><img src="assets/pomelox/${file}.png" alt="PomeloX ${file} interface" draggable="false"></span>`).join('')}</span>`:n.id==='unity'?`<span class="gallery-unity" data-edge-glass="off"><img class="unity-model" data-private-cover="unity-model" src="assets/unity-model-blur.png" alt="Shipbuilding digital model" draggable="false"><img class="unity-monitor" data-private-cover="unity-monitor" src="assets/unity-monitor-blur.png" alt="Precision management desktop interface" draggable="false"></span>`:`<img src="${front}" ${n.private?`data-private-cover="${n.id}"`:""} alt="${n.cover?n.title:'Illustrative archive image'}" draggable="false">`}${locked(n)?'<span class="locked-mark"><span>Private ↗</span></span>':''}</span></span></button>`;}).join('');$('#archive-list').innerHTML=list.map((n,i)=>`<button class="archive-choice" data-choice="${i}" aria-current="${active===i}">${n.title}${locked(n)?'<span class="private-symbol">⌑</span>':''}</button>`).join('');$$('[data-choice]').forEach(b=>b.onclick=()=>selectNote(Number(b.dataset.choice)));$$('[data-orbit]').forEach(b=>b.onclick=()=>{if(moved)return;const i=Number(b.dataset.orbit);if(i===active)openNote();else selectNote(i);});privateVault.hydrateCovers($('#orbit'));attachArchivePressure();updateCaption();positionOrbit();}
+$('#orbit').innerHTML=list.map((n,i)=>{const front=n.cover||`assets/study-${n.asset}.svg`;const back=n.back||(n.id==='melodeck'?'assets/melodeck/04.png':n.id==='gpixel'?'assets/gpixel/12.png':(n.id==='company'||n.single)?front:`assets/study-${n.asset%4+1}.svg`);return `<button class="orbit-note photo-note ${n.id==='pomelox'?'pomelox-note':n.id==='unity'?'unity-note':n.id==='lexicon'?'lexicon-note':n.id==='steampunk'?'poster-note':n.id==='gpixel'?'square-note':n.id==='gofie'?'gofie-note':n.id==='company'?'company-note':''} ${(n.id==='company'||n.single)?'single-photo':'paired-photos'} ${locked(n)?'locked':''}" style="--photo-width:${[235,225,210,230][i%4]}px;--photo-height:${[158,165,175,155][i%4]}px;--back-angle:${i%2?7:-7}deg" data-orbit="${i}" aria-label="${n.title}${locked(n)?', private':''}" aria-pressed="${i===active}"><span class="photo-stack">${(n.id==='company'||n.single)?'':`<span class="stack-photo photo-back"><img src="${back}" alt="" draggable="false"></span>`}<span class="stack-photo photo-front">${locked(n)?`<span class="archive-private-cover"><img class="archive-private-preview" src="assets/${n.id}-cover-blur.png" alt="${n.title} private preview"><img class="archive-private-logo" src="assets/logos/${n.id==='unity'?'unity-white':'google'}.png" alt="${n.id==='unity'?'Unity':'Google'}"></span>`:n.id==='pomelox'?`<span class="gallery-phones">${['checkin','home','profile'].map((file,j)=>`<span class="gallery-phone"><img src="assets/pomelox/${file}.png" alt="PomeloX ${file} interface" draggable="false"></span>`).join('')}</span>`:n.id==='unity'?`<span class="gallery-unity"><img class="unity-model" data-private-cover="unity-model" src="assets/unity-model-blur.png" alt="Shipbuilding digital model" draggable="false"><img class="unity-monitor" data-private-cover="unity-monitor" src="assets/unity-monitor-blur.png" alt="Precision management desktop interface" draggable="false"></span>`:`<img src="${front}" ${n.private?`data-private-cover="${n.id}"`:""} alt="${n.cover?n.title:'Illustrative archive image'}" draggable="false">`}${locked(n)?'<span class="locked-mark"><span>Private ↗</span></span>':''}</span></span></button>`;}).join('');$('#archive-list').innerHTML=list.map((n,i)=>`<button class="archive-choice" data-choice="${i}" aria-current="${active===i}">${n.title}${locked(n)?'<span class="private-symbol">⌑</span>':''}</button>`).join('');$$('[data-choice]').forEach(b=>b.onclick=()=>selectNote(Number(b.dataset.choice)));$$('[data-orbit]').forEach(b=>b.onclick=()=>{if(moved)return;const i=Number(b.dataset.orbit);if(i===active)openNote();else selectNote(i);});privateVault.hydrateCovers($('#orbit'));attachArchivePressure();updateCaption();positionOrbit();}
 function resetArchivePressure(button){
  button.style.setProperty('--press-x','0deg');button.style.setProperty('--press-y','0deg');button.style.setProperty('--press-z','0px');button.style.setProperty('--shadow-x','5px');button.style.setProperty('--shadow-y','9px');button.classList.remove('is-pressed');
 }
@@ -184,7 +184,7 @@ function positionOrbit(){
  b.style.transform=`translate(${x-b.offsetWidth/2}px,${y-b.offsetHeight/2}px) rotate(${diff*6}deg)`;
  b.style.opacity=Math.max(.35,1-Math.abs(diff)*.16);b.style.visibility=Math.abs(diff)>2.8?'hidden':'visible';b.style.zIndex=String(20-Math.round(Math.abs(diff)*3));
  });
- window.edgeGlassRenderNow?.();
+
 }
 function animateOrbit(){cancelAnimationFrame(orbitFrame);if(reduced.matches){angle=targetAngle;positionOrbit();return;}function tick(){if(page!=='archive')return;angle+=(targetAngle-angle)*.11;positionOrbit();if(Math.abs(targetAngle-angle)>.001)orbitFrame=requestAnimationFrame(tick);else{angle=targetAngle;positionOrbit();}}orbitFrame=requestAnimationFrame(tick);}
 $('#open-note').onclick=openNote;
@@ -199,7 +199,7 @@ function openReading(id){
  document.body.style.overflow='hidden';closeTools();buildReadingIndex();configureProjectTools();updateTools();
  if(id==='lexicon')startLexiconMotion();if(id==='aimpower')startAimpowerInteractions();
  if(p.private)privateVault.startImages(reader);
- observeProjectVideos();window.edgeGlassRefresh?.();$('#close-note').focus({preventScroll:true});
+ observeProjectVideos();$('#close-note').focus({preventScroll:true});
 }
 function closeNote(updateHash=true){
  if($('#note-reading').hidden)return;
@@ -207,7 +207,7 @@ function closeNote(updateHash=true){
  $('#note-reading').hidden=true;$('#note-reading-content').replaceChildren();readingProjectId=null;
  $$('.page').forEach(el=>el.inert=false);$('.site-header').inert=false;$('.page-tools').inert=false;document.body.style.overflow='';
  if(updateHash&&location.hash.startsWith('#project/'))history.replaceState(null,'',`#${readerOrigin}`);
- closeTools();configureProjectTools();updateTools();if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});window.edgeGlassRefresh?.();
+ closeTools();configureProjectTools();updateTools();if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});
 }
 $('#close-note').onclick=()=>closeNote();window.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'&&!$('#note-reading').hidden){if(!$('#tool-menu').hidden){closeTools();$('#tool-toggle').focus();}else closeNote();return;}if(!$('#note-reading').hidden&&e.key==='Tab'){const items=[...$('#note-reading').querySelectorAll('button,a[href],input,[tabindex="0"]'),...$('.page-tools').querySelectorAll('button,a[href]')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]'));const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
 $('#archive-stage').onkeydown=e=>{if(['ArrowLeft','ArrowUp','ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();selectNote(active+(['ArrowLeft','ArrowUp'].includes(e.key)?-1:1));}};
@@ -223,7 +223,11 @@ function unfoldWork(button){
 function readingScroller(){return $('#note-reading').hidden?null:$('#note-reading');}
 function buildReadingIndex(){
  const root=$('#note-reading-content');
- if(root.querySelector('[data-project-index]'))return;
+ const defined=[...root.querySelectorAll('[data-project-index]')];
+ if(defined.length){
+  defined.forEach((section,i)=>{if(section.id)return;let id=`reading-index-${i}`;while(document.getElementById(id))id+='-section';section.id=id;});
+  return;
+ }
  const first=root.firstElementChild;if(!first)return;
  first.id='reading-overview';first.dataset.projectIndex='Overview';
  const headings=[...root.querySelectorAll('h2,h3')].filter(h=>!h.closest('.note-copy'));
@@ -322,7 +326,7 @@ function melodeckMarkup(){
  ${[4,5,6,7].map((n,i)=>img(n,`Melodeck project rendering ${i+1}`)).join('')}
  <p class="render-credit">Rendered by Jiancheng Qiu</p>
  ${img(8,'Melodeck project detail')}${img(9,'Melodeck project study')}
- </div><div class="note-copy"><p class="small">Product Design · 2024</p><h2>Melodeck</h2><h3 class="melodeck-subtitle">Activate city surfaces with sound</h3><p>The surfaces and materials of the city are looked at in a systematic way by skateboarders.</p><p>The skateboard, like a musical instrument, can be tuned to resonate most directly with the surface substrate it is stepping on.</p><dl class="melodeck-meta"><div><dt>Period</dt><dd>March – June 2024</dd></div><div><dt>Collaborators</dt><dd>Yuqing Wu, Jiancheng Qiu</dd></div></dl><p class="melodeck-tags">Multisensory Design · Soundscape</p><a class="inline-link" href="https://www.wenjiashi.space/melodeck" target="_blank" rel="noopener noreferrer">Original project ↗</a></div></article>`;
+ </div><div class="note-copy"><p class="small">Product Design · 2024</p><h2>Melodeck</h2><h3 class="melodeck-subtitle">Activate city surfaces with sound</h3><p>The surfaces and materials of the city are looked at in a systematic way by skateboarders.</p><p>The skateboard, like a musical instrument, can be tuned to resonate most directly with the surface substrate it is stepping on.</p><dl class="melodeck-meta"><div><dt>Period</dt><dd>March – June 2024</dd></div><div><dt>Collaborators</dt><dd>Yuqing Wu, Jiancheng Qiu</dd></div></dl><p class="melodeck-tags">Multisensory Design · Soundscape</p></div></article>`;
 }
 
 const importedArchiveData={
@@ -513,7 +517,7 @@ function importedArchiveMarkup(id){
  if(block.kind==='quote')return `<blockquote class="import-quote"><p>${escape(block.text)}</p><cite>${escape(block.credit)}</cite></blockquote>`;
  return `<p class="import-paragraph">${escape(block.text)}</p>`;
  }).join('');
- return `<article class="note-layout imported-project"><div class="import-story">${blocks}</div><div class="note-copy"><p class="small">${escape(data.type)} · ${data.year}</p><h2>${escape(data.title)}</h2>${data.intro.map(p=>`<p>${escape(p)}</p>`).join('')}<dl class="melodeck-meta"><div><dt>Period</dt><dd>${data.date}</dd></div></dl><p class="melodeck-tags">${escape(data.tags)}</p><a class="inline-link" href="https://www.wenjiashi.space/${id}/" target="_blank" rel="noopener noreferrer">Original project ↗</a></div></article>`;
+ return `<article class="note-layout imported-project"><div class="import-story">${blocks}</div><div class="note-copy"><p class="small">${escape(data.type)} · ${data.year}</p><h2>${escape(data.title)}</h2>${data.intro.map(p=>`<p>${escape(p)}</p>`).join('')}<dl class="melodeck-meta"><div><dt>Period</dt><dd>${data.date}</dd></div></dl><p class="melodeck-tags">${escape(data.tags)}</p></div></article>`;
 }
 
 
@@ -530,6 +534,6 @@ function gofieArchiveMarkup(){
  <section class="gofie-section"><h2>A visual language<br>from the course.</h2><div><p>Greens, soft neutrals and tactile surfaces connect the interface to the golf course. Bright accents identify actions, while rounded controls and familiar materials give the concept a relaxed character.</p><div class="gofie-mood">${figure('07.png','Golf accessories and green material reference')}${figure('08.jpg','Golf ball surface texture')}${figure('10.jpg','Tactile interface reference')}</div><p class="gofie-caption">Visual references for colour, texture and interface treatment.</p></div></section>
  <section class="gofie-section"><h2>The mobile<br>experience.</h2><div><p>The main page introduces places and ways to play. The community feed makes other players visible, and the course view brings the current hole, route and round information together.</p><div class="gofie-phones">${figure('11.png','Main page interface','Main page')}${figure('12.png','Community interface','Community')}${figure('13.png','In-game interface','In a game')}</div></div></section>
  <section class="gofie-section"><h2>On the wrist.</h2><div><p>The watch concept keeps round information close at hand, with an in-game view and a compact summary at the end.</p><div class="gofie-watches">${figure('14.png','Watch showing current hole and navigation','In a game')}${figure('15.png','Watch showing the round summary','Round summary')}</div></div></section>
- <footer class="gofie-source"><a class="inline-link" href="https://www.wenjiashi.space/gofie/" target="_blank" rel="noopener noreferrer">Original project</a></footer>
+
  </article>`;
 }

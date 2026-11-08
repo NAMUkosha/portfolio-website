@@ -94,3 +94,16 @@ body.motion-live[data-page="home"],body.motion-live[data-page="archive"]{overflo
 #portfolio-motion.is-archive .motion-extra[data-layer="1"]{transform:translate(7%,3%) rotate(4deg)}
 #portfolio-motion.is-archive .motion-pair .motion-primary{transform:translate(4%,2%) rotate(2deg)}
 #portfolio-motion.is-archive .motion-layer{transition-duration:.55s,.4s}
+
+/* Year filtering shares the site's quiet, translucent navigation style. */
+#portfolio-motion .motion-year-filter{position:relative;width:max-content;max-width:100%;margin-bottom:26px}
+#portfolio-motion #motion-year{position:static;display:flex;align-items:center;gap:14px;margin:0;padding:8px 2px;font-size:13px;color:#777}
+#portfolio-motion #motion-year svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.3;transition:transform .2s}
+#portfolio-motion #motion-year[aria-expanded=true] svg{transform:rotate(180deg)}
+#portfolio-motion #motion-year-options{position:absolute;top:calc(100% + 8px);right:0;min-width:144px;z-index:30;padding:7px;border:1px solid #eee;border-radius:16px;background:#fffffff2;backdrop-filter:blur(20px);box-shadow:0 10px 35px #0000000c;max-height:50vh;overflow:auto}
+#portfolio-motion #motion-year-options[hidden]{display:none}
+#portfolio-motion #motion-year-options button{display:block;width:100%;border:0;border-radius:9px;background:transparent;padding:10px 13px;text-align:left;color:#888;font-size:13px;font-variant-numeric:tabular-nums}
+#portfolio-motion #motion-year-options button:hover,#portfolio-motion #motion-year-options button:focus-visible{background:#f4f4f4;color:#222;outline:none}
+#portfolio-motion #motion-year-options button[aria-selected=true]{background:#ededed;color:#222}
+@media(min-width:700px){#portfolio-motion .motion-year-filter{position:absolute;bottom:calc(100% + 28px);margin:0}}
+@media(max-width:699px){#portfolio-motion .motion-year-filter{margin-bottom:4px}#portfolio-motion #motion-year-options{left:0;right:auto}}

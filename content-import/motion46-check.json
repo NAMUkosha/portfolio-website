@@ -1,0 +1,44 @@
+{
+  "reports": [
+    {
+      "width": 1440,
+      "mode": "home",
+      "first": 0,
+      "second": 1,
+      "reverse": 0,
+      "settled": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "mode": "archive",
+      "first": 1,
+      "second": 2,
+      "reverse": 1,
+      "settled": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "home",
+      "first": 1,
+      "second": 2,
+      "reverse": 1,
+      "settled": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "archive",
+      "first": 2,
+      "second": 3,
+      "reverse": 2,
+      "settled": true,
+      "overflow": false
+    },
+    {
+      "reducedMotionActive": 2
+    }
+  ],
+  "errors": []
+}

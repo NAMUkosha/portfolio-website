@@ -53,8 +53,6 @@ function targets(){
 }
 function draw(){
  cards.forEach((c,i)=>{const p=positions[i];c.style.transform=`translate(${(p.x-150).toFixed(3)}px,${(p.y-180).toFixed(3)}px) rotate(${p.r.toFixed(3)}deg) scale(${p.s.toFixed(5)})`;c.style.opacity=p.o;c.style.zIndex=20-Math.abs(i-active);});
- // The existing unified edge-glass renderer updates synchronously on scroll.
- document.dispatchEvent(new Event('scroll'));
 }
 function updateMore(){document.querySelector('#more').hidden=mode!=='home'||active!==featuredCount-1||flight;}
 function animate(transition=false){

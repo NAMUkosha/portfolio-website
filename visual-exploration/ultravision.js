@@ -1,6 +1,6 @@
 function ultraVisionMarkup(){
  const img=(n,alt,extra='')=>`<img src="assets/ultravision/${String(n).padStart(2,'0')}.png" alt="${alt}" loading="lazy" decoding="async" ${extra}>`;
- return `<article class="ultra-case" data-edge-glass="off">
+ return `<article class="ultra-case">
   <header class="ultra-hero" data-project-index="Ultra Vision">
 
    <div class="ultra-hero-copy"><p class="ultra-kicker">Car Interior Design <span>2022.05–06</span></p><p class="ultra-collab">In collaboration with Yuqing Wu and Jiancheng Qiu</p><h1>Ultra Vision</h1><p class="ultra-thesis">Based on automotive interior design<br>Realize driving information translation</p><p class="ultra-tags">#SystemDesign &nbsp; #CarInterior &nbsp; #InteractionDesign</p></div>
