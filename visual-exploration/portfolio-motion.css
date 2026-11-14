@@ -107,3 +107,55 @@ body.motion-live[data-page="home"],body.motion-live[data-page="archive"]{overflo
 #portfolio-motion #motion-year-options button[aria-selected=true]{background:#ededed;color:#222}
 @media(min-width:700px){#portfolio-motion .motion-year-filter{position:absolute;bottom:calc(100% + 28px);margin:0}}
 @media(max-width:699px){#portfolio-motion .motion-year-filter{margin-bottom:4px}#portfolio-motion #motion-year-options{left:0;right:auto}}
+
+/* Isolate scene stacking from the shared project reader. */
+#portfolio-motion{isolation:isolate;z-index:0}
+body.motion-live #note-reading{z-index:40}
+body.motion-live:has(#note-reading:not([hidden]))>.page-tools{z-index:41}
+#portfolio-motion:not(.is-archive) .archive-copy{visibility:hidden;pointer-events:none}
+#portfolio-motion.is-archive .intro{visibility:hidden;pointer-events:none}
+
+#portfolio-motion .scroll-cue{display:none;position:absolute;left:73%;top:43%;transform:translate(-50%,-50%);z-index:20;border:0;background:none;padding:0;align-items:center;flex-direction:column;gap:8px;color:#999;font-size:10px;letter-spacing:.1em}
+#portfolio-motion.is-greeting .scroll-cue{display:flex}
+.scroll-cue .scroll-glass{display:grid;place-items:center;perspective:650px;width:124px;height:184px;pointer-events:none}
+.scroll-cue span{transition:color .25s;white-space:nowrap}
+.scroll-cue:is(:hover,:focus-visible) span{color:#333}
+.motion-live .site-header #access{display:flex;align-items:center;justify-content:flex-start;gap:0;width:40px;min-width:40px;height:40px;padding:10px;border-radius:22px;overflow:hidden;transition:width .35s ease,background .35s}
+.motion-live .site-header #access[hidden]{display:none}
+.motion-live .site-header #access svg{flex:none;width:18px;height:18px}
+.motion-live .site-header #access span{display:block;position:static;flex:none;max-width:0;margin-left:0;opacity:0;white-space:nowrap;font-size:12px;line-height:18px;transition:opacity .2s,max-width .35s,margin-left .35s}
+.motion-live .site-header #access:is(:hover,:focus-visible){width:142px}
+.motion-live .site-header #access:is(:hover,:focus-visible) span{max-width:125px;margin-left:10px;opacity:1}
+@media(max-width:700px){#portfolio-motion .scroll-cue{left:68%;top:63%;gap:8px}.scroll-cue .scroll-glass{width:96px;height:126px}}
+@media(prefers-reduced-motion:reduce){.motion-live .site-header #access,.motion-live .site-header #access span{transition:none}}
+
+.scroll-cue .glass-object{position:relative;display:block;height:170px;aspect-ratio:1/2;transform-style:preserve-3d;pointer-events:none}
+.scroll-cue .glass-fallback{width:100%;height:100%;display:block}
+@media(max-width:700px){.scroll-cue .glass-object{height:118px}}
+.scroll-cue .glass-object canvas{position:absolute;inset:0;width:100%;height:100%;display:none}
+.scroll-cue .glass-object.has-volume canvas{display:block}
+.scroll-cue .glass-object.has-volume .glass-fallback{visibility:hidden}
+
+/* The same glass surface as the expanded reading Index. */
+:root{--cell-glass:linear-gradient(130deg,#ffffffe0,#ffffffa3 45%,#f1f2f3a8);--cell-edge:1px solid #ffffffed;--cell-shadow:inset 0 1px 2px #fff,inset 0 -1px 1px #ffffffb0,0 12px 42px #00000014,0 0 0 1px #00000008;--cell-blur:blur(28px) saturate(1.35)}
+.page-tools #tool-menu nav,.motion-live .site-header nav,#portfolio-motion .intro-links a{background:var(--cell-glass);border:var(--cell-edge);box-shadow:var(--cell-shadow);backdrop-filter:var(--cell-blur);-webkit-backdrop-filter:var(--cell-blur)}
+.motion-live .site-header nav{border-radius:20px;padding:5px;gap:4px}
+.motion-live .site-header nav a{border-radius:14px;transition:background .25s,color .25s}
+.motion-live .site-header nav a[aria-current]{background:#ffffff70}
+#portfolio-motion .intro-links{display:flex;flex-wrap:wrap;gap:10px;padding:2px 2px 24px}
+#portfolio-motion .intro-links a{display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:10px 15px;border-radius:20px;color:#666;font-size:11px;line-height:18px;text-decoration:none;transition:translate .3s,color .2s}
+#portfolio-motion .intro-links a span{font-size:12px;color:#999}
+#portfolio-motion .intro-links a:hover{color:#222;translate:0 -1px}
+#portfolio-motion .intro-links a:focus-visible{outline:2px solid #999;outline-offset:4px}
+#portfolio-motion.is-greeting .intro{overflow:visible}
+.scroll-cue .glass-object{animation:scroll-invitation 6.5s cubic-bezier(.4,0,.2,1) infinite;animation-delay:1.8s;animation-play-state:paused}
+#portfolio-motion.is-greeting:not([inert]) .scroll-cue .glass-object{animation-play-state:running}
+#portfolio-motion.is-greeting:not([inert]) .scroll-cue:is(:hover,:focus-visible) .glass-object{animation-play-state:paused}
+@keyframes scroll-invitation{0%,62%,100%{translate:0 0}74%{translate:0 4px}87%{translate:0 -1px}}
+@media(max-width:700px){#portfolio-motion .intro-links{gap:8px}#portfolio-motion .intro-links a{padding:9px 12px;gap:8px;min-height:38px}}
+@media(prefers-reduced-motion:reduce){.scroll-cue .glass-object{animation:none!important}#portfolio-motion .intro-links a{transition:none}}
+
+.motion-live .site-header nav{position:relative;isolation:isolate}
+.motion-live .site-header nav .nav-selection{position:absolute;left:0;top:5px;bottom:5px;z-index:-1;border-radius:14px;background:#dedfdfb8;box-shadow:inset 0 1px 1px #ffffffb0,0 1px 3px #00000008;pointer-events:none;transition:transform .48s cubic-bezier(.22,.85,.2,1),width .48s cubic-bezier(.22,.85,.2,1)}
+.motion-live .site-header nav a[aria-current]{background:transparent;color:#171717;font-weight:500}
+@media(prefers-reduced-motion:reduce){.motion-live .site-header nav .nav-selection{transition:none}}

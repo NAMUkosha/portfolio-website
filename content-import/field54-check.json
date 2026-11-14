@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "idleDisplacement": 0,
+      "hoverDisplacement": 31.52720525735674,
+      "returnDisplacement": 0.000004855008101717546,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "idleDisplacement": 0,
+      "hoverDisplacement": 31.527909809782486,
+      "returnDisplacement": 0.000004852194187831211,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

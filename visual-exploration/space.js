@@ -50,7 +50,8 @@ reduced.addEventListener('change',()=>{if(reduced.matches)$$('video').forEach(v=
 function renderWork(){
  renderEditorialHome();const access=$('#access');
  access.hidden=unlocked;access.dataset.state=unlocked?'unlocked':'locked';access.setAttribute('aria-disabled',String(unlocked));
- access.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${unlocked?'M8 10V7a4 4 0 0 1 7.5-2':'M8 10V7a4 4 0 0 1 8 0v3'}"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg><span>${unlocked?'Access granted':'Private access'}</span>`;
+ access.setAttribute('aria-label','Unlock private projects');
+ access.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${unlocked?'M8 10V7a4 4 0 0 1 7.5-2':'M8 10V7a4 4 0 0 1 8 0v3'}"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg><span>${unlocked?'Access granted':'Unlock full view'}</span>`;
  requestAnimationFrame(observeProjectVideos);
 }
 function requestUnlock(action){pending=action;$('#password').value='';$('#password-error').textContent='';$('#password-dialog').showModal();}
@@ -236,7 +237,7 @@ function buildReadingIndex(){
  const seen=new Set([first]);targets.forEach(({element,label},i)=>{if(seen.has(element)||!label)return;seen.add(element);element.id=`reading-section-${i}`;element.dataset.projectIndex=label;});
 }
 let projectIndexSections=[],projectIndexFrame=0;
-const defaultToolNavigation='<nav aria-label="Quick navigation"><a href="#home">Work</a><a href="#archive">Archive</a><a href="#about">About</a></nav>';
+const defaultToolNavigation='<nav aria-label="Quick navigation"><a href="#home">Selected</a><a href="#archive">Archive</a><a href="#about">About</a></nav>';
 function configureProjectTools(){
  if(projectIndexFrame)cancelAnimationFrame(projectIndexFrame);projectIndexFrame=0;
  const reading=readingScroller();const content=reading?$('#note-reading-content'):page==='project'?$('#project-content'):null;

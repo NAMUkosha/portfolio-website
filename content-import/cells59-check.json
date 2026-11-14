@@ -1,0 +1,119 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "surfaces": [
+        {
+          "background": "linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64) 45%, rgba(241, 242, 243, 0.66))",
+          "border": "1px solid rgba(255, 255, 255, 0.93)",
+          "shadow": "rgb(255, 255, 255) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.69) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.08) 0px 12px 42px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px",
+          "blur": "blur(28px) saturate(1.35)"
+        },
+        {
+          "background": "linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64) 45%, rgba(241, 242, 243, 0.66))",
+          "border": "1px solid rgba(255, 255, 255, 0.93)",
+          "shadow": "rgb(255, 255, 255) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.69) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.08) 0px 12px 42px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px",
+          "blur": "blur(28px) saturate(1.35)"
+        },
+        {
+          "background": "linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64) 45%, rgba(241, 242, 243, 0.66))",
+          "border": "1px solid rgba(255, 255, 255, 0.93)",
+          "shadow": "rgb(255, 255, 255) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.69) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.08) 0px 12px 42px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px",
+          "blur": "blur(28px) saturate(1.35)"
+        }
+      ],
+      "links": [
+        {
+          "text": "About me ↗",
+          "href": "#about"
+        },
+        {
+          "text": "LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/wenjia-shi/"
+        },
+        {
+          "text": "Email ↗",
+          "href": "mailto:wenjiashi616@gmail.com"
+        }
+      ],
+      "overflow": false,
+      "animation": "running"
+    },
+    {
+      "width": 1440,
+      "hoverPaused": "paused",
+      "transform": "translate3d(0.760115px, -2.2054px, 4.98142px) scale(1.01793)"
+    },
+    {
+      "width": 1440,
+      "returned": "translate3d(0px, 0px, 0px) scale(1)",
+      "animation": "running"
+    },
+    {
+      "width": 1440,
+      "about": true
+    },
+    {
+      "width": 1440,
+      "reduced": "none"
+    },
+    {
+      "width": 390,
+      "surfaces": [
+        {
+          "background": "linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64) 45%, rgba(241, 242, 243, 0.66))",
+          "border": "1px solid rgba(255, 255, 255, 0.93)",
+          "shadow": "rgb(255, 255, 255) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.69) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.08) 0px 12px 42px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px",
+          "blur": "blur(28px) saturate(1.35)"
+        },
+        {
+          "background": "linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64) 45%, rgba(241, 242, 243, 0.66))",
+          "border": "1px solid rgba(255, 255, 255, 0.93)",
+          "shadow": "rgb(255, 255, 255) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.69) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.08) 0px 12px 42px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px",
+          "blur": "blur(28px) saturate(1.35)"
+        },
+        {
+          "background": "linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64) 45%, rgba(241, 242, 243, 0.66))",
+          "border": "1px solid rgba(255, 255, 255, 0.93)",
+          "shadow": "rgb(255, 255, 255) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.69) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.08) 0px 12px 42px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px",
+          "blur": "blur(28px) saturate(1.35)"
+        }
+      ],
+      "links": [
+        {
+          "text": "About me ↗",
+          "href": "#about"
+        },
+        {
+          "text": "LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/wenjia-shi/"
+        },
+        {
+          "text": "Email ↗",
+          "href": "mailto:wenjiashi616@gmail.com"
+        }
+      ],
+      "overflow": false,
+      "animation": "running"
+    },
+    {
+      "width": 390,
+      "hoverPaused": "paused",
+      "transform": "translate3d(0.760117px, -2.2054px, 4.98141px) scale(1.01793)"
+    },
+    {
+      "width": 390,
+      "returned": "translate3d(0px, 0px, 0px) scale(1)",
+      "animation": "running"
+    },
+    {
+      "width": 390,
+      "about": true
+    },
+    {
+      "width": 390,
+      "reduced": "none"
+    }
+  ],
+  "errors": []
+}

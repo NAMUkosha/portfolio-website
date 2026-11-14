@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "idle": true,
+      "responds": true,
+      "returns": true,
+      "reduced": true,
+      "activated": true
+    },
+    {
+      "width": 390,
+      "idle": true,
+      "responds": true,
+      "returns": true,
+      "reduced": true,
+      "activated": true
+    }
+  ],
+  "errors": []
+}
