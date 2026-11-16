@@ -1,6 +1,6 @@
 /* Revision 2: graphic contrast, explicit controls, scroll-led exhibition. */
 :root{--bg:#fff;--ink:#151515;--muted:#67676b;--line:#d4d4d8;--accent:#3d46ff}
-body{font-family:'DM Sans',Arial,sans-serif}button:hover,a:hover{color:var(--accent)}
+body{font-family:var(--font-sans)}button:hover,a:hover{color:var(--accent)}
 button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline-color:var(--accent)}
 .studybar{background:#f1f1f4;letter-spacing:0;font-size:11px;padding-top:8px;padding-bottom:8px}
 #access{border:1px solid #bfbfc7;padding:8px 13px;border-radius:5px;background:white}
