@@ -147,12 +147,11 @@
     }
     function finish(skipped=false){
       if(leaving)return;leaving=true;cancelAnimationFrame(frame);clearTimeout(hintTimer);
-      if(ctx)ctx.clearRect(0,0,innerWidth,innerHeight);
-      if(fuzzy)fuzzy.clearRect(0,0,fuzzyCanvas.width,fuzzyCanvas.height);
+      // Freeze effect canvases until the white bloom fully covers the text.
       const bloomDuration=reduced.matches?0:skipped?220:950,revealDuration=reduced.matches?200:skipped?450:850;
       root.style.setProperty('--bloom-duration',`${bloomDuration}ms`);root.style.setProperty('--reveal-duration',`${revealDuration}ms`);
       root.classList.add('is-blooming');
-      bloomTimer=setTimeout(()=>{root.classList.add('is-leaving');removalTimer=setTimeout(remove,revealDuration);},bloomDuration);
+      bloomTimer=setTimeout(()=>{document.dispatchEvent(new Event('opening:reveal'));root.classList.add('is-leaving');removalTimer=setTimeout(remove,revealDuration);},bloomDuration);
     }
     const began=performance.now();
     function render(now){

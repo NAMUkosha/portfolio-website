@@ -39,8 +39,7 @@ html.opening-pending::before{content:"";position:fixed;inset:0;z-index:9998;back
 #opening.is-blooming .opening-bloom{opacity:1}
 #opening.is-blooming .opening-bloom::before{transform:scale(1.5)}
 #opening.is-blooming .opening-stage{filter:blur(7px);transition:filter var(--bloom-duration,950ms) ease-in}
-#opening.is-blooming .opening-char{animation:none!important;color:#fff!important;text-shadow:0 0 12px #fff,0 0 35px #fff;transition:color var(--bloom-duration,950ms),text-shadow var(--bloom-duration,950ms)}
-#opening.is-blooming .opening-char::before,#opening.is-blooming .opening-char::after{display:none}
+#opening.is-blooming .opening-char,#opening.is-blooming .opening-phrase::after{animation-play-state:paused!important}
 #opening.is-blooming .opening-veil{background:#fff}
 #opening .opening-skip{position:absolute;right:4%;bottom:32px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:6px;width:56px;padding:4px;border:0;background:transparent;color:#929292;font:11px/1.2 var(--font-sans);cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility 0s linear .45s}
 #opening .opening-skip.is-visible{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .3s ease,visibility 0s}
