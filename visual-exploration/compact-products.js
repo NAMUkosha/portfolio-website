@@ -45,7 +45,7 @@ function abiSystemDiagram(){
  const card=(title,items)=>`<div class="abi-map-card"><div class="abi-map-card-title">${title}</div><ul>${items.map(([icon,text])=>item(icon,text)).join('')}</ul></div>`;
  return `<figure class="abi-architecture">
   <figcaption>System architecture <button type="button" data-abi-map-toggle aria-expanded="false" aria-controls="abi-system-viewport">Enlarge diagram</button></figcaption>
-  <p class="abi-map-scroll-hint" id="abi-map-scroll-hint">Scroll across to explore the complete system <span aria-hidden="true">→</span></p>
+  <p class="abi-map-scroll-hint" id="abi-map-scroll-hint">Scroll across to explore the complete system </p>
   <div class="abi-map-viewport" id="abi-system-viewport" tabindex="-1" role="region" aria-label="Abi system architecture" aria-describedby="abi-map-scroll-hint">
    <div class="abi-map-canvas">
     <svg class="abi-map-connections" viewBox="0 0 1200 1130" aria-hidden="true">

@@ -1,0 +1,36 @@
+{
+  "page": "system.html",
+  "date": "2026-11-17",
+  "viewport": "1440 / 390 / 320",
+  "layout": "bento component catalogue",
+  "categories": 12,
+  "cards": 45,
+  "tokens": 182,
+  "tokenIndexRows": 182,
+  "overflow": false,
+  "brokenImages": 0,
+  "consoleAndResourceErrors": [],
+  "interactions": {
+    "categoryFilter": "pass (Buttons 5 items)",
+    "search": "pass (glass 10 items; mobile 320 no overflow)",
+    "detailSheet": "pass (preview, tokens, used-in)",
+    "copyCode": "pass",
+    "navSpecimen": "pass (selection slides)",
+    "tokenDialog": "pass (182 rows, 10 groups)",
+    "passwordDialog": "pass (focus inside, Escape closes)",
+    "reducedMotion": "pass (0 running animations)"
+  },
+  "siteEntries": {
+    "index.html": "font + --cell-glass resolved, no errors",
+    "space.html": "font + --cell-glass resolved, no errors"
+  },
+  "pageHeight": {
+    "1440": 6196,
+    "390": 12637,
+    "320": 12653
+  },
+  "screenshots": [
+    "system-v1-1440.png",
+    "system-v1-390.png"
+  ]
+}

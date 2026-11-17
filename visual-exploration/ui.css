@@ -1,0 +1,494 @@
+/* ==========================================================================
+   Wenjia Space — component classes
+   Built exclusively from tokens.css. These are the canonical implementations
+   documented at system.html. Site-specific classes migrate here over time.
+   ========================================================================== */
+
+/* ---- Button ------------------------------------------------------------- */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-space-3);
+  box-sizing: border-box;
+  height: var(--ds-control-height);
+  min-height: var(--ds-control-height);
+  padding: var(--ds-space-4) var(--ds-space-8);
+  border: 0;
+  border-radius: var(--ds-radius-pill);
+  background: transparent;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-ui);
+  line-height: 1.2;
+  letter-spacing: var(--ds-tracking-ui);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--ds-dur-control) var(--ds-ease-out), color var(--ds-dur-control) var(--ds-ease-out),
+    box-shadow var(--ds-dur-control) var(--ds-ease-out), translate var(--ds-dur-ui) var(--ds-ease-out);
+}
+
+.ui-btn--dark {
+  color: var(--ds-paper);
+  background: var(--ds-dark-surface);
+  border: 1px solid var(--ds-dark-edge);
+  box-shadow: inset 0 1px 1px var(--ds-dark-edge), var(--ds-shadow-soft);
+  backdrop-filter: var(--ds-blur-button);
+  -webkit-backdrop-filter: var(--ds-blur-button);
+}
+
+.ui-btn--dark:hover {
+  background: var(--ds-dark-surface-hover);
+}
+
+.ui-btn--secondary {
+  color: var(--ds-text-secondary);
+  background: var(--ds-glass-surface);
+  border: var(--ds-glass-border);
+  box-shadow: var(--ds-glass-shadow);
+  backdrop-filter: var(--ds-glass-blur);
+  -webkit-backdrop-filter: var(--ds-glass-blur);
+}
+.ui-btn--secondary:hover { color: var(--ds-ink); }
+
+.ui-btn--quiet {
+  color: var(--ds-muted-2);
+  padding-inline: var(--ds-space-3);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.ui-btn--quiet:hover {
+  color: var(--ds-ink);
+}
+
+.ui-btn--sm {
+  min-height: var(--ds-control-height-sm);
+  padding: var(--ds-space-3) var(--ds-space-6);
+  font-size: var(--ds-type-caption);
+}
+
+.ui-btn svg {
+  display: block;
+  flex: none;
+  width: var(--ds-icon-size-sm);
+  height: var(--ds-icon-size-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Private access: a 40px lock that opens to reveal its label. */
+.ui-access {
+  gap: 0;
+  width: var(--ds-control-height);
+  min-width: var(--ds-control-height);
+  height: var(--ds-control-height);
+  min-height: var(--ds-control-height);
+  padding: var(--ds-space-5);
+  justify-content: flex-start;
+  overflow: hidden;
+  transition: width var(--ds-dur-control) var(--ds-ease-out), background var(--ds-dur-control) var(--ds-ease-out);
+}
+
+.ui-access span {
+  max-width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--ds-type-ui);
+  line-height: var(--ds-access-label-line);
+  transition: opacity var(--ds-dur-ui) var(--ds-ease-out), max-width var(--ds-dur-control) var(--ds-ease-out),
+    margin-left var(--ds-dur-control) var(--ds-ease-out);
+}
+
+.ui-access:is(:hover, :focus-visible, .is-expanded) {
+  width: var(--ds-access-width);
+}
+
+.ui-access:is(:hover, :focus-visible, .is-expanded) span {
+  max-width: var(--ds-access-label-max);
+  margin-left: var(--ds-space-5);
+  opacity: 1;
+}
+
+/* ---- Link --------------------------------------------------------------- */
+.ui-link {
+  display: inline-block;
+  padding: var(--ds-space-2) 0;
+  color: inherit;
+  font-size: var(--ds-type-ui);
+  text-decoration: underline;
+  text-decoration-color: var(--ds-link-decoration);
+  text-underline-offset: var(--ds-underline-offset);
+  transition: color var(--ds-dur-ui) var(--ds-ease-out), text-decoration-color var(--ds-dur-ui) var(--ds-ease-out);
+}
+
+.ui-link:hover {
+  color: var(--ds-ink-strong);
+  text-decoration-color: var(--ds-ink);
+}
+
+.ui-link:focus-visible {
+  outline: var(--ds-focus-ring-neutral);
+  outline-offset: var(--ds-focus-offset);
+}
+
+/* ---- Cell / glass surface ---------------------------------------------- */
+.ui-cell {
+  position: relative;
+  padding: var(--ds-space-10);
+  border: var(--ds-glass-border);
+  border-radius: var(--ds-radius-xl);
+  background: var(--ds-glass-surface);
+  box-shadow: var(--ds-glass-shadow);
+  backdrop-filter: var(--ds-glass-blur);
+  -webkit-backdrop-filter: var(--ds-glass-blur);
+}
+
+.ui-cell--flat {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.ui-cell--tint {
+  background: var(--ds-paper-tint);
+  border: 1px solid var(--ds-line-soft);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.ui-cell__eyebrow {
+  margin: 0 0 var(--ds-space-4);
+  color: var(--ds-muted-2);
+  font-size: var(--ds-type-caption);
+  letter-spacing: var(--ds-tracking-label);
+  text-transform: uppercase;
+}
+
+.ui-cell__title {
+  margin: 0 0 var(--ds-space-3);
+  color: var(--ds-ink);
+  font-size: var(--ds-type-title-4);
+  font-weight: var(--ds-weight-regular);
+  letter-spacing: var(--ds-tracking-title);
+  line-height: var(--ds-leading-title);
+}
+
+.ui-cell__body {
+  margin: 0;
+  max-width: var(--ds-copy-width);
+  color: var(--ds-muted);
+  font-size: var(--ds-type-body-s);
+  line-height: var(--ds-leading-relaxed);
+}
+
+/* ---- Chip --------------------------------------------------------------- */
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-chip-pad-y) var(--ds-chip-pad-x);
+  border: 1px solid var(--ds-chip-edge);
+  border-radius: var(--ds-radius-pill);
+  color: var(--ds-chip-text);
+  background: var(--ds-chip-surface);
+  box-shadow: var(--ds-chip-shadow);
+  backdrop-filter: var(--ds-blur-chip);
+  -webkit-backdrop-filter: var(--ds-blur-chip);
+  font-size: var(--ds-type-ui-s);
+  line-height: 1.4;
+}
+
+.ui-chip--year {
+  padding: var(--ds-space-2) 0 var(--ds-space-2) var(--ds-space-5);
+  border: 0;
+  border-left: 1px solid var(--ds-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--ds-muted-3);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .09em;
+}
+
+.ui-chip--credential {
+  padding: var(--ds-chip-pad-sm-y) var(--ds-chip-pad-sm-x);
+  border: 0;
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-paper-tint);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--ds-credential-text);
+  font-size: var(--ds-type-caption);
+  white-space: nowrap;
+}
+
+/* ---- Navigation --------------------------------------------------------- */
+.ui-nav {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-nav-inset);
+  border: 1px solid var(--ds-glass-nav-border);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-glass-tint);
+  box-shadow: var(--ds-glass-nav-shadow);
+  backdrop-filter: var(--ds-blur-nav);
+  -webkit-backdrop-filter: var(--ds-blur-nav);
+}
+
+.ui-nav__selection {
+  position: absolute;
+  left: var(--ds-nav-inset);
+  top: var(--ds-nav-inset);
+  bottom: var(--ds-nav-inset);
+  z-index: 0;
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-nav-selection);
+  box-shadow: var(--ds-nav-selection-shadow);
+  pointer-events: none;
+  transition: transform var(--ds-dur-control) var(--ds-ease-out), width var(--ds-dur-control) var(--ds-ease-out);
+}
+
+.ui-nav__item {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ds-nav-item-height);
+  padding: 0 var(--ds-space-8);
+  border: 0;
+  border-radius: var(--ds-radius-pill);
+  background: transparent;
+  color: var(--ds-muted-3);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-ui);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--ds-dur-ui) var(--ds-ease-out);
+}
+
+.ui-nav__item:is(:hover, :focus-visible) {
+  color: var(--ds-ink);
+}
+
+.ui-nav__item[aria-current] {
+  color: var(--ds-ink-strong);
+  font-weight: var(--ds-weight-medium);
+}
+
+/* ---- Card --------------------------------------------------------------- */
+.ui-card {
+  display: block;
+  width: var(--ds-card-width);
+  max-width: 100%;
+  border: 0;
+  background: none;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ui-card__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--ds-card-ratio);
+  overflow: hidden;
+  border-radius: var(--ds-radius-xs);
+  background: var(--ds-paper-soft);
+}
+
+.ui-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ui-card__label {
+  display: block;
+  padding-top: var(--ds-space-6);
+  color: var(--ds-muted-2);
+  font-size: var(--ds-type-ui);
+  line-height: 1.4;
+  transition: color var(--ds-dur-ui) var(--ds-ease-out);
+}
+
+.ui-card:is(:hover, :focus-visible) .ui-card__label {
+  color: var(--ds-ink);
+}
+
+.ui-card:focus-visible {
+  outline: var(--ds-focus-ring-neutral);
+  outline-offset: var(--ds-space-3);
+}
+
+/* ---- Field -------------------------------------------------------------- */
+.ui-field {
+  display: block;
+  margin: 0 0 var(--ds-space-6);
+}
+
+.ui-field__label {
+  display: block;
+  margin-bottom: var(--ds-space-2);
+  color: var(--ds-ink-mid);
+  font-size: var(--ds-type-ui-s);
+}
+
+.ui-field__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--ds-space-6) var(--ds-space-6);
+  border: 1px solid var(--ds-line-strong);
+  border-radius: var(--ds-radius-xs);
+  background: transparent;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-type-body);
+  transition: border-color var(--ds-dur-ui) var(--ds-ease-out);
+}
+
+.ui-field__input:focus {
+  outline: none;
+  border-color: var(--ds-ink-mid);
+}
+
+.ui-field__input:focus-visible {
+  outline: var(--ds-focus-ring);
+  outline-offset: 2px;
+}
+
+.ui-field__error {
+  margin: var(--ds-space-2) 0 0;
+  color: var(--ds-danger);
+  font-size: var(--ds-type-ui);
+}
+
+/* ---- Dialog ------------------------------------------------------------- */
+.ui-dialog {
+  width: var(--ds-dialog-width);
+  max-width: 92vw;
+  padding: var(--ds-space-13);
+  border: 0;
+  border-radius: 0;
+  background: var(--ds-dialog-surface);
+  color: var(--ds-ink);
+  box-shadow: var(--ds-shadow-dialog);
+  backdrop-filter: var(--ds-blur-dialog);
+  -webkit-backdrop-filter: var(--ds-blur-dialog);
+}
+
+.ui-dialog::backdrop {
+  background: var(--ds-backdrop-dialog);
+  backdrop-filter: var(--ds-blur-backdrop);
+  -webkit-backdrop-filter: var(--ds-blur-backdrop);
+}
+
+.ui-dialog__close {
+  position: absolute;
+  top: var(--ds-space-6);
+  right: var(--ds-space-8);
+  padding: var(--ds-space-2);
+  border: 0;
+  background: none;
+  color: var(--ds-ink);
+  font-size: var(--ds-icon-size-lg);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ui-dialog h2 {
+  margin: var(--ds-space-9) 0 var(--ds-space-8);
+  font-size: var(--ds-type-title-2);
+  font-weight: var(--ds-weight-regular);
+  letter-spacing: var(--ds-tracking-title);
+}
+
+.ui-dialog p {
+  color: var(--ds-muted);
+  font-size: var(--ds-type-body-s);
+  line-height: var(--ds-leading-relaxed);
+}
+
+/* ---- Icon button -------------------------------------------------------- */
+.ui-icon-btn {
+  display: grid;
+  place-items: center;
+  width: var(--ds-icon-button-size);
+  height: var(--ds-icon-button-size);
+  padding: 0;
+  border: 1px solid var(--ds-icon-button-edge);
+  border-radius: 50%;
+  background: var(--ds-icon-button-surface);
+  color: var(--ds-icon-button-color);
+  box-shadow: var(--ds-shadow-icon-button);
+  backdrop-filter: var(--ds-blur-nav);
+  -webkit-backdrop-filter: var(--ds-blur-nav);
+  cursor: pointer;
+  transition: background var(--ds-dur-ui) var(--ds-ease-out), translate var(--ds-dur-ui) var(--ds-ease-out);
+}
+
+.ui-icon-btn:hover {
+  background: var(--ds-icon-button-hover);
+}
+
+.ui-icon-btn svg {
+  width: var(--ds-icon-size);
+  height: var(--ds-icon-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Badge -------------------------------------------------------------- */
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-2) var(--ds-space-5);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-badge-surface);
+  border: 1px solid var(--ds-badge-edge);
+  color: var(--ds-ink-mid);
+  font-size: var(--ds-type-ui-s);
+  line-height: 1.4;
+  backdrop-filter: var(--ds-blur-chip);
+  -webkit-backdrop-filter: var(--ds-blur-chip);
+}
+
+/* ---- Focus -------------------------------------------------------------- */
+.ui-focusable:focus-visible {
+  outline: var(--ds-focus-ring);
+  outline-offset: var(--ds-focus-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-btn,
+  .ui-access,
+  .ui-access span,
+  .ui-nav__selection,
+  .ui-icon-btn,
+  .ui-card__label {
+    transition: none;
+  }
+}
+
+.ui-dialog form { margin-top: var(--ds-space-9); }

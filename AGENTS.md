@@ -330,3 +330,19 @@
 - 新增navigation.js，当前导航使用中性灰底色，单个底色随Selected/Archive/About切换横向滑动；同步aria-current、窗口尺寸与字体加载，减少动效时直接定位。
 - 删除glass-relief.js，新增glass-volume.js：对闭合的圆角箭头实体进行WebGL光线步进，计算表面法线、进入/离开实体的折射及程序化环境反射。无图片采样、无高度贴图；保留细长杆、小头部和悬停空间转向。WebGL不可用时使用SVG备用图形。
 - 两入口版本60。1440/390检查标识从首页项目/Archive/About返回初始页、导航底色滑动、三维启用且img数量0、悬停侧面、减少动效；无溢出/脚本错误。语法及git diff --check通过，未提交部署。
+
+## 设计系统页（2026-11-17，system v1）
+- 新增 `tokens.css`（182 个 `--ds-*`）：颜色、字体字号行高字距、间距、布局容器、圆角、玻璃与阴影、动效时长与曲线、层级、焦点、组件尺寸。`index.html` / `space.html` / `motion-study.html` / `index-v3.html` 都先加载 tokens.css。
+- 已有变量已接入 token：`typography.css` 的 `--font-sans`、`portfolio-motion.css` 的 `--cell-*` 改为引用 `--ds-*`；值不变。`layout-grid.css` 的 `--page-*` 仍保留原定义。
+- 新增 `ui.css`：`.ui-btn`、`.ui-cell`、`.ui-chip`、`.ui-nav`、`.ui-card`、`.ui-field`、`.ui-dialog`、`.ui-icon-btn`、`.ui-badge` 等组件，颜色、模糊、尺寸与动效均读取 `--ds-*`（1px 结构线除外）。
+- 新增 `system.html` / `system.css` / `system.js`：组件目录，不是长文档。左侧 12 个分类与数量；主区 45 张 bento 卡，每张一个独立的浅灰容器、一个实时 specimen、名称和箭头。支持分类筛选、搜索（`/` 快捷键）、点击卡片打开右侧详情（大图预览、token 列表、HTML、Used in），左侧 Tokens 打开 182 行自动索引。页面不再包含长篇 rules / governance / inventory 文案。
+- 入口：about 页简介底部 `Design system` 链接；页面滚动后右侧 Menu 内 `Design system`；或直接 `system.html`。主站顶部导航未改动。
+- 规则：新增设计值必须先加到 `tokens.css`，并在 `system.html` 同一提交内补一张卡片；组件只用 `--ds-*`，不写裸 hex / px / 时长。旧文件（space.css、case 系列）中的 raw value 在改动时逐步迁移，优先 nav、access、reader、cards。
+- 验证：1440 / 390 / 320，45 张卡、12 分类、无横向溢出、无 console/资源错误、无破图；分类筛选（Buttons 5 项）、搜索（glass 10 项）、详情 sheet、nav specimen、token 索引（182 行）、密码弹窗、减少动效（0 动画）均通过。`node --check system.js`、`git diff --check` 通过。未提交、未推送。
+
+## 组件规范合并（2026-11-17，revision=73 / system v2）
+- `docs/design-system.md` 是当前语义规范。`tokens.css` / `ui.css` / `site-components.css` 是共用值、组件原语及旧类适配；`ui-motion.js` 从 CSS token 读取 JS 动效参数。
+- Secondary 与 Glass button 合并为 `.ui-btn--secondary`，Access 展开为状态；重复的 cell、credential、popover、dialog surface 卡并入所属组件。组件库 39 项，新增共享 Tabs；按钮区只保留 3 项。
+- 字体统一 Display / Heading / Subheading / Lead / Body / Supporting / Interface / Caption 八种用途；UI13、caption12，不再单列9px微字号。旧token名称部分保留为兼容别名。
+- 页面和组件库移除装饰及斜向箭头；翻页/回顶/解锁使用文字。案例原图不改，异步正文链接通过轻量 DOM 清理移除斜向字符，私密密文不改。
+- 保持现有导航、加密、项目卡片/阅读和开屏语义动效；普通 UI 动效用共用时长与 ease-out。未提交或发布。

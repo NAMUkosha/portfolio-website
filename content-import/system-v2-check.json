@@ -1,0 +1,10 @@
+{
+  "revision": 73,
+  "catalogue_entries": 39,
+  "button_families": ["Access", "Secondary", "Text link"],
+  "viewports": [1440, 390, 320],
+  "checks": ["catalogue filtering and detail dialog", "mobile token access", "13 public readers at 1440 and 390", "reader Close and case tabs", "invalid-password feedback", "Archive year filtering", "About overflow", "homepage object hover and idle", "opening skip and entrance", "reduced motion", "computed style parity: Unlock and catalogue Secondary"],
+  "runtime_errors": [],
+  "private_successful_unlock_retested": false,
+  "publication": "local only"
+}

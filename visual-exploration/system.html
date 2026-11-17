@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Components — Wenjia Space</title>
+<meta name="description" content="The components, tokens and motion behind wenjia.space.">
+<link rel="preload" href="assets/fonts/google-sans-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css?v=2">
+<link rel="stylesheet" href="typography.css?v=67">
+
+<link rel="stylesheet" href="system.css?v=73">
+<link rel="stylesheet" href="ui.css?v=2"><link rel="stylesheet" href="site-components.css?v=2"><script src="ui-motion.js?v=2"></script></head>
+<body>
+<a class="c-skip" href="#main">Skip to content</a>
+
+<header class="c-header">
+  <a class="c-identity" href="index.html#home">Wenjia SHI</a>
+  <p class="c-header-label">Design system</p>
+  <div class="c-header-actions"><button class="ui-btn ui-btn--quiet c-token-mobile" id="c-tokens-mobile" type="button">Tokens</button>
+    <div class="c-search" id="c-search">
+      <input id="c-search-input" type="search" placeholder="Search" aria-label="Search components" autocomplete="off">
+      <button class="c-search-toggle" id="c-search-toggle" type="button" aria-label="Search components" aria-expanded="false" aria-controls="c-search-input">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+      </button>
+    </div>
+    <a class="c-back" href="index.html#home">Back to site </a>
+  </div>
+</header>
+
+<div class="c-shell">
+  <aside class="c-rail">
+    <p class="c-rail-title">Index</p>
+    <nav class="c-filters" id="c-filters" aria-label="Component categories">
+      <button type="button" data-filter="all" class="is-active">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.2"></rect><rect x="14" y="4" width="6" height="6" rx="1.2"></rect><rect x="4" y="14" width="6" height="6" rx="1.2"></rect><rect x="14" y="14" width="6" height="6" rx="1.2"></rect></svg>
+        <span>All components</span><em data-count="all">39</em>
+      </button>
+      <button type="button" data-filter="type">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M12 6v13M9 19h6"></path></svg>
+        <span>Type</span><em data-count="type">5</em>
+      </button>
+      <button type="button" data-filter="colour">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle></svg>
+        <span>Colour</span><em data-count="colour">5</em>
+      </button>
+      <button type="button" data-filter="layout">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M12 4v16M4 12h16"></path></svg>
+        <span>Layout</span><em data-count="layout">3</em>
+      </button>
+      <button type="button" data-filter="surfaces">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="3"></rect><path d="M8 8h8"></path></svg>
+        <span>Surfaces</span><em data-count="surfaces">1</em>
+      </button>
+      <button type="button" data-filter="motion">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15c4 0 6-9 10-9s6 9 8 9"></path></svg>
+        <span>Motion</span><em data-count="motion">4</em>
+      </button>
+      <button type="button" data-filter="buttons">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="7" rx="3.5"></rect></svg>
+        <span>Buttons</span><em data-count="buttons">3</em>
+      </button>
+      <button type="button" data-filter="cells">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"></rect></svg>
+        <span>Chips</span><em data-count="cells">1</em>
+      </button>
+      <button type="button" data-filter="navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 12h16M4 16h16"></path></svg>
+        <span>Navigation</span><em data-count="navigation">5</em>
+      </button>
+      <button type="button" data-filter="cards">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"></rect></svg>
+        <span>Cards</span><em data-count="cards">4</em>
+      </button>
+      <button type="button" data-filter="forms">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="8" rx="2"></rect><path d="M8 10v4"></path></svg>
+        <span>Forms</span><em data-count="forms">2</em>
+      </button>
+      <button type="button" data-filter="reader">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 10h14M5 14h9M5 18h9"></path></svg>
+        <span>Reader</span><em data-count="reader">2</em>
+      </button>
+      <button type="button" data-filter="patterns">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" opacity=".35"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+        <span>Patterns</span><em data-count="patterns">4</em>
+      </button>
+    </nav>
+    <div class="c-rail-foot">
+      <button type="button" id="c-tokens-open"><span>Tokens</span><em id="c-token-count">182</em></button>
+      <a href="tokens.css" download>tokens.css</a>
+      <a href="ui.css" target="_blank" rel="noopener">ui.css</a>
+    </div>
+  </aside>
+
+  <main class="c-main" id="main">
+    <header class="c-head">
+      <div>
+        <h1 id="c-title">All components</h1>
+        <p id="c-count">39 items</p>
+      </div>
+      <p class="c-intro">Live pieces from wenjia.space. Open a card for its tokens, code and where it is used.</p>
+    </header>
+
+    <div class="c-grid" id="c-grid">
+
+      <!-- TYPE -->
+      <article class="c-card" data-id="display-1" data-cat="type" data-name="Display" data-desc="One fluid display style for greetings and case openings. Legacy display names are aliases." data-tokens="--ds-type-display-1 --ds-leading-display --ds-tracking-display" data-used="hero-stories.css · opening.css">
+        <div class="c-stage c-stage--short"><p class="d-display-1">Aa</p><p class="d-spec">36–48 · 1.12 · −.055</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="display-1"><span>Display</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="title" data-cat="type" data-name="Title" data-desc="Dialog titles, case titles and the reading window." data-tokens="--ds-type-title-2 --ds-tracking-title" data-used="space.css · case-layout.css">
+        <div class="c-stage c-stage--short"><p class="d-title">Reading window</p><p class="d-spec">Heading 32 · Subheading 24</p><h3 class="ui-cell__title">Subheading</h3></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="title"><span>Title</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="statement" data-cat="type" data-name="Lead" data-desc="The one-sentence introduction on the greeting." data-tokens="--ds-type-statement --ds-leading-body" data-used="portfolio-motion.css">
+        <div class="c-stage c-stage--short"><p class="d-statement">I learn by<br>trying.</p><p class="d-spec">20–24 · 1.6 · −.01</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="statement"><span>Lead</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="body" data-cat="type" data-name="Body" data-desc="The default reading size. Never wider than 660px." data-tokens="--ds-type-body --ds-leading-relaxed --ds-copy-width" data-used="case-layout.css · space.css">
+        <div class="c-stage c-stage--short"><p class="d-body">Body · 16px for reading. Supporting copy uses 14px.</p><p class="ui-cell__body">One reading measure and consistent spacing across every case.</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="body"><span>Body</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="ui-type" data-cat="type" data-name="Interface &amp; caption" data-desc="13px for interactive controls; 12px for captions and metadata. No separate micro type." data-tokens="--ds-type-ui --ds-type-ui-s --ds-type-caption" data-used="portfolio-motion.css · interface22.css">
+        <div class="c-stage c-stage--short"><p class="d-ui">Navigation · Buttons</p><p class="d-ui-small">Chips, metadata, small actions</p><p class="d-caption">EYEBROW / SECTION LABEL</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="ui-type"><span>Interface &amp; caption</span></button></h2>
+      </article>
+
+      <!-- COLOUR -->
+      <article class="c-card" data-id="ink" data-cat="colour" data-name="Ink" data-desc="Paper and ink. Body copy stays at #242424 for 15.5:1 contrast." data-tokens="--ds-paper --ds-ink-strong --ds-ink --ds-ink-soft --ds-ink-mid" data-used="site-wide">
+        <div class="c-stage"><div class="d-dots"><span style="--dot:#171717"></span><span style="--dot:#242424"></span><span style="--dot:#383838"></span><span style="--dot:#555"></span></div><p class="d-spec">#171717  #555555</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="ink"><span>Ink</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="paper" data-cat="colour" data-name="Paper" data-desc="White, a soft stage grey, and the tint used on chips." data-tokens="--ds-paper --ds-paper-soft --ds-paper-tint" data-used="site-wide">
+        <div class="c-stage"><div class="d-papers"><span style="--c:#fff"></span><span style="--c:#f6f6f6"></span><span style="--c:#f4f4f3"></span></div><p class="d-spec">#ffffff · #f6f6f6 · #f4f4f3</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="paper"><span>Paper</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="muted" data-cat="colour" data-name="Muted" data-desc="One level of support under reading text; faint for inactive states." data-tokens="--ds-muted --ds-muted-2 --ds-muted-3 --ds-faint" data-used="site-wide">
+        <div class="c-stage"><div class="d-dots"><span style="--dot:#777"></span><span style="--dot:#888"></span><span style="--dot:#999"></span><span style="--dot:#a4a4a4"></span></div><p class="d-spec">#777 · #888 · #999 · #a4a4a4</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="muted"><span>Muted</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="lines" data-cat="colour" data-name="Lines" data-desc="Hairlines hold the page together. Nothing heavier than 1px." data-tokens="--ds-line-strong --ds-line --ds-line-soft" data-used="site-wide">
+        <div class="c-stage"><div class="d-lines"><i></i><i></i><i></i></div><p class="d-spec">#c9c9c9 · #dedede · #eeeeee</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="lines"><span>Lines</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="accent" data-cat="colour" data-name="Accent" data-desc="The only hue: warm amber for personal marks and focus." data-tokens="--ds-accent --ds-accent-soft" data-used="hero-stories.css · opening.css">
+        <div class="c-stage"><span class="d-accent"></span><p class="d-spec">#b87940 · #d48a48</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="accent"><span>Accent</span></button></h2>
+      </article>
+
+      <!-- LAYOUT -->
+      <article class="c-card c-card--wide" data-id="frame" data-cat="layout" data-name="Page frame" data-desc="A 1280px page, a 1040px reading column and a 660px copy measure." data-tokens="--ds-page-gutter --ds-page-width --ds-reading-width --ds-copy-width" data-used="layout-grid.css · case-layout.css">
+        <div class="c-stage"><div class="d-frame"><i>1280</i><div><i>1040</i><div><span>660</span></div></div></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="frame"><span>Page frame</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="spacing" data-cat="layout" data-name="Spacing" data-desc="A 4px rhythm with 2px fine steps. Large jumps separate scenes." data-tokens="--ds-space-2 --ds-space-4 --ds-space-6 --ds-space-8 --ds-space-10 --ds-space-12 --ds-space-16" data-used="site-wide">
+        <div class="c-stage"><div class="d-bars"><i style="--b:4"></i><i style="--b:8"></i><i style="--b:12"></i><i style="--b:16"></i><i style="--b:24"></i><i style="--b:32"></i><i style="--b:64"></i></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="spacing"><span>Spacing</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="radius" data-cat="layout" data-name="Radius" data-desc="4px on images, 8px on inputs, 20px on panels, full pills for navigation." data-tokens="--ds-radius-xs --ds-radius-sm --ds-radius-xl --ds-radius-pill" data-used="site-wide">
+        <div class="c-stage"><div class="d-radius"><span style="--r:4px"></span><span style="--r:7px"></span><span style="--r:14px"></span><span style="--r:20px"></span><span style="--r:999px"></span></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="radius"><span>Radius</span></button></h2>
+      </article>
+
+      <!-- GLASS -->
+      <article class="c-card c-card--wide" data-id="glass-cell" data-cat="surfaces" data-name="Glass cell" data-desc="A floating surface: white gradient, 1px light edge, diffuse shadow, 28px blur." data-tokens="--ds-glass-surface --ds-glass-edge --ds-glass-shadow --ds-glass-blur" data-used="portfolio-motion.css · interface22.css">
+        <div class="c-stage c-stage--photo"><div class="ui-cell d-glass"><p class="ui-cell__eyebrow">Surface</p><h3 class="ui-cell__title">Floating, not decorative.</h3><p class="ui-cell__body">Glass marks navigation, cells and overlays.</p></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="glass-cell"><span>Glass cell</span></button></h2>
+      </article>
+
+      <!-- MOTION -->
+      <article class="c-card" data-id="ease-out" data-cat="motion" data-name="Ease out" data-desc="The default curve for controls and surfaces; personal-object motion remains a deliberate exception." data-tokens="--ds-ease-out" data-used="site-wide">
+        <div class="c-stage"><svg class="d-curve" viewBox="0 0 100 70" aria-hidden="true"><path d="M0 70 C22 0 36 0 100 0"></path></svg><p class="d-spec">cubic-bezier(.22, 1, .36, 1)</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="ease-out"><span>Ease out</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="duration" data-cat="motion" data-name="Duration" data-desc="160ms feedback, 220ms state changes, 350ms controls, 550ms surfaces, 850ms scenes." data-tokens="--ds-dur-micro --ds-dur-ui --ds-dur-control --ds-dur-surface --ds-dur-scene" data-used="site-wide">
+        <div class="c-stage"><div class="d-duration"><i style="--l:16"></i><i style="--l:35"></i><i style="--l:55"></i><i style="--l:100"></i></div><p class="d-spec">160 · 220 · 350 · 550 · 850</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="duration"><span>Duration</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="settle" data-cat="motion" data-name="Settle" data-desc="A 550ms surface entrance using the shared ease-out curve." data-tokens="--ds-dur-surface --ds-ease-out" data-used="portfolio-motion.css">
+        <div class="c-stage"><div class="d-motion" id="c-motion"><span></span></div><button class="d-replay" type="button" id="c-replay">Replay</button></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="settle"><span>Settle</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="reduced" data-cat="motion" data-name="Reduced motion" data-desc="Every duration collapses and movement stops." data-tokens="--ds-dur-micro --ds-dur-surface --ds-dur-transition" data-used="site-wide">
+        <div class="c-stage"><div class="d-reduced"><span></span></div><p class="d-spec">1ms · no animation</p></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="reduced"><span>Reduced motion</span></button></h2>
+      </article>
+
+      <!-- BUTTONS -->
+      <article class="c-card" data-id="access" data-cat="buttons" data-name="Access button" data-desc="One access button: collapsed and hover/focus expanded. Granted access hides this control on the site. Expansion is a state, not a separate component." data-tokens="--ds-dark-surface --ds-access-width --ds-blur-button" data-used="ui.css · site-components.css" data-code="&lt;button class=&quot;ui-btn ui-btn--dark ui-access&quot;&gt;&#10;  &lt;svg …&gt;…&lt;/svg&gt;&#10;  &lt;span&gt;Unlock full view&lt;/span&gt;&#10;&lt;/button&gt;">
+        <div class="c-stage"><div class="d-access-states"><button class="ui-btn ui-btn--dark ui-access" type="button" aria-label="Private access"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span>Unlock full view</span></button><button class="ui-btn ui-btn--dark ui-access is-expanded" type="button" aria-label="Expanded private access"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span>Unlock full view</span></button></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="access"><span>Access button</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="secondary" data-cat="buttons" data-name="Secondary button" data-desc="One secondary action for both buttons and links, using the same 40px height and 13px label. Replaces the duplicate light and glass button types." data-tokens="--ds-glass-surface --ds-glass-shadow --ds-control-height --ds-type-ui" data-used="ui.css · site-components.css" data-code="&lt;button class=&quot;ui-btn ui-btn--secondary&quot;&gt;Secondary&lt;/button&gt;">
+        <div class="c-stage"><button class="ui-btn ui-btn--secondary" type="button">Secondary</button></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="secondary"><span>Secondary button</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="text-link" data-cat="buttons" data-name="Text link" data-desc="The editorial link: underlined, grey, one step darker on hover." data-tokens="--ds-type-ui --ds-link-decoration" data-used="space.css · case-layout.css" data-code="&lt;a class=&quot;ui-link&quot; href=&quot;#&quot;&gt;Read the case&lt;/a&gt;">
+        <div class="c-stage"><a class="ui-link" href="#buttons">Read the case</a></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="text-link"><span>Text link</span></button></h2>
+      </article>
+
+      <!-- CELLS -->
+
+      <article class="c-card" data-id="chips" data-cat="cells" data-name="Chips" data-desc="One neutral pill for disciplines and credentials. Years are plain metadata, not another surface." data-tokens="--ds-chip-surface --ds-chip-edge --ds-chip-text" data-used="portfolio-motion.css · hero-stories.css" data-code="&lt;span class=&quot;ui-chip&quot;&gt;Research&lt;/span&gt;&#10;&lt;span class=&quot;ui-chip ui-chip--year&quot;&gt;2026&lt;/span&gt;">
+        <div class="c-stage"><div class="d-chips"><span class="ui-chip">Accessibility</span><span class="ui-chip">Research</span><span class="ui-chip">Systems</span><span class="ui-chip ui-chip--credential">Information Science @ Cornell</span><span class="ui-chip ui-chip--year">2026</span></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="chips"><span>Chips</span></button></h2>
+      </article>
+
+      <!-- NAVIGATION -->
+      <article class="c-card c-card--wide" data-id="nav" data-cat="navigation" data-name="Navigation" data-desc="Three destinations and one sliding selection. The items stay still." data-tokens="--ds-glass-tint --ds-glass-nav-border --ds-nav-selection" data-used="portfolio-motion.css · navigation.js" data-code="&lt;nav class=&quot;ui-nav&quot;&gt;&#10;  &lt;span class=&quot;ui-nav__selection&quot;&gt;&lt;/span&gt;&#10;  &lt;a class=&quot;ui-nav__item&quot; aria-current=&quot;page&quot;&gt;Selected&lt;/a&gt;&#10;  &lt;a class=&quot;ui-nav__item&quot;&gt;Archive&lt;/a&gt;&#10;  &lt;a class=&quot;ui-nav__item&quot;&gt;About&lt;/a&gt;&#10;&lt;/nav&gt;">
+        <div class="c-stage"><div class="ui-nav" id="c-nav"><span class="ui-nav__selection" aria-hidden="true"></span><button class="ui-nav__item" type="button" aria-current="page">Selected</button><button class="ui-nav__item" type="button">Archive</button><button class="ui-nav__item" type="button">About</button></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="nav"><span>Navigation</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="menu" data-cat="navigation" data-name="Menu" data-desc="The floating index for pages and private access." data-tokens="--ds-glass-surface --ds-radius-xl --ds-type-ui" data-used="space.css · space.js">
+        <div class="c-stage"><div class="d-menu"><a href="#main" aria-current="page">Selected</a><a href="#main">Archive</a><a href="#main">About</a><a href="#main">Design system</a></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="menu"><span>Menu</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="tools" data-cat="navigation" data-name="Page tools" data-desc="Two 48px glass circles: Menu and back to top." data-tokens="--ds-icon-button-size --ds-glass-surface" data-used="space.css · interface22.css">
+        <div class="c-stage"><div class="d-tools"><button class="ui-icon-btn" type="button" aria-label="Page navigation"><span class="d-tool-word">Menu</span></button><button class="ui-icon-btn" type="button" aria-label="Back to top"><span>Top</span></button></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="tools"><span>Page tools</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="year-menu" data-cat="navigation" data-name="Year menu" data-desc="Archive filtering in a small white glass panel." data-tokens="--ds-glass-popover --ds-shadow-popover" data-used="portfolio-motion.css · space.js">
+        <div class="c-stage"><div class="d-years"><button type="button">All years </button><div><span aria-current="true">All</span><span>2026</span><span>2025</span><span>2024</span><span>2023</span></div></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="year-menu"><span>Year menu</span></button></h2>
+      </article>
+
+<article class="c-card" data-id="tabs" data-cat="navigation" data-name="Tabs" data-desc="One tab family for case sections and prototype views. Neutral selected fill, shared type and motion; keyboard behaviour belongs to the owning tablist." data-tokens="--ds-type-ui --ds-control-height --ds-dur-ui --ds-paper-tint" data-used="site-components.css · aimpower.js · private-cases.js" data-code="&lt;button class=&quot;ui-tab&quot; role=&quot;tab&quot; aria-selected=&quot;true&quot;&gt;Overview&lt;/button&gt;"><div class="c-stage"><div class="d-tab-demo" role="tablist" aria-label="Tab style specimen"><button class="ui-tab" role="tab" aria-selected="true" tabindex="0">Overview</button><button class="ui-tab" role="tab" aria-selected="false" tabindex="-1">Research</button></div></div><h2 class="c-meta"><button class="c-open" data-open="tabs" type="button"><span>Tabs</span></button></h2></article>
+      <!-- CARDS -->
+      <article class="c-card" data-id="project-card" data-cat="cards" data-name="Project card" data-desc="Work is shown, not sold. The label darkens; nothing scales." data-tokens="--ds-radius-xs --ds-card-width --ds-type-ui" data-used="portfolio-motion.js" data-code="&lt;a class=&quot;ui-card&quot; href=&quot;#&quot;&gt;&#10;  &lt;span class=&quot;ui-card__media&quot;&gt;&lt;img src=&quot;…&quot; alt=&quot;&quot;&gt;&lt;/span&gt;&#10;  &lt;span class=&quot;ui-card__label&quot;&gt;Quipu&lt;/span&gt;&#10;&lt;/a&gt;">
+        <div class="c-stage"><a class="ui-card d-card" href="#cards"><span class="ui-card__media"><img src="assets/quipu/01.png" alt="Quipu cover" loading="lazy" decoding="async"></span><span class="ui-card__label">Quipu</span></a></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="project-card"><span>Project card</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="stack" data-cat="cards" data-name="Paired stack" data-desc="A primary image with a second layer behind, together on hover." data-tokens="--ds-radius-xs --ds-dur-surface --ds-ease-out" data-used="portfolio-motion.css">
+        <div class="c-stage"><div class="d-stack"><img src="assets/lexicon/01.jpg" alt="" loading="lazy" decoding="async"><img src="assets/quipu/01.png" alt="" loading="lazy" decoding="async"></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="stack"><span>Paired stack</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="archive-row" data-cat="cards" data-name="Archive row" data-desc="The current project is ink and 600 weight; the rest are muted." data-tokens="--ds-ink --ds-muted --ds-line-soft" data-used="space.css · space.js">
+        <div class="c-stage"><div class="d-rows"><button type="button" aria-current="true">Stutter-Affirming Progress</button><button type="button">Future of Work</button><button type="button">Precision Management System</button><button type="button">The Lexicon of Wish</button></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="archive-row"><span>Archive row</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="private-cover" data-cat="cards" data-name="Private cover" data-desc="A baked blur with a sharp partner logo until the password unlocks it." data-tokens="--ds-radius-xs --ds-glass-blur" data-used="portfolio-motion.css · private-cases.js">
+        <div class="c-stage"><div class="d-private"><img src="assets/unity-preview.png" alt="Unity private preview" loading="lazy" decoding="async"><img src="assets/logos/unity-white.png" alt="Unity" loading="lazy" decoding="async"></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="private-cover"><span>Private cover</span></button></h2>
+      </article>
+
+      <!-- FORMS -->
+      <article class="c-card" data-id="dialog" data-cat="forms" data-name="Password dialog" data-desc="Square access dialog, blurred backdrop, one field, one action. Uses the same field and Secondary button as the site." data-tokens="--ds-dialog-surface --ds-shadow-dialog --ds-backdrop-dialog" data-used="space.css · private-cases.js" data-code="&lt;dialog class=&quot;ui-dialog&quot;&gt;&#10;  &lt;form method=&quot;dialog&quot;&gt;…&lt;/form&gt;&#10;&lt;/dialog&gt;">
+        <div class="c-stage"><button class="ui-btn ui-btn--dark" type="button" id="c-dialog-open">Open dialog</button></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="dialog"><span>Password dialog</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="field" data-cat="forms" data-name="Field" data-desc="Labels sit above fields. Errors appear in place." data-tokens="--ds-line-strong --ds-radius-xs --ds-danger" data-used="space.css · private-cases.js" data-code="&lt;label class=&quot;ui-field&quot;&gt;&#10;  &lt;span class=&quot;ui-field__label&quot;&gt;Password&lt;/span&gt;&#10;  &lt;input class=&quot;ui-field__input&quot; type=&quot;password&quot;&gt;&#10;&lt;/label&gt;">
+        <div class="c-stage"><label class="ui-field d-field"><span class="ui-field__label">Password</span><input class="ui-field__input" type="password" placeholder="Enter password" aria-describedby="c-field-error"><span class="ui-field__error" id="c-field-error">The password does not open this work.</span></label></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="field"><span>Field</span></button></h2>
+      </article>
+
+      <!-- READER -->
+      <article class="c-card c-card--wide" data-id="reader" data-cat="reader" data-name="Reader" data-desc="Fixed close, generated index, 660px copy, 1040px media." data-tokens="--ds-copy-width --ds-reading-width --ds-z-reader" data-used="space.css · space.js · case-layout.css">
+        <div class="c-stage"><div class="d-reader"><div class="d-reader-bar"><span>Close ×</span><i></i><span>Index</span></div><div class="d-reader-body"><div class="d-reader-index"><b>01</b><span>Overview</span><b>02</b><span>Research</span></div><div class="d-reader-copy"><h3>A Zoom + Web System</h3><p>Body copy sets the measure at 660px. Images may use the full reading width.</p></div></div></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="reader"><span>Reader</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="index" data-cat="reader" data-name="Index &amp; progress" data-desc="Chapters generated from the content, a 2px line for position." data-tokens="--ds-type-ui-s --ds-line-soft --ds-ink" data-used="space.js · case-layout.css">
+        <div class="c-stage"><div class="d-index"><div class="d-index-line"><i></i></div><p><b>01</b> Overview</p><p><b>02</b> Research</p><p><b>03</b> Design</p><p><b>04</b> Next</p></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="index"><span>Index &amp; progress</span></button></h2>
+      </article>
+
+      <!-- PATTERNS -->
+      <article class="c-card c-card--wide" data-id="greeting" data-cat="patterns" data-name="Greeting" data-desc="A nowrap headline, a sentence with inline objects, two credentials." data-tokens="--ds-type-display-3 --ds-type-lead --ds-paper-tint" data-used="hero-stories.js · hero-stories.css">
+        <div class="c-stage"><div class="d-greeting"><p>Hi, I'm Wenjia Shi</p><span>a designer, <button type="button" aria-label="Hair tie story"><img src="assets/personal-objects/hair-tie.png" alt="" loading="lazy" decoding="async"></button> curious <button type="button" aria-label="Indie games story"><img src="assets/personal-objects/controller.png" alt="" loading="lazy" decoding="async"></button> tinkerer.</span><i>Information Science @ Cornell</i></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="greeting"><span>Greeting</span></button></h2>
+      </article>
+
+      <article class="c-card c-card--wide" data-id="scene" data-cat="patterns" data-name="Project scene" data-desc="A scroll-driven sequence: the active project takes the centre." data-tokens="--ds-dur-scene --ds-ease-out --ds-page-gutter" data-used="portfolio-motion.js">
+        <div class="c-stage"><div class="d-scene"><span class="is-out">Unity</span><span class="is-in">Quipu</span><span class="is-out">Lexicon</span></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="scene"><span>Project scene</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="orbit" data-cat="patterns" data-name="Archive orbit" data-desc="Fifteen projects on a wheel. Neighbours clip at the viewport edge." data-tokens="--ds-dur-archive --ds-ease-out" data-used="portfolio-motion.js">
+        <div class="c-stage"><div class="d-orbit"><svg viewBox="0 0 260 200" aria-hidden="true"><path d="M45 22 Q130 100 45 178" fill="none" stroke="#dedede"></path><path d="M215 22 Q130 100 215 178" fill="none" stroke="#dedede"></path><rect x="98" y="76" width="64" height="44" rx="4" fill="#fff" stroke="#dedede"></rect><rect x="112" y="20" width="38" height="26" rx="3" fill="#fff" stroke="#dedede" opacity=".4"></rect><rect x="112" y="154" width="38" height="26" rx="3" fill="#fff" stroke="#dedede" opacity=".4"></rect></svg></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="orbit"><span>Archive orbit</span></button></h2>
+      </article>
+
+      <article class="c-card" data-id="opening" data-cat="patterns" data-name="Opening" data-desc="A four-scene introduction: spark, focus, persistence, warmth. Hold E to skip; input reveals the hint." data-tokens="--ds-font-serif --ds-font-mono --ds-dur-cinematic" data-used="opening.css · opening.js">
+        <div class="c-stage"><div class="d-opening"><p>A <em>spark</em><br>is only the beginning.</p><span>Skip · 00:06</span></div></div>
+        <h2 class="c-meta"><button class="c-open" type="button" data-open="opening"><span>Opening</span></button></h2>
+      </article>
+
+    </div>
+
+    <p class="c-empty" id="c-empty" hidden>No components match. <button type="button" id="c-clear">Clear search</button></p>
+
+    <footer class="c-foot">
+      <p>Wenjia Space · design system v2.0 · 17 Nov 2026</p>
+      <p>Reuse an existing role before adding to <a href="tokens.css" target="_blank" rel="noopener">tokens.css</a>; document new families here, and keep states inside their component. <a href="ui.css" target="_blank" rel="noopener">ui.css</a></p>
+    </footer>
+  </main>
+</div>
+
+<dialog class="c-sheet" id="c-sheet" aria-labelledby="c-sheet-title">
+  <div class="c-sheet-inner">
+    <div class="c-sheet-top">
+      <span id="c-sheet-cat">Component</span>
+      <button class="c-sheet-close" type="button" id="c-sheet-close" aria-label="Close">×</button>
+    </div>
+    <div class="c-sheet-preview" id="c-sheet-preview"></div>
+    <h2 class="c-sheet-title" id="c-sheet-title"></h2>
+    <p class="c-sheet-desc" id="c-sheet-desc"></p>
+    <div class="c-sheet-section" id="c-sheet-token-wrap"><p class="c-sheet-label">Tokens</p><div class="c-sheet-tokens" id="c-sheet-tokens"></div></div>
+    <div class="c-sheet-section" id="c-sheet-code-wrap">
+      <div class="c-sheet-code-head"><p class="c-sheet-label">HTML</p><button class="c-copy-code" type="button" id="c-copy-code">Copy</button></div>
+      <pre class="c-sheet-code"><code id="c-sheet-code"></code></pre>
+    </div>
+    <p class="c-sheet-used" id="c-sheet-used"></p>
+  </div>
+</dialog>
+
+<dialog class="c-token-dialog" id="c-token-dialog" aria-labelledby="c-token-title">
+  <div class="c-token-top">
+    <div><h2 id="c-token-title">Tokens</h2><p><span id="c-token-total">182</span> values · generated from tokens.css</p></div>
+    <button class="c-sheet-close" type="button" id="c-token-close" aria-label="Close">×</button>
+  </div>
+  <div class="c-token-list" id="c-token-list"></div>
+</dialog>
+
+<dialog class="ui-dialog" id="c-dialog" aria-labelledby="c-dialog-title">
+  <button class="ui-dialog__close" type="button" aria-label="Close password entry" id="c-dialog-close">×</button>
+  <p class="c-eyebrow">Private access</p>
+  <h2 id="c-dialog-title">A closer look.</h2>
+  <p>One password opens the private projects throughout this space.</p>
+  <form method="dialog" id="c-dialog-form">
+    <label class="ui-field"><span class="ui-field__label">Password</span><input class="ui-field__input" type="password" required placeholder="Enter password" autocomplete="off"></label>
+    <button class="ui-btn ui-btn--dark c-dialog-submit" type="submit">Unlock</button>
+    <p class="c-caption">Demo only — this form does not unlock the real cases.</p>
+  </form>
+</dialog>
+
+<div class="c-toast" id="c-toast" role="status" aria-live="polite"></div>
+<script src="system.js?v=73"></script>
+</body>
+</html>
