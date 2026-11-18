@@ -245,7 +245,7 @@ function configureProjectTools(){
  const indexed=projectIndexSections.length>0;
  $('.page-tools').classList.toggle('is-project-index',indexed);
  $('.page-tools').setAttribute('aria-label',indexed?'Project chapter navigation':'Page navigation');
- $('#tool-toggle').textContent=indexed?'Index':'Menu';
+ $('#tool-toggle').innerHTML=indexed?'Index':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
  $('#tool-toggle').setAttribute('aria-label',indexed?'Open project index':'Page navigation');
  const menu=$('#tool-menu');menu.replaceChildren();
  if(indexed){
@@ -270,7 +270,7 @@ function closeTools(){
  toolMotion?.cancel();
  if(reduced.matches){menu.hidden=true;return;}
  const nav=menu.querySelector('nav');
- toolMotion=nav.animate([{opacity:1,transform:'translateX(0) scale(1)'},{opacity:0,transform:'translateX(7px) scale(.97,.98)'}],{duration:WenjiaMotion.duration('ui'),easing:'ease-in',fill:'forwards'});
+ toolMotion=nav.animate([{opacity:1,transform:'translateX(0) scale(1)'},{opacity:0,transform:'translateX(7px) scale(.97,.98)'}],{duration:WenjiaMotion.duration('ui'),easing:WenjiaMotion.easing(),fill:'forwards'});
  toolCloseTimer=setTimeout(()=>{menu.hidden=true;toolMotion?.cancel();toolMotion=null;},WenjiaMotion.duration('ui'));
 }
 function openTools(fromHover=false){
@@ -305,7 +305,7 @@ function enterAbout(){
  const curtain=$('.about-curtain');curtain.getAnimations().forEach(a=>a.cancel());
  if(reduced.matches)return;
  curtain.animate([{transform:'scaleX(1)'},{transform:'scaleX(0)'}],{duration:WenjiaMotion.duration('surface'),easing:WenjiaMotion.easing()});
- $$('.bio-intro,.bio-history,.bio-interests').forEach((el,i)=>{el.getAnimations().forEach(a=>a.cancel());el.animate([{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'translateY(0)'}],{duration:WenjiaMotion.duration('surface'),delay:180+i*100,fill:'backwards',easing:WenjiaMotion.easing()});});
+ $$('.bio-history,.bio-interests').forEach((el,i)=>{el.getAnimations().forEach(a=>a.cancel());el.animate([{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'translateY(0)'}],{duration:WenjiaMotion.duration('surface'),delay:180+i*100,fill:'backwards',easing:WenjiaMotion.easing()});});
 }
 history.scrollRestoration='manual';
 scrollTo({top:0,behavior:'instant'});

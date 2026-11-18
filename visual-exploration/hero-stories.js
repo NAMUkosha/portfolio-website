@@ -48,7 +48,7 @@
       else img.hidden=true;
     });
     copy.querySelector('h2').textContent=item?.title||'';
-    if(animate&&!reduced.matches){[...copy.children].forEach((el,i)=>transitions.push(el.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'none'}],{duration:WenjiaMotion.duration('control'),delay:45+i*35,fill:'backwards',easing:'ease-out'})));}
+
   }
   let hovered=null, focused=null, touchSelected=null;
   const refresh=()=>select(hovered||focused||touchSelected);

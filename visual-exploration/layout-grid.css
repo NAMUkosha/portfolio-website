@@ -10,6 +10,7 @@ html.home-booting body>:not(#opening):not(script){visibility:hidden!important}
 #portfolio-motion:not(.is-greeting):not(.is-archive) .intro{left:var(--reading-left);width:calc(var(--reading-width) * .43)}
 #portfolio-motion .archive-copy{left:var(--page-left)}
 #portfolio-motion aside{right:var(--page-left)}
-.biography{width:var(--reading-width);max-width:none;padding-left:0;padding-right:0;gap:80px}
+.biography{width:var(--reading-width);max-width:none;padding:calc(93px + var(--ds-space-14)) 0 var(--ds-space-18);gap:80px}
+.bio-interests{grid-template-columns:1fr 1.1fr;gap:80px}
 @media(max-width:1100px) and (min-width:701px){#portfolio-motion .personal-hero{gap:40px;grid-template-columns:minmax(0,3fr) minmax(0,2fr)}#portfolio-motion .hero-sentence{margin-left:0;font-size:var(--ds-type-lead)}#portfolio-motion .hero-credentials{margin-left:0}}
-@media(max-width:700px){#portfolio-motion .personal-hero{top:154px;left:var(--page-left);width:var(--page-width);display:flex;gap:16px;max-height:calc(100svh - 246px)}#portfolio-motion .hero-sentence{margin-left:0}#portfolio-motion .hero-credentials{margin-left:0}#portfolio-motion .hero-exhibition{margin-top:0;align-self:center}#portfolio-motion .archive-copy{left:var(--page-left)}#portfolio-motion aside{left:var(--page-left);right:var(--page-left)}.biography{gap:48px}}
+@media(max-width:700px){#portfolio-motion .personal-hero{top:154px;left:var(--page-left);width:var(--page-width);display:flex;gap:16px;max-height:calc(100svh - 246px)}#portfolio-motion .hero-sentence{margin-left:0}#portfolio-motion .hero-credentials{margin-left:0}#portfolio-motion .hero-exhibition{margin-top:0;align-self:center}#portfolio-motion .archive-copy{left:var(--page-left)}#portfolio-motion aside{left:var(--page-left);right:var(--page-left)}.biography{padding-top:calc(var(--ds-space-17) + var(--ds-space-10));gap:48px}.bio-interests{grid-template-columns:1fr;gap:var(--ds-space-8)}}

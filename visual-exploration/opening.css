@@ -19,7 +19,7 @@ html.opening-pending::before{content:"";position:fixed;inset:0;z-index:9998;back
 #opening .opening-spark .opening-char.is-revealed{animation:opening-resolve .6s both,opening-ignite .9s both!important}
 #opening .opening-spark::after{content:"";position:absolute;left:50%;top:6%;width:6px;height:6px;background:#d9ab52;transform:rotate(45deg) scale(0);box-shadow:0 0 12px 3px #f1c87a88;clip-path:polygon(50% 0,60% 38%,100% 50%,60% 62%,50% 100%,40% 62%,0 50%,40% 38%)}
 #opening .opening-spark.is-lit::after{animation:opening-spark .8s both}
-#opening .opening-curiosity .opening-char.is-revealed{animation:opening-seek .65s both}
+#opening .opening-curiosity .opening-char.is-revealed{animation:opening-seek 1s var(--ds-ease-out) both}
 #opening .opening-focus-frame{position:absolute;z-index:3;pointer-events:none;visibility:hidden;color:#8d9792;opacity:.38;transition:left .5s cubic-bezier(.22,.8,.2,1),top .5s cubic-bezier(.22,.8,.2,1),width .5s cubic-bezier(.22,.8,.2,1),height .5s ease,opacity .7s}
 #opening .opening-focus-frame.is-found{visibility:visible}
 #opening[data-scene="1"] .opening-focus-frame{opacity:.85}
@@ -54,7 +54,7 @@ html.opening-pending::before{content:"";position:fixed;inset:0;z-index:9998;back
 @keyframes opening-resolve{from{filter:blur(5px);transform:translateY(3px)}to{filter:blur(0);transform:none}}
 @keyframes opening-ignite{0%{color:#e7b95f;text-shadow:0 0 12px #edbe62,0 0 22px #f7cf82}35%{color:#bd9140;text-shadow:0 0 5px #e9bd6c}100%{color:#977237;text-shadow:0 0 12px #edc47755}}
 @keyframes opening-spark{0%{transform:rotate(45deg) scale(0)}25%{transform:rotate(75deg) scale(1.8)}100%{transform:rotate(90deg) scale(.7)}}
-@keyframes opening-seek{0%{filter:blur(3px)}65%{filter:blur(.8px)}100%{filter:blur(.15px)}}
+@keyframes opening-seek{0%{filter:blur(5px)}45%{filter:blur(2.5px)}100%{filter:blur(0)}}
 @keyframes opening-stand{0%,29%{transform:translateX(-1px)}30%,69%{transform:none}70%,84%{transform:translateX(.6px)}85%,100%{transform:none}}
 @keyframes opening-mask{from{clip-path:inset(100% 0 0);transform:translateY(3px)}to{clip-path:inset(0);transform:none}}
 @keyframes opening-love-flow{from{background-position:0% 30%}to{background-position:100% 70%}}

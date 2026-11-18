@@ -46,7 +46,7 @@ body{color:var(--ds-text);font-family:var(--ds-font-sans)}
 :is(.ui-tab,.aim-tab-list button,[data-case-tab]){min-height:var(--ds-control-height);padding:var(--ds-space-4) var(--ds-space-8);border:0;border-radius:var(--ds-radius-pill);background:transparent;color:var(--ds-text-secondary);font:var(--ds-type-ui)/var(--ds-leading-body) var(--ds-font-sans);transition:color var(--ds-dur-ui) var(--ds-ease-out),background var(--ds-dur-ui) var(--ds-ease-out)}
 :is(.ui-tab,.aim-tab-list button,[data-case-tab])[aria-selected=true]{background:var(--ds-paper-tint);color:var(--ds-ink)}
 :is(.ui-tab,.aim-tab-list button,[data-case-tab]):hover{color:var(--ds-ink)}
-#password-form .password-row{display:flex;align-items:stretch;gap:var(--ds-space-4)}
+#password-form .password-row{display:flex;align-items:stretch;gap:var(--ds-space-4);background:transparent}
 #password-form input{min-width:0;flex:1}
 .ui-chip--year{padding:0;border:0;background:transparent;box-shadow:none;color:var(--ds-text-secondary);font-size:var(--ds-type-caption)}
 .ui-access[data-state=granted]{background:var(--ds-glass-surface);color:var(--ds-text-secondary)}
@@ -65,3 +65,37 @@ body{color:var(--ds-text);font-family:var(--ds-font-sans)}
 #note-reading-content :is(.aimpower-subtitle,.lex-question,.private-case>header>p:not(.small):not(.private-credits),.new-design-case>header>p:not(.small)){font-size:var(--ds-type-lead);line-height:var(--ds-leading-body);max-width:var(--ds-copy-width)}
 .motion-live .site-header .identity{font-size:var(--ds-type-lead)}
 @media(max-width:700px){.motion-live .site-header{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--ds-space-4);height:var(--ds-space-17)}.motion-live .site-header .identity{font-size:var(--ds-type-body)}.motion-live .site-header nav{justify-self:end;margin-left:0;gap:0}.motion-live .site-header nav a{padding-inline:var(--ds-space-4)}}
+
+/* Shared link feedback and biography heading hierarchy. */
+:is(.ui-link,.inline-link,.home-text-link,.bio-linkedin,.bio-email,#note-reading a:not(.ui-btn)):hover{color:var(--ds-ink-strong);text-decoration-color:var(--ds-ink)}
+.bio-history .bio-entry h3{font-size:var(--ds-type-title-3);line-height:var(--ds-leading-title)}
+.motion-live .site-header #access span{transition:opacity var(--ds-dur-ui) var(--ds-ease-out),max-width var(--ds-dur-control) var(--ds-ease-out),margin-left var(--ds-dur-control) var(--ds-ease-out)}
+@media(prefers-reduced-motion:reduce){.motion-live .site-header #access span{transition:none}}
+
+/* About page and Material Icons menu / arrow_upward. */
+.bio-intro{text-align:left}
+.bio-intro h1{margin-top:0;text-align:left}
+.bio-greeting{color:var(--ds-muted-2);font-size:var(--ds-type-title-3);letter-spacing:var(--ds-tracking-title)}
+.bio-intro .bio-text{text-align:left;margin-left:0;margin-right:0}
+.bio-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ds-space-4);margin-top:var(--ds-space-10)}
+#about .bio-actions a{display:inline-flex;width:auto;margin:0;text-decoration:none}
+.bio-history .bio-entry .bio-company{display:flex;align-items:center;gap:var(--ds-space-4);font-size:var(--ds-type-body-s);line-height:var(--ds-leading-body);color:var(--ds-text-secondary)}
+.bio-company img{width:var(--ds-space-10);height:var(--ds-space-10);object-fit:contain;flex:none}
+.interest-images figure:nth-child(2){padding-top:0}
+.page-tools :is(#tool-toggle,#tool-top){width:var(--ds-control-height);min-width:var(--ds-control-height);padding:0;display:grid;place-items:center}
+.page-tools :is(#tool-toggle,#tool-top) svg{display:block;width:var(--ds-icon-size);height:var(--ds-icon-size);fill:currentColor}
+@media(max-width:700px){.interest-images figure:nth-child(2){padding-top:0}.bio-actions{gap:var(--ds-space-4)}}
+
+
+/* About layout */
+body.motion-live[data-page="about"]::before{content:"";position:fixed;inset:0 0 auto;height:calc(93px + var(--ds-space-14));z-index:29;pointer-events:none;background:linear-gradient(to bottom,var(--ds-paper) 0%,var(--ds-paper) 52%,transparent 100%)}
+@media(min-width:701px){.biography .bio-intro{position:sticky;top:var(--bio-sticky-top,141px);align-self:start}}
+.bio-interests{row-gap:var(--ds-space-10)}
+.bio-interests .interest-images{grid-column:1 / -1;align-items:start}
+.interest-images .interest-card{flex:1 1 0;min-width:0;padding:0}
+.interest-images .interest-card figcaption h3{margin:var(--ds-space-6) 0 0}
+@media(max-width:700px){body.motion-live[data-page="about"]::before{height:calc(var(--ds-space-17) + var(--ds-space-10))}.bio-interests{row-gap:var(--ds-space-6)}.interest-images .interest-card{flex:1 1 130px}}
+
+/* Keep the introduction within the experience and education region. */
+.bio-profile{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1.1fr;column-gap:var(--ds-space-17);align-items:start;min-width:0}
+@media(max-width:700px){.bio-profile{grid-column:auto;grid-template-columns:minmax(0,1fr);row-gap:var(--ds-space-14)}}

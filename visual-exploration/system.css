@@ -1230,3 +1230,5 @@ ul, ol { padding: 0; list-style: none; }
 
 .d-access-states{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:var(--ds-space-8)}
 .d-tab-demo{display:flex;gap:var(--ds-space-2)}
+
+.d-flip-card{width:120px;max-height:200px}.d-flip-card .interest-back{padding:var(--ds-space-4);gap:var(--ds-space-2)}.d-flip-card .interest-back strong,.d-flip-card .interest-back span{font-size:var(--ds-type-caption)}

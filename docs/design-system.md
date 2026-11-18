@@ -25,9 +25,10 @@ Existing display/title/micro token names that resolve to the same values are com
 - **Neutral chip**: one flat rounded pill for credentials and disciplines. A year is plain metadata. No separate credential or badge surface.
 - **Floating surface**: one glass recipe shared by navigation, action controls and floating menus. Modal backdrop remains a distinct functional overlay.
 - **Tabs**: one neutral selected-state treatment for case tabs, with each owning tablist retaining its keyboard and selection logic.
+- **Flip card**: shared image and text faces; click or keyboard to flip, pointer tilt and glare, with reduced-motion support. Implemented in `ui.css` and `interests.js`.
 - **Project cards**: the existing images, stacks, private covers and orbit behaviours remain content patterns. They are not generic button variants.
 
-The catalogue now groups states and aliases inside families: 39 entries rather than 45, including the newly shared tab family. Preview miniatures may be scaled to fit the catalogue stage; detail snippets and tokens define production values.
+The catalogue now groups states and aliases inside families: 40 entries rather than 45, including the newly shared tab family. Preview miniatures may be scaled to fit the catalogue stage; detail snippets and tokens define production values.
 
 ## Motion
 
