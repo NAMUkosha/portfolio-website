@@ -15,7 +15,8 @@
     card.addEventListener('pointercancel', () => { start=null; reset(); });
     card.addEventListener('pointerleave', () => { start=null; reset(); });
     card.addEventListener('click', e => {
-      if (dragged) { dragged=false; e.preventDefault(); return; }
+      if (dragged && e.detail !== 0) { dragged=false; e.preventDefault(); return; }
+      dragged=false;
       const flipped=card.getAttribute('aria-pressed') !== 'true'; card.setAttribute('aria-pressed', String(flipped));
       card.setAttribute('aria-label', `${flipped ? 'Hide' : 'Show'} details for ${card.dataset.title || card.closest('figure')?.querySelector('figcaption h3')?.textContent || 'card'}`);
     });

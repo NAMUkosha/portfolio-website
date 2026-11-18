@@ -99,3 +99,5 @@ body.motion-live[data-page="about"]::before{content:"";position:fixed;inset:0 0 
 /* Keep the introduction within the experience and education region. */
 .bio-profile{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1.1fr;column-gap:var(--ds-space-17);align-items:start;min-width:0}
 @media(max-width:700px){.bio-profile{grid-column:auto;grid-template-columns:minmax(0,1fr);row-gap:var(--ds-space-14)}}
+
+.interest-images .interest-front img,.interest-images figure:hover .interest-front img{filter:none}
