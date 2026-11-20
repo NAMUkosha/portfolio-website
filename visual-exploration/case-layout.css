@@ -1,6 +1,9 @@
 /* Shared reading grid. All case headings and full-width media share one baseline. */
 #note-reading-content{--case-width:1040px;--copy-width:660px;--heading-width:740px}
 #note-reading-content>:is(.private-case,.aimpower-case,.lexicon-case,.new-design-case,.note-layout,.gofie-case){width:100%;max-width:var(--case-width);margin-left:auto;margin-right:auto;padding-left:0;padding-right:0;box-sizing:border-box}
+/* The shared reader provides the outer spacing for unlocked cases. */
+#note-reading:has(.private-case){padding-inline:var(--ds-page-gutter)}
+#note-reading-content>.private-case{padding-block:0}
 #note-reading-content :is(.private-case>header,.private-copy,.aimpower-header,.aim-chapter-heading,.aim-reading,.aim-copy,.new-design-case>header,.new-design-case .case-copy){margin-left:0;margin-right:0;text-align:left}
 #note-reading-content :is(.private-case>header,.private-copy,.new-design-case>header,.new-design-case .case-copy){max-width:none}
 #note-reading-content :is(.private-case>header,.private-copy,.new-design-case>header,.new-design-case .case-copy)>p{max-width:var(--copy-width)}

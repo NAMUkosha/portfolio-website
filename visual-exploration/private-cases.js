@@ -4,15 +4,15 @@ const privateVault=(()=>{
  const blobs=new Map(),jobs=new Map(),base='assets/private/';
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const bytes=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
- async function fetchBytes(file){const response=await fetch(base+file,{cache:'no-store'});if(!response.ok)throw Error('LOAD_FAILED');return new Uint8Array(await response.arrayBuffer());}
+ async function fetchBytes(file,signal){const response=await fetch(base+file,{cache:'no-store',signal});if(!response.ok)throw Error('LOAD_FAILED');return new Uint8Array(await response.arrayBuffer());}
  async function decrypt(data,useKey){return crypto.subtle.decrypt({name:'AES-GCM',iv:data.slice(0,12)},useKey,data.slice(12));}
  // IndexedDB supports structured cloning of non-exportable CryptoKeys.
  async function sessionKey(mode,value){
   let token=sessionStorage.getItem('wenjia-vault-session');
   if(!token&&mode!=='put')return null;
   if(!token){token=crypto.randomUUID();sessionStorage.setItem('wenjia-vault-session',token);}
-  const db=await new Promise((resolve,reject)=>{const req=indexedDB.open('wenjia-private-session',1);req.onupgradeneeded=()=>req.result.createObjectStore('keys');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
-  try{return await new Promise((resolve,reject)=>{const tx=db.transaction('keys',mode==='get'?'readonly':'readwrite'),store=tx.objectStore('keys'),req=mode==='put'?store.put(value,token):mode==='delete'?store.delete(token):store.get(token);let result;req.onsuccess=()=>{result=req.result;};tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(tx.error);});}finally{db.close();}
+  const db=await new Promise((resolve,reject)=>{const req=indexedDB.open('wenjia-private-session',1);req.onupgradeneeded=()=>req.result.createObjectStore('keys');req.onsuccess=()=>resolve(req.result);req.onblocked=()=>{reject(Error('SESSION_STORAGE_BLOCKED'));req.onsuccess=()=>req.result.close();};req.onerror=()=>reject(req.error);});
+  try{return await new Promise((resolve,reject)=>{const tx=db.transaction('keys',mode==='get'?'readonly':'readwrite'),store=tx.objectStore('keys'),req=mode==='put'?store.put(value,token):mode==='delete'?store.delete(token):store.get(token);let result;req.onsuccess=()=>{result=req.result;};tx.oncomplete=()=>resolve(result);tx.onabort=()=>reject(tx.error);});}finally{db.close();}
  }
  async function restore(){
   try{const candidate=await sessionKey('get');if(!candidate)return false;
@@ -21,13 +21,15 @@ const privateVault=(()=>{
    content=JSON.parse(new TextDecoder().decode(decoded));key=candidate;return true;
   }catch{return false;}
  }
- async function unlock(password){
-  const response=await fetch(base+'config.json',{cache:'no-store'});if(!response.ok)throw Error('LOAD_FAILED');const config=await response.json();
+ async function unlock(password,signal){
+  const response=await fetch(base+'config.json',{cache:'no-store',signal});if(!response.ok)throw Error('LOAD_FAILED');const config=await response.json();
   const material=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);
   const candidate=await crypto.subtle.deriveKey({name:'PBKDF2',salt:bytes(config.salt),iterations:config.iterations,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['decrypt']);
-  const encrypted=await fetchBytes(config.manifest);let decoded;
+  const encrypted=await fetchBytes(config.manifest,signal);let decoded;
   try{decoded=await decrypt(encrypted,candidate);}catch{throw Error('INVALID_PASSWORD');}
-  const parsed=JSON.parse(new TextDecoder().decode(decoded));key=candidate;content=parsed;try{await sessionKey('put',key);}catch{ /* Memory-only access remains available when storage is unavailable. */ }
+  signal.throwIfAborted();
+  content=JSON.parse(new TextDecoder().decode(decoded));key=candidate;
+  sessionKey('put',key).catch(()=>{ /* Memory-only access remains available when storage is unavailable. */ });
  }
  async function imageURL(file){
   if(!key)throw Error('LOCKED');if(blobs.has(file))return blobs.get(file);if(jobs.has(file))return jobs.get(file);

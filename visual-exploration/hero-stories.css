@@ -6,9 +6,20 @@
 #portfolio-motion .hero-sentence{font-size:var(--ds-type-lead);font-weight:400;line-height:1.5;letter-spacing:-.025em;margin:0 0 0 clamp(24px,4vw,56px);max-width:490px;color:#383838;text-wrap:pretty}
 .hero-sentence>span{display:inline}
 .hero-keep{white-space:nowrap}
-.hero-object{display:inline-block;position:relative;vertical-align:middle;width:calc(1.05em * var(--object-ratio));height:1.05em;margin:0 .015em;padding:0;border:0;border-radius:4px;background:transparent;font:inherit;touch-action:manipulation}
+.hero-object{display:inline-block;position:relative;vertical-align:middle;width:calc(1.05em * var(--object-ratio));height:1.05em;margin:0 .015em;padding:0;border:0;border-radius:4px;background:transparent;font:inherit;pointer-events:none}
+/* The stable hit shape follows the artwork while the image animates independently. */
+.hero-object::before{content:'';position:absolute;inset:0;pointer-events:auto;touch-action:manipulation}
+@media(any-pointer:fine){
+ .hero-object::before{clip-path:var(--object-hit-shape)}
+ .hero-object[data-object="hair-tie"]{--object-hit-shape:ellipse(50% 50%)}
+ .hero-object[data-object="coffee-tea"]{--object-hit-shape:polygon(0 26%,39% 13%,62% 21%,83% 16%,100% 28%,95% 69%,85% 100%,66% 100%,53% 74%,28% 88%,6% 70%)}
+ .hero-object[data-object="controller"]{--object-hit-shape:polygon(8% 21%,23% 2%,77% 2%,92% 21%,100% 70%,98% 97%,82% 100%,64% 66%,36% 66%,18% 100%,2% 97%,0 70%)}
+ .hero-object[data-object="puzzle"]{--object-hit-shape:polygon(1% 43%,20% 22%,37% 28%,41% 10%,63% 0,77% 21%,91% 24%,100% 44%,89% 72%,74% 72%,65% 93%,42% 100%,33% 81%,15% 86%,0 68%)}
+ .hero-object[data-object="knitting"]{--object-hit-shape:polygon(0 27%,22% 0,51% 0,65% 25%,78% 38%,100% 38%,100% 56%,79% 65%,62% 97%,18% 100%,0 75%)}
+}
+@media(pointer:coarse){.hero-object::before{inset-block:calc(-1 * var(--ds-space-2));clip-path:none}}
 .hero-object img{position:absolute;max-width:none;width:var(--asset-width);height:var(--asset-height);left:var(--asset-left);top:var(--asset-top);object-fit:fill;pointer-events:none}
-.hero-object::after{content:'';position:absolute;width:12px;height:1px;background:#d48a48;bottom:-2px;left:50%;transform:translateX(-50%) scaleX(0);transition:transform var(--ds-dur-ui)}
+.hero-object::after{content:'';position:absolute;width:12px;height:1px;background:#d48a48;bottom:-2px;left:50%;transform:translateX(-50%) scaleX(0);pointer-events:none;transition:transform var(--ds-dur-ui)}
 .hero-object[aria-pressed="true"]::after{transform:translateX(-50%) scaleX(1)}
 .hero-object:focus-visible{outline:2px solid #b87940;outline-offset:4px}
 .hero-object[data-object="hair-tie"]:is(:hover,:focus-visible) img{animation:hero-spring .55s both}
@@ -25,7 +36,7 @@
 .hero-display img[hidden]{display:none}
 .hero-story-copy{min-height:24px;text-align:center}
 #portfolio-motion .hero-story-copy h2{font-size:var(--ds-type-body);font-weight:400;line-height:1.5;letter-spacing:-.02em;margin:0;white-space:nowrap;text-align:center;cursor:default}
-#portfolio-motion .scroll-cue{left:50%;top:auto;bottom:78px;transform:translateX(-50%);font-size:var(--ds-type-caption);letter-spacing:.025em;gap:5px;padding:10px;color:#888;opacity:.65}
+#portfolio-motion .scroll-cue{left:var(--greeting-cards-center);top:calc(var(--greeting-cards-top) - var(--ds-space-8));transform:none;translate:-50% -100%;min-height:var(--ds-control-height);padding:0;justify-content:center;color:var(--ds-text-secondary)}
 #portfolio-motion .scroll-cue svg{width:16px;height:18px;fill:none;stroke:currentColor;stroke-width:1;transition:translate var(--ds-dur-ui)}
 #portfolio-motion .scroll-cue:hover svg{translate:0 3px}
 @keyframes hero-spring{35%{transform:scaleX(1.15) scaleY(.87)}70%{transform:scaleX(.95) scaleY(1.05)}100%{transform:none}}
@@ -35,6 +46,6 @@
 @keyframes hero-play{40%{transform:rotate(-7deg)}65%{transform:rotate(-7deg) scaleY(.96)}100%{transform:none}}
 
 @media(min-width:701px) and (max-width:1100px){#portfolio-motion .personal-hero{grid-template-columns:60% 40%}#portfolio-motion .hero-sentence{font-size:var(--ds-type-lead);margin-left:30px}.hero-exhibition{width:230px;margin-top:42px}.hero-display,.hero-display img{height:140px}.hero-display img{width:200px}#portfolio-motion .hero-story-copy h2{font-size:var(--ds-type-caption)}.hero-credentials{gap:5px;margin-left:10px}.hero-credentials span{font-size:var(--ds-type-caption)}}
-@media(max-width:700px){#portfolio-motion .personal-hero{top:154px;left:8%;width:84%;max-height:calc(100svh - 245px);display:flex;flex-direction:column;gap:18px;padding:0 2px 8px}#portfolio-motion .personal-hero h1{font-size:var(--ds-type-display-1);margin-bottom:22px}#portfolio-motion .hero-sentence{font-size:var(--ds-type-lead);line-height:1.5;margin-left:14px;max-width:none}.hero-credentials{margin:20px 0 0 8px;gap:6px}.hero-credentials span{font-size:var(--ds-type-caption);padding:5px 8px}.hero-exhibition{margin:0;align-self:center;width:100%;min-height:135px}.hero-display,.hero-display img{height:105px}.hero-display{margin-bottom:6px}.hero-display img{width:160px}#portfolio-motion .hero-story-copy h2{font-size:var(--ds-type-caption)}#portfolio-motion .scroll-cue{bottom:64px;font-size:8px}}
+@media(max-width:700px){#portfolio-motion .personal-hero{top:154px;left:8%;width:84%;max-height:calc(100svh - 245px);display:flex;flex-direction:column;gap:18px;padding:0 2px 8px}#portfolio-motion .personal-hero h1{font-size:var(--ds-type-display-1);margin-bottom:22px}#portfolio-motion .hero-sentence{font-size:var(--ds-type-lead);line-height:1.5;margin-left:14px;max-width:none}.hero-credentials{margin:20px 0 0 8px;gap:6px}.hero-credentials span{font-size:var(--ds-type-caption);padding:5px 8px}.hero-exhibition{margin:0;align-self:center;width:100%;min-height:135px}.hero-display,.hero-display img{height:105px}.hero-display{margin-bottom:6px}.hero-display img{width:160px}#portfolio-motion .hero-story-copy h2{font-size:var(--ds-type-caption)}#portfolio-motion .scroll-cue{top:calc(var(--greeting-cards-top) - var(--ds-space-6))}}
 @media(max-width:360px){#portfolio-motion .hero-sentence{margin-left:8px}.hero-credentials{flex-direction:column;align-items:flex-start}}
 @media(prefers-reduced-motion:reduce){.personal-hero *{animation:none!important;transition:none!important}#portfolio-motion .scroll-cue svg{transition:none}}

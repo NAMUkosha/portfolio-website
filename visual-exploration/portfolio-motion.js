@@ -1,23 +1,23 @@
 (() => {
 const realDocument=window.document;
-const root=realDocument.createElement('section');root.id='portfolio-motion';root.setAttribute('aria-label','Selected work and archive');root.innerHTML="<main><div class=\"intro\" aria-live=\"polite\"><h1 id=\"home-title\"></h1><p id=\"home-description\"></p><p id=\"home-detail\"></p><div id=\"motion-logos\"></div></div><div class=\"archive-copy\" aria-live=\"polite\"><h2 id=\"title\"></h2><p id=\"description\"></p></div><div id=\"pm-orbit\"><div id=\"cards\" aria-label=\"Projects\"></div></div><button id=\"more\" aria-label=\"View more work in Archive\" hidden><span>More work</span></button><aside aria-label=\"Archive projects\" inert><div class=\"motion-year-filter\"><button id=\"motion-year\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-controls=\"motion-year-options\"><span>All years</span></button><div id=\"motion-year-options\" role=\"listbox\" aria-label=\"Filter archive by year\" hidden></div></div><div id=\"index\"></div></aside></main>\n<div class=\"controls\" inert><button id=\"previous\" aria-label=\"Previous project\">Previous</button><button id=\"next\" aria-label=\"Next project\">Next</button></div>\n";const hint=realDocument.createElement('button');hint.className='scroll-cue';hint.setAttribute('aria-label','Scroll down to selected projects');hint.innerHTML='<span>Scroll to explore</span>';hint.onclick=()=>choose(0);root.append(hint);realDocument.body.append(root);realDocument.body.classList.add('motion-live');
+const root=realDocument.createElement('section');root.id='portfolio-motion';root.setAttribute('aria-label','Selected work and archive');root.innerHTML="<main><div class=\"intro\" aria-live=\"polite\"><h1 id=\"home-title\"></h1><p id=\"home-description\"></p><p id=\"home-detail\"></p><div id=\"motion-logos\"></div></div><div class=\"archive-copy\" aria-live=\"polite\"><h2 id=\"title\"></h2><p id=\"description\"></p></div><div id=\"pm-orbit\"><div id=\"cards\" aria-label=\"Projects\"></div></div><button id=\"more\" aria-label=\"View more work in Archive\" hidden><span>More work</span></button><aside aria-label=\"Archive projects\" inert><div class=\"motion-year-filter\"><button id=\"motion-year\" type=\"button\" class=\"ui-btn ui-btn--secondary\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-controls=\"motion-year-options\"><span>All years</span><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"m4 6 4 4 4-4\"/></svg></button><div id=\"motion-year-options\" role=\"listbox\" aria-label=\"Filter archive by year\" hidden></div></div><div id=\"index\"></div></aside></main>\n";const hint=realDocument.createElement('button');hint.className='scroll-cue';hint.setAttribute('aria-label','Scroll down to selected projects');hint.innerHTML='<span>Scroll to explore</span>';hint.onclick=()=>choose(0);root.append(hint);realDocument.body.append(root);realDocument.body.classList.add('motion-live');
 const document={createElement:t=>realDocument.createElement(t),querySelector:s=>root.querySelector(s),querySelectorAll:s=>root.querySelectorAll(s),body:root,documentElement:realDocument.documentElement};
 const homeItems=[
- {id:'aimpower',group:'design',name:'A Zoom + Web System for Stutter-Affirming Progress',tag:'UI/UX & accessibility',year:'2025',line:'Connecting in-meeting support, personal reflection and therapy goals.',image:'assets/aimpower/cover.webp',detail:'Design lead · In collaboration with AImpower.org'},
- {id:'unity',group:'design',name:'Precision Management System for Shipbuilding',tag:'Industrial UI/UX · Confidential',year:'2025',line:'Connecting shipbuilding progress, 3D models and precision records in one workflow.',detail:'Sole UI/UX designer · Unity internship',private:true},
- {id:'pomelox',group:'design',name:'PomeloX',tag:'UI/UX · Mobile app',year:'2025–2026',line:'A home for campus life, from finding events to building community.',image:'assets/pomelox/home.png',detail:'Interface design from early mockups to launch'},
- {id:'google',group:'research',name:'Future of Work',tag:'UX Research · Confidential',year:'2026',line:'Exploring how people and AI coordinate work across teams.',detail:'Team research · Google × Cornell',private:true},
- {id:'lexicon',group:'research',name:'The Lexicon of Wish',tag:'Hybrid Ecologies Creative Lab',year:'2023',line:'Giving contemporary wishes a new visual language.',image:'assets/lexicon/cover.png',detail:'Design research & generative AI'},
- {id:'quipu',group:'research',name:'Quipu',tag:'Design research',year:'2024',line:'Recorded physically. Stored digitally.',image:'assets/quipu/cover.png',detail:'Data physicalization & interaction'}
+ {id:'aimpower',group:'design',name:'A Zoom + Web System for Stutter-Affirming Progress',tag:'UI/UX & accessibility',line:'Connecting in-meeting support, personal reflection and therapy goals.',image:'assets/aimpower/cover.webp',detail:'Design lead · In collaboration with AImpower.org'},
+ {id:'unity',group:'design',name:'Precision Management System for Shipbuilding',tag:'Industrial UI/UX · Confidential',line:'Connecting shipbuilding progress, 3D models and precision records in one workflow.',detail:'Sole UI/UX designer · Unity internship',private:true},
+ {id:'pomelox',group:'design',name:'PomeloX',tag:'UI/UX · Mobile app',line:'A home for campus life, from finding events to building community.',image:'assets/pomelox/home.png',detail:'Interface design from early mockups to launch'},
+ {id:'google',group:'research',name:'Future of Work',tag:'UX Research · Confidential',line:'Exploring how people and AI coordinate work across teams.',detail:'Team research · Google × Cornell',private:true},
+ {id:'lexicon',group:'research',name:'The Lexicon of Wish',tag:'Hybrid Ecologies Creative Lab',line:'Giving contemporary wishes a new visual language.',image:'assets/lexicon/cover.png',detail:'Design research & generative AI'},
+ {id:'quipu',group:'research',name:'Quipu',tag:'Design research',line:'Recorded physically. Stored digitally.',image:'assets/quipu/cover.png',detail:'Data physicalization & interaction'}
  ];
 const order=['aimpower','google','unity','pomelox','lexicon','quipu'];
 const featuredCount=order.length;
-const data=[...order.map(id=>{const h=homeItems.find(p=>p.id===id),n=notes.find(p=>p.id===id);return {...n,title:h.name,story:h.line,detail:h.detail,tag:h.tag,year:h.year,cover:h.image||n.cover};}),...notes.filter(p=>!order.includes(p.id))];
+const data=[...order.map(id=>{const h=homeItems.find(p=>p.id===id),n=notes.find(p=>p.id===id);return {...n,title:h.name,story:h.line,detail:h.detail,tag:h.tag,cover:h.image||n.cover};}),...notes.filter(p=>!order.includes(p.id))];
 let homeActive=-1;
 const stories=data.map(d=>d.story||d.description||'');
 const selectedCopy=data;
 let selectedYear='all';
-const available=()=>mode==='home'?data.slice(0,featuredCount).map((_,i)=>i):data.map((_,i)=>i).filter(i=>selectedYear==='all'||String(data[i].year).includes(selectedYear));
+const available=()=>mode==='home'?data.slice(0,featuredCount).map((_,i)=>i):data.map((_,i)=>i).filter(i=>selectedYear==='all'||projectEndYear(data[i])===selectedYear);
 const interactable=()=>!root.hidden&&!root.inert&&!realDocument.querySelector('dialog[open]');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let mode='home',active=-1,frame=0,flight=false,positions=[],wheelTotal=0,lastWheel=0,drag=null,copyAnimation=[];
@@ -60,13 +60,21 @@ function draw(){
  cards.forEach((c,i)=>{const p=positions[i];c.style.transform=`translate(${(p.x-150).toFixed(3)}px,${(p.y-180).toFixed(3)}px) rotate(${p.r.toFixed(3)}deg) scale(${p.s.toFixed(5)})`;c.style.opacity=p.o;c.style.zIndex=String(100-Math.round(Math.abs(mode==='archive'?ids.indexOf(i)-cursor:i-active)*10));});
  if(mode==='archive')paintIndex(cursor);
 }
-function updateMore(){document.querySelector('#more').hidden=mode!=='home'||active!==featuredCount-1||flight;}
+function updateSceneControls(){
+ document.querySelector('#more').hidden=mode!=='home'||active!==featuredCount-1||flight;
+ if(mode!=='home'||active>=0||flight)return;
+ const bounds=cards.filter((_,i)=>positions[i].o>0).map(card=>card.getBoundingClientRect());
+ const left=Math.max(0,Math.min(...bounds.map(rect=>rect.left)));
+ const right=Math.min(document.documentElement.clientWidth,Math.max(...bounds.map(rect=>rect.right)));
+ root.style.setProperty('--greeting-cards-center',`${(left+right)/2}px`);
+ root.style.setProperty('--greeting-cards-top',`${Math.min(...bounds.map(rect=>rect.top))}px`);
+}
 function animate(transition=false){
  if(!transition)return animateSpring();
  transitioning=true;cardVelocity=[];archiveVelocity=0;archiveCursor=null;
  cancelAnimationFrame(frame);document.querySelector('#more').hidden=true;
  const start=performance.now(),from=positions.map(p=>({...p})),to=targets(),duration=reduced.matches?0:transition?WenjiaMotion.duration('scene'):WenjiaMotion.duration('surface');flight=true;
- function tick(now){let done=true;positions=to.map((b,i)=>{const delay=transition?Math.min(3,Math.abs(i-active))*110:Math.min(2,Math.abs(i-active))*65,t=duration?clamp((now-start-delay)/duration,0,1):1;if(t<1)done=false;const e=(1-(1+8*t)*Math.exp(-8*t))/(1-9*Math.exp(-8)),a=from[i]||b,arc=transition?Math.sin(Math.PI*e):0;return{x:a.x+(b.x-a.x)*e+arc*(innerWidth<700?25:80),y:a.y+(b.y-a.y)*e-arc*(75+Math.abs(i-active)*18),s:a.s+(b.s-a.s)*e,r:a.r+(b.r-a.r)*e+arc*(mode==='archive'?-12:10),o:a.o+(b.o-a.o)*e};});draw();if(!done||(!reduced.matches&&now-start<duration+(transition?330:130)+70))frame=requestAnimationFrame(tick);else{frame=0;flight=false;transitioning=false;updateMore();}}
+ function tick(now){let done=true;positions=to.map((b,i)=>{const delay=transition?Math.min(3,Math.abs(i-active))*110:Math.min(2,Math.abs(i-active))*65,t=duration?clamp((now-start-delay)/duration,0,1):1;if(t<1)done=false;const e=(1-(1+8*t)*Math.exp(-8*t))/(1-9*Math.exp(-8)),a=from[i]||b,arc=transition?Math.sin(Math.PI*e):0;return{x:a.x+(b.x-a.x)*e+arc*(innerWidth<700?25:80),y:a.y+(b.y-a.y)*e-arc*(75+Math.abs(i-active)*18),s:a.s+(b.s-a.s)*e,r:a.r+(b.r-a.r)*e+arc*(mode==='archive'?-12:10),o:a.o+(b.o-a.o)*e};});draw();if(!done||(!reduced.matches&&now-start<duration+(transition?330:130)+70))frame=requestAnimationFrame(tick);else{frame=0;flight=false;transitioning=false;updateSceneControls();}}
  frame=requestAnimationFrame(tick);
 }
 function paintIndex(cursor){
@@ -77,25 +85,37 @@ function paintIndex(cursor){
  buttons.forEach((el,i)=>{const distance=Math.abs(ids.indexOf(i)-cursor);el.style.color=distance<.55?'#282828':'#999';});
 }
 function update(animateText=false){
- if(animateText&&!reduced.matches&&mode==='home'&&!root.classList.contains('is-greeting')){
+ const copy=document.querySelector(mode==='home'?'.intro':'.archive-copy');
+ const moveCopy=animateText&&!reduced.matches;
+ if(moveCopy&&!root.classList.contains('is-greeting')){
   root.querySelectorAll('.motion-copy-ghost').forEach(el=>el.remove());
-  const source=document.querySelector('.intro'),box=source.getBoundingClientRect(),ghost=source.cloneNode(true);
-  ghost.removeAttribute('class');ghost.className='motion-copy-ghost';ghost.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));ghost.setAttribute('aria-hidden','true');ghost.inert=true;
-  Object.assign(ghost.style,{left:box.left+'px',top:box.top+'px',width:box.width+'px'});root.append(ghost);
-  ghost.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-9px)'}],{duration:WenjiaMotion.duration('control'),easing:'ease-out',fill:'forwards'}).finished.then(()=>ghost.remove()).catch(()=>ghost.remove());
+  const box=copy.getBoundingClientRect(),ghost=copy.cloneNode(true);
+  ghost.removeAttribute('class');ghost.className=mode==='home'?'motion-copy-ghost':'archive-copy motion-copy-ghost';ghost.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));ghost.setAttribute('aria-hidden','true');ghost.inert=true;
+  Object.assign(ghost.style,{left:box.left+'px',top:box.top+'px',width:box.width+'px',bottom:'auto',transition:'none'});root.append(ghost);
+  ghost.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-9px)'}],{duration:WenjiaMotion.duration('control'),easing:WenjiaMotion.easing(),fill:'forwards'}).finished.then(()=>ghost.remove(),()=>ghost.remove());
  }
 
  document.querySelector('.intro').inert=mode!=='home';document.querySelector('.archive-copy').inert=mode!=='archive';document.querySelector('.intro').scrollTop=0;
  const d=data[Math.max(0,active)],greeting=mode==='home'&&active<0;
  document.body.classList.toggle('is-greeting',greeting);
- document.querySelector('#home-title').textContent=greeting?"Hi, I'm Wenjia Shi":d.title;document.querySelector('#home-description').textContent=greeting?'Designer & researcher at UX Spot.':stories[Math.max(0,Math.min(active,featuredCount-1))];document.querySelector('#home-detail').textContent=greeting?'Cornell graduate, bridging physical and digital experiences through design, research and AI-native practice.':selectedCopy[Math.max(0,Math.min(active,featuredCount-1))].detail;
- document.querySelector('#motion-logos').innerHTML=greeting?`<div class="intro-links"><a href="#about">About me </a><a href="https://www.linkedin.com/in/wenjia-shi/" target="_blank" rel="noopener noreferrer">LinkedIn </a><a href="mailto:wenjiashi616@gmail.com">Email </a></div>`:`<div class="motion-meta">${(d.tag||d.type||'').split(/\s+(?:·|×|&)\s+/).filter(Boolean).map(tag=>`<span class="motion-tag">${tag}</span>`).join('')}<span class="motion-tag">${d.year}</span></div>`+({aimpower:['aimpower'],google:['google'],unity:['unity','sws'],pomelox:['cu']}[d.id]||[]).map(b=>`<img src="assets/logos/${b}.png" alt="${b}">`).join('');document.querySelector('#title').textContent=d.title;document.querySelector('#description').textContent=d.description;
- if(animateText&&!reduced.matches){copyAnimation.forEach(a=>a.cancel());copyAnimation=[...document.querySelectorAll(mode==='home'?'.intro h1,.intro > p,.intro #motion-logos':'.archive-copy h2,.archive-copy p')].map((el,i)=>el.animate([{opacity:0,transform:'translateY(22px)'},{opacity:1,transform:'translateY(0)'}],{duration:WenjiaMotion.duration(mode==='archive'?'control':'surface'),delay:mode==='archive'?i*30:i*55,fill:'backwards',easing:WenjiaMotion.easing()}));}
- document.querySelectorAll('#index button').forEach((b,i)=>{b.hidden=!available().includes(i);b.setAttribute('aria-current',String(i===active));});
- cards.forEach((b,i)=>{b.setAttribute('aria-current',String(i===active));b.tabIndex=(mode==='home'?i<featuredCount&&Math.abs(i-active)<=1:Math.abs(i-active)<=1)?0:-1;});
- document.querySelector('#previous').disabled=active===available()[0];document.querySelector('#next').disabled=active===available().at(-1);
+ if(mode==='home'){
+  document.querySelector('#home-title').textContent=greeting?"Hi, I'm Wenjia Shi":d.title;document.querySelector('#home-description').textContent=greeting?'Designer & researcher at UX Spot.':stories[Math.max(0,Math.min(active,featuredCount-1))];document.querySelector('#home-detail').textContent=greeting?'Cornell graduate, bridging physical and digital experiences through design, research and AI-native practice.':selectedCopy[Math.max(0,Math.min(active,featuredCount-1))].detail;
+  document.querySelector('#motion-logos').innerHTML=greeting?`<div class="intro-links"><a href="#about">About me </a><a href="https://www.linkedin.com/in/wenjia-shi/" target="_blank" rel="noopener noreferrer">LinkedIn </a><a href="mailto:wenjiashi616@gmail.com">Email </a></div>`:`<div class="motion-meta">${(d.tag||d.type||'').split(/\s+(?:·|×|&)\s+/).filter(Boolean).map(tag=>`<span class="motion-tag">${tag}</span>`).join('')}<span class="motion-tag">${d.year}</span></div>`+({aimpower:['aimpower'],google:['google'],unity:['unity','sws'],pomelox:['cu']}[d.id]||[]).map(b=>`<img src="assets/logos/${b}.png" alt="${b}">`).join('');
+ }else{
+  document.querySelector('#title').textContent=d.title;document.querySelector('#description').textContent=d.description;
+ }
+ if(moveCopy){
+  copyAnimation.forEach(animation=>animation.cancel());
+  copyAnimation=[...copy.children].map((el,i)=>el.animate(
+   [{opacity:0,transform:'translateY(22px)'},{opacity:1,transform:'translateY(0)'}],
+   {duration:WenjiaMotion.duration('control'),delay:i*30,fill:'backwards',easing:WenjiaMotion.easing()}
+  ));
+ }
+ const ids=available();
+ document.querySelectorAll('#index button').forEach((b,i)=>{b.hidden=!ids.includes(i);b.setAttribute('aria-current',String(i===active));});
+ cards.forEach((b,i)=>{b.setAttribute('aria-current',String(i===active));const inView=ids.includes(i);b.inert=!inView;b.tabIndex=inView&&Math.abs(ids.indexOf(i)-ids.indexOf(active))<=1?0:-1;});
  document.body.dataset.active=active;document.body.dataset.view=mode;
- if(mode==='archive'&&!animateText)paintIndex(available().indexOf(active));
+ if(mode==='archive'&&!animateText)paintIndex(ids.indexOf(active));
 }
 // Retarget springs from their current position and velocity, without restarting motion.
 function animateSpring(startIndex){
@@ -127,19 +147,19 @@ function animateSpring(startIndex){
    });
   }
   if(settled){positions=goal;archiveCursor=null;archiveVelocity=0;cardVelocity=[];frame=0;flight=false;}
-  draw();if(!settled)frame=requestAnimationFrame(tick);else updateMore();
+  draw();if(!settled)frame=requestAnimationFrame(tick);else updateSceneControls();
  }
  frame=requestAnimationFrame(tick);
 }
 function choose(index){
  if(transitioning||!interactable())return;
  const next=clamp(index,mode==='home'?-1:0,(mode==='home'?featuredCount:data.length)-1);
- if(next===active)return;
+ if(next===active||(mode==='archive'&&!available().includes(next)))return;
  const previousIndex=available().indexOf(active);active=next;if(mode==='home')homeActive=active;
  update(true);animateSpring(previousIndex);
 }
-function setMode(next){if(next===mode)return;cancelAnimationFrame(frame);transitioning=false;root.querySelectorAll('.motion-copy-ghost').forEach(el=>el.remove());copyAnimation.forEach(a=>a.cancel());if(next==='home')active=homeActive;else active=Math.max(0,active);mode=next;if(mode==='archive'){selectedYear='all';syncYears();closeYears();}if(location.hash!=='#'+mode)location.hash=mode;document.body.classList.toggle('is-archive',mode==='archive');document.querySelector('aside').inert=mode!=='archive';document.querySelector('.controls').inert=mode!=='archive';document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));wheelTotal=0;update(false);animate(true);}
-document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setMode(b.dataset.view));document.querySelector('#more').onclick=()=>setMode('archive');document.querySelector('#next').onclick=()=>step(1);document.querySelector('#previous').onclick=()=>step(-1);
+function setMode(next){if(next===mode)return;cancelAnimationFrame(frame);transitioning=false;root.querySelectorAll('.motion-copy-ghost').forEach(el=>el.remove());copyAnimation.forEach(a=>a.cancel());if(next==='home')active=homeActive;else active=Math.max(0,active);mode=next;if(mode==='archive'){selectedYear='all';syncYears();closeYears();}if(location.hash!=='#'+mode)location.hash=mode;document.body.classList.toggle('is-archive',mode==='archive');document.querySelector('aside').inert=mode!=='archive';document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));wheelTotal=0;update(false);animate(true);}
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setMode(b.dataset.view));document.querySelector('#more').onclick=()=>setMode('archive');
 addEventListener('wheel',e=>{
  if(!interactable()||e.ctrlKey||e.target.closest?.('nav,select,.motion-year-filter'))return;
  const hero=e.target.closest?.('.personal-hero');if(hero&&hero.scrollHeight>hero.clientHeight+1&&((e.deltaY>0&&hero.scrollTop+hero.clientHeight<hero.scrollHeight-2)||(e.deltaY<0&&hero.scrollTop>0)))return;
@@ -153,12 +173,12 @@ addEventListener('wheel',e=>{
 },{passive:false});
 addEventListener('keydown',e=>{if(!interactable()||e.target.closest?.('input,select,textarea,button,a'))return;if(['ArrowDown','ArrowUp','ArrowLeft','ArrowRight'].includes(e.key)&&!e.target.closest?.('nav')){e.preventDefault();step(['ArrowDown','ArrowRight'].includes(e.key)?1:-1);}});
 const deck=document.querySelector('#cards');deck.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;drag={x:e.clientX,y:e.clientY,moved:false};});deck.addEventListener('pointermove',e=>{if(!drag)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>12)drag.moved=true;});deck.addEventListener('pointerup',e=>{if(!drag)return;const distance=mode==='home'?drag.x-e.clientX:drag.y-e.clientY;if(Math.abs(distance)>35)step(Math.sign(distance));setTimeout(()=>drag=null,0);});deck.addEventListener('pointercancel',()=>drag=null);
-addEventListener('resize',()=>{document.querySelector('.intro').scrollTop=0;cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateMore();});reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateMore();});positions=targets();draw();update();updateMore();
+addEventListener('resize',()=>{document.querySelector('.intro').scrollTop=0;cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateSceneControls();});reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateSceneControls();});positions=targets();draw();update();updateSceneControls();
 
 function step(direction){if(mode==='home')return choose(active+direction);const ids=available();choose(ids[clamp(ids.indexOf(active)+direction,0,ids.length-1)]);}
 document.querySelector('#index').addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();step(e.key==='ArrowDown'?1:-1);}});
 const yearControl=document.querySelector('#motion-year'),yearOptions=document.querySelector('#motion-year-options');
-const years=['all',...[...new Set(notes.map(n=>n.year))].sort().reverse().map(String)];
+const years=['all',...archiveYears];
 yearOptions.innerHTML=years.map(y=>`<button type="button" role="option" data-year="${y}" aria-selected="${y===selectedYear}">${y==='all'?'All years':y}</button>`).join('');
 function syncYears(){
  document.querySelector('#motion-year span').textContent=selectedYear==='all'?'All years':selectedYear;
@@ -168,11 +188,17 @@ function closeYears(focus=false){yearOptions.hidden=true;yearControl.setAttribut
 function openYears(){yearOptions.hidden=false;yearControl.setAttribute('aria-expanded','true');yearOptions.querySelector('[aria-selected="true"]').focus();}
 yearControl.onclick=()=>yearOptions.hidden?openYears():closeYears();
 yearControl.onkeydown=e=>{if(['ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();openYears();}};
+// Keep focus in the popup until the click selects the option.
+yearOptions.addEventListener('pointerdown',e=>{if(e.target.closest('[data-year]'))e.preventDefault();});
 yearOptions.onclick=e=>{
  const option=e.target.closest('[data-year]');if(!option)return;
- if(transitioning){closeYears(true);return;}
- selectedYear=option.dataset.year;archiveCursor=null;archiveVelocity=0;active=available()[0];
- syncYears();closeYears(true);update(true);animate();
+ closeYears(true);
+ if(option.dataset.year===selectedYear)return;
+ selectedYear=option.dataset.year;active=available()[0];
+ // The filtered orbit starts at its first item. Discard motion in the old index.
+ cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;
+ cardVelocity=[];wheelTotal=0;drag=null;
+ syncYears();update(true);positions=targets();draw();
 };
 yearOptions.onkeydown=e=>{
  const buttons=[...yearOptions.children],i=buttons.indexOf(realDocument.activeElement);

@@ -21,6 +21,7 @@
   const hero = document.createElement('section');
   hero.className = 'personal-hero'; hero.setAttribute('aria-labelledby','personal-title');
   hero.innerHTML = `<div class="hero-introduction"><h1 id="personal-title">Hi, I'm Wenjia Shi</h1><p class="hero-sentence"><span>a designer, ${inline('hair-tie')} curious ${inline('controller')} tinkerer,</span> <span>and occasional ${inline('coffee-tea')} overthinker who turns</span> <span>${inline('puzzle')} <span class="hero-keep">what-ifs</span> into experiences ${inline('knitting')} worth caring about.</span></p><div class="hero-credentials"><span>Information Science @ Cornell</span><span>UI/UX Designer &amp; Researcher @ UXSPOT</span></div></div><div class="hero-exhibition" id="hero-story" role="region" aria-label="Personal object story" aria-live="polite" aria-atomic="true"><div class="hero-display"></div><div class="hero-story-copy"><h2></h2></div></div>`;
+  const scrollCue = root.querySelector('.scroll-cue');
   root.append(hero);
   const display = hero.querySelector('.hero-display'), copy = hero.querySelector('.hero-story-copy');
   const buttons = [...hero.querySelectorAll('.hero-object')];
@@ -44,7 +45,7 @@
       else img.setAttribute('aria-hidden','true');
       if(!animate||reduced.matches){img.hidden=!showing;return;}
       if(showing) transitions.push(img.animate([{opacity:0,transform:'translateY(9px) scale(.96)'},{opacity:1,transform:'none'}],{duration:WenjiaMotion.duration('control'),easing:WenjiaMotion.easing()}));
-      else if(outgoing){const a=img.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-6px) scale(.98)'}],{duration:WenjiaMotion.duration('micro'),fill:'forwards'});transitions.push(a);a.finished.then(()=>{if(selected!==img.dataset.object)img.hidden=true;}).catch(()=>{if(selected!==img.dataset.object)img.hidden=true;});}
+      else if(outgoing){const a=img.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-6px) scale(.98)'}],{duration:WenjiaMotion.duration('micro'),fill:'forwards'});transitions.push(a);a.onfinish=()=>{if(selected!==img.dataset.object)img.hidden=true;};}
       else img.hidden=true;
     });
     copy.querySelector('h2').textContent=item?.title||'';
@@ -54,16 +55,22 @@
   const refresh=()=>select(hovered||focused||touchSelected);
   buttons.forEach(button=>{
     button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=button.dataset.object;refresh();}});
-    button.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=null;if(!button.matches(':focus-visible'))focused=null;touchSelected=null;refresh();}});
+    button.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=null;refresh();}});
     button.addEventListener('focus',()=>{if(button.matches(':focus-visible')){focused=button.dataset.object;refresh();}});
     button.addEventListener('blur',()=>{focused=null;refresh();});
-    button.addEventListener('click',event=>{if(event.detail===0){focused=button.dataset.object;}else if(!matchMedia('(hover: hover)').matches){touchSelected=touchSelected===button.dataset.object?null:button.dataset.object;}refresh();});
+    button.addEventListener('click',event=>{
+      if(event.detail===0){focused=button.dataset.object;}
+      else if(event.pointerType==='touch'||event.pointerType==='pen'||!matchMedia('(hover: hover)').matches){
+        touchSelected=touchSelected===button.dataset.object?null:button.dataset.object;
+      }
+      refresh();
+    });
   });
   document.addEventListener('pointerdown',event=>{if(!event.target.closest('.hero-object')){touchSelected=null;focused=null;hovered=null;refresh();}});
   hero.querySelector('.hero-exhibition').setAttribute('aria-hidden','true');
   let touchStart=null;
   hero.addEventListener('touchstart',event=>{const t=event.touches[0];touchStart={x:t.clientX,y:t.clientY,atBottom:hero.scrollTop+hero.clientHeight>=hero.scrollHeight-2};},{passive:true});
-  hero.addEventListener('touchend',event=>{const t=event.changedTouches[0];if(touchStart?.atBottom&&touchStart.y-t.clientY>55&&Math.abs(t.clientX-touchStart.x)<60)root.querySelector('.scroll-cue').click();touchStart=null;},{passive:true});
+  hero.addEventListener('touchend',event=>{const t=event.changedTouches[0];if(touchStart?.atBottom&&touchStart.y-t.clientY>55&&Math.abs(t.clientX-touchStart.x)<60)scrollCue.click();touchStart=null;},{passive:true});
   hero.addEventListener('touchcancel',()=>touchStart=null,{passive:true});
   let assetsReady=false, revealing=false;
   const readyAssets=Promise.all([document.fonts.ready,...[...hero.querySelectorAll('img'),...display.querySelectorAll('img')].map(img=>img.decode().catch(()=>{}))]);
@@ -86,7 +93,7 @@
     if(!visible||!assetsReady||(opening&&!revealing)||entered)return;
     entered=true;hero.classList.add('has-entered');
     if(reduced.matches)return;
-    const sequence=[hero.querySelector('h1'),hero.querySelector('.hero-sentence'),hero.querySelector('.hero-credentials'),root.querySelector('.scroll-cue')];
+    const sequence=[hero.querySelector('h1'),hero.querySelector('.hero-sentence'),hero.querySelector('.hero-credentials'),scrollCue];
     sequence.forEach((el,i)=>el?.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:WenjiaMotion.duration('surface'),delay:i*100,fill:'backwards',easing:WenjiaMotion.easing()}));
     buttons.forEach((el,i)=>el.animate([{opacity:0,translate:'0 4px'},{opacity:1,translate:'0 0'}],{duration:WenjiaMotion.duration('control'),delay:270+i*65,fill:'backwards'}));
   }

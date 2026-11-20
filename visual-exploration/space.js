@@ -2,7 +2,7 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)'),desktop=matchMedia('(min-width:701px)');
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const projects=[];
-projects.unshift({id:'aimpower',title:'A Zoom + Web System for Stutter-Affirming Progress',type:'UI/UX & accessibility',year:'2025',cover:'assets/aimpower/cover.webp',private:false,summary:'A Zoom + Web system for stutter-affirming progress.'});
+projects.unshift({id:'aimpower',title:'A Zoom + Web System for Stutter-Affirming Progress',type:'UI/UX & accessibility',year:'2025–2026',cover:'assets/aimpower/cover.webp',private:false,summary:'A Zoom + Web system for stutter-affirming progress.'});
 projects.push({id:'unity',title:'Precision Management System for Shipbuilding',type:'Unity · Industrial UI/UX',year:'2025',private:true,cover:'assets/unity-cover-blur.png'},{id:'pomelox',title:'PomeloX',type:'UI/UX · Mobile app',year:'2025–2026',cover:'assets/pomelox/home.png',private:false});
 projects.push({id:'lexicon',title:'The Lexicon of Wish',type:'Design Research',cover:'assets/lexicon/cover.png',private:false});
 projects.push({id:'quipu',title:'Quipu',type:'Design Research',cover:'assets/quipu/cover.png',private:false});
@@ -21,7 +21,7 @@ const notes=[
 ];
 projects.push({id:'google',title:'Future of Work',type:'Google × Cornell · UX Research',year:'2026',private:true,cover:'assets/google-cover-blur.png',description:'Exploring how people and AI coordinate work across teams. Enter password to view.'});
 projects.find(p=>p.id==='unity').cover='assets/unity-preview.png';
-for(const id of ['google','pomelox','unity','aimpower']){const p=projects.find(p=>p.id===id);if(!notes.some(n=>n.id===id))notes.unshift({...p,year:id==='google'||id==='pomelox'?'2026':'2025',single:true,description:p.description||p.summary||p.type});}
+for(const id of ['google','pomelox','unity','aimpower']){const p=projects.find(p=>p.id===id);if(!notes.some(n=>n.id===id))notes.unshift({...p,single:true,description:p.description||p.summary||p.type});}
 for(const n of notes){const p=projects.find(p=>p.id===n.id);if(p)Object.assign(p,{...n,...p});else projects.push(n);}
 
 let category='design',page='home',unlocked=false,pending=null,year='all',active=0,angle=0,targetAngle=0,orbitFrame=0,filmDistance=0,filmFrame=0,drag=null,moved=false,returnFocus=null,homeScroll=0;
@@ -34,7 +34,9 @@ $('#note-reading').setAttribute('role','dialog');
 $('#note-reading').setAttribute('aria-modal','true');
 $('#note-reading').insertAdjacentHTML('afterbegin','<div class="reader-progress" aria-hidden="true"></div>');
 const selected=()=>category==='design'?projects.filter(p=>!['lexicon','quipu'].includes(p.id)):projects.filter(p=>['lexicon','quipu'].includes(p.id));
-const visibleNotes=()=>notes.filter(n=>year==='all'||n.year===year);
+const projectEndYear=project=>project.year.match(/\d{4}/g).at(-1);
+const archiveYears=[...new Set(notes.map(projectEndYear))].sort((a,b)=>Number(b)-Number(a));
+const visibleNotes=()=>notes.filter(n=>year==='all'||projectEndYear(n)===year);
 const locked=p=>p.private&&!unlocked;
 const picture=(p,cls)=>`<div class="${cls} ${locked(p)?'locked':''}">${p.video?`<video class="project-preview-video" data-auto-preview muted loop playsinline preload="none" poster="${p.cover}" src="${p.video}" aria-label="${p.title} video preview"></video>`:`<img src="${p.cover||`assets/study-${p.asset}.svg`}" alt="${p.cover?p.title:`Illustrative ${p.type.toLowerCase()}`}" draggable="false">`}${locked(p)?'<span class="locked-mark"><span>Private</span></span>':''}</div>`;
 let previewObserver=null;
@@ -54,10 +56,47 @@ function renderWork(){
  access.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${unlocked?'M8 10V7a4 4 0 0 1 7.5-2':'M8 10V7a4 4 0 0 1 8 0v3'}"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg><span>${unlocked?'Access granted':'Unlock full view'}</span>`;
  requestAnimationFrame(observeProjectVideos);
 }
-function requestUnlock(action){pending=action;$('#password').value='';$('#password-error').textContent='';$('#password-dialog').showModal();}
-$('#password-close').onclick=()=>$('#password-dialog').close();
-$('#password-dialog').addEventListener('close',()=>{pending=null;$('#password').value='';});
-$('#password-form').onsubmit=async e=>{e.preventDefault();const button=$('#password-form button');button.disabled=true;$('#password-error').textContent='Unlocking…';try{await privateVault.unlock($('#password').value);if(!$('#password-dialog').open){privateVault.lock();return;}$('#password').value='';unlocked=true;const next=pending;pending=null;$('#password-dialog').close();renderWork();renderArchive();if(next)next();}catch(error){$('#password-error').textContent=error.message==='INVALID_PASSWORD'?'Incorrect password. Please try again or request access by email.':'Could not load private work. Please check your connection and try again.';}finally{button.disabled=false;}};
+const passwordDialog=$('#password-dialog'),passwordForm=$('#password-form'),passwordInput=$('#password');
+const passwordVisibility=$('#password-visibility'),passwordSubmit=passwordForm.querySelector('[type="submit"]'),passwordStatus=$('#password-error');
+let unlockAttempt=null;
+function showPassword(visible){
+ const start=passwordInput.selectionStart,end=passwordInput.selectionEnd,direction=passwordInput.selectionDirection;
+ passwordInput.type=visible?'text':'password';
+ passwordVisibility.setAttribute('aria-pressed',String(visible));
+ if(start!==null)passwordInput.setSelectionRange(start,end,direction);
+}
+function resetPassword(){
+ unlockAttempt?.abort();unlockAttempt=null;passwordSubmit.disabled=false;
+ passwordInput.value='';showPassword(false);passwordStatus.textContent='';
+}
+function requestUnlock(action){
+ if(passwordDialog.open)return;
+ pending=action;resetPassword();closeTools();passwordDialog.showModal();
+}
+passwordVisibility.addEventListener('pointerdown',e=>{if(document.activeElement===passwordInput)e.preventDefault();});
+passwordVisibility.onclick=()=>showPassword(passwordInput.type==='password');
+$('#password-close').onclick=()=>{unlockAttempt?.abort();passwordDialog.close();};
+passwordDialog.addEventListener('cancel',()=>unlockAttempt?.abort());
+passwordDialog.addEventListener('close',()=>{
+ if(passwordDialog.open)return;
+ pending=null;resetPassword();
+});
+passwordForm.onsubmit=async e=>{
+ e.preventDefault();
+ if(!passwordDialog.open||unlockAttempt)return;
+ const attempt=new AbortController();unlockAttempt=attempt;
+ passwordSubmit.disabled=true;passwordStatus.textContent='Unlocking…';
+ try{
+  await privateVault.unlock(passwordInput.value,attempt.signal);
+ }catch(error){
+  if(!attempt.signal.aborted&&passwordDialog.open)passwordStatus.textContent=error.message==='INVALID_PASSWORD'?'Incorrect password. Please try again.':'Could not load private work. Please check your connection and try again.';
+  return;
+ }finally{
+  if(unlockAttempt===attempt){unlockAttempt=null;passwordSubmit.disabled=false;}
+ }
+ if(attempt.signal.aborted||!passwordDialog.open)return;
+ unlocked=true;const next=pending;pending=null;passwordDialog.close();renderWork();renderArchive();next?.();
+};
 $('#access').onclick=()=>{if(!unlocked)requestUnlock(null);};
 function openProject(id){const p=projects.find(p=>p.id===id);if(!p)return;if(locked(p))return requestUnlock(()=>openProject(id));if(location.hash===`#project/${id}`){openReading(id);return;}history.replaceState({...history.state,readerOrigin:page},'');location.hash=`project/${id}`;}
 function projectMarkup(p){
@@ -80,7 +119,7 @@ function route(){
 }
 function showPage(dest){$$('video').forEach(v=>v.pause());stopLexiconMotion();if(page==='home'&&dest!=='home')homeScroll=scrollY;closeNote(false);page=dest;document.body.dataset.page=page;$$('.page').forEach(p=>p.hidden=p.id!==page);$$('.site-header nav a, #tool-menu nav a').forEach(a=>{const current=a.hash==='#'+(page==='project'?'home':page);if(current)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});closeTools();scrollTo({top:0,behavior:'instant'});requestAnimationFrame(()=>{if(page==='home'){measureFilm();scrollTo({top:homeScroll,behavior:'instant'});}if(page==='archive'){renderArchive();}if(page==='about'){enterAbout();}if(page==='project'&&$('.lexicon-case'))startLexiconMotion();observeProjectVideos();configureProjectTools();if(page==='project'&&$('.aimpower-case'))startAimpowerInteractions();updateTools();});}
 window.addEventListener('hashchange',route);$('#project-back').onclick=()=>{location.hash='home';};
-document.addEventListener('click',e=>{const p=e.target.closest('[data-project]');if(p)openProject(p.dataset.project);const cat=e.target.closest('[data-category]');if(cat){unfoldWork(cat);}const yr=e.target.closest('[data-year]');if(yr){year=yr.dataset.year;active=0;angle=targetAngle=0;$$('[data-year]').forEach(b=>b.setAttribute('aria-pressed',b===yr));renderArchive();}});
+document.addEventListener('click',e=>{const p=e.target.closest('[data-project]');if(p)openProject(p.dataset.project);const cat=e.target.closest('[data-category]');if(cat){unfoldWork(cat);}const yr=e.target.closest('#archive .years [data-year]');if(yr&&yr.dataset.year!==year){year=yr.dataset.year;active=0;angle=targetAngle=0;renderArchive();}});
 let filmPosition=0,filmTime=0,filmPlan=null;
 function renderFilmTracks(){
  const existing=$('#research-exhibition');
@@ -138,9 +177,8 @@ function scheduleFilm(){if(!filmFrame)filmFrame=requestAnimationFrame(updateFilm
 window.addEventListener('scroll',scheduleFilm,{passive:true});
 function renderArchive(){
  cancelAnimationFrame(orbitFrame);orbitFrame=0;
- const years=[...new Set(notes.map(n=>n.year))].sort((a,b)=>Number(b)-Number(a));
- if(year!=='all'&&!years.includes(year))year='all';
- $('.years').innerHTML=['all',...years].map(y=>`<button data-year="${y}" aria-pressed="${y===year}">${y==='all'?'All':y}</button>`).join('');
+ if(year!=='all'&&!archiveYears.includes(year))year='all';
+ $('.years').innerHTML=['all',...archiveYears].map(y=>`<button data-year="${y}" aria-pressed="${y===year}">${y==='all'?'All':y}</button>`).join('');
  const list=visibleNotes();active=clamp(active,0,Math.max(0,list.length-1));angle=targetAngle=active;
 $('#orbit').innerHTML=list.map((n,i)=>{const front=n.cover||`assets/study-${n.asset}.svg`;const back=n.back||(n.id==='melodeck'?'assets/melodeck/04.png':n.id==='gpixel'?'assets/gpixel/12.png':(n.id==='company'||n.single)?front:`assets/study-${n.asset%4+1}.svg`);return `<button class="orbit-note photo-note ${n.id==='pomelox'?'pomelox-note':n.id==='unity'?'unity-note':n.id==='lexicon'?'lexicon-note':n.id==='steampunk'?'poster-note':n.id==='gpixel'?'square-note':n.id==='gofie'?'gofie-note':n.id==='company'?'company-note':''} ${(n.id==='company'||n.single)?'single-photo':'paired-photos'} ${locked(n)?'locked':''}" style="--photo-width:${[235,225,210,230][i%4]}px;--photo-height:${[158,165,175,155][i%4]}px;--back-angle:${i%2?7:-7}deg" data-orbit="${i}" aria-label="${n.title}${locked(n)?', private':''}" aria-pressed="${i===active}"><span class="photo-stack">${(n.id==='company'||n.single)?'':`<span class="stack-photo photo-back"><img src="${back}" alt="" draggable="false"></span>`}<span class="stack-photo photo-front">${locked(n)?`<span class="archive-private-cover"><img class="archive-private-preview" src="assets/${n.id}-cover-blur.png" alt="${n.title} private preview"><img class="archive-private-logo" src="assets/logos/${n.id==='unity'?'unity-white':'google'}.png" alt="${n.id==='unity'?'Unity':'Google'}"></span>`:n.id==='pomelox'?`<span class="gallery-phones">${['checkin','home','profile'].map((file,j)=>`<span class="gallery-phone"><img src="assets/pomelox/${file}.png" alt="PomeloX ${file} interface" draggable="false"></span>`).join('')}</span>`:n.id==='unity'?`<span class="gallery-unity"><img class="unity-model" data-private-cover="unity-model" src="assets/unity-model-blur.png" alt="Shipbuilding digital model" draggable="false"><img class="unity-monitor" data-private-cover="unity-monitor" src="assets/unity-monitor-blur.png" alt="Precision management desktop interface" draggable="false"></span>`:`<img src="${front}" ${n.private?`data-private-cover="${n.id}"`:""} alt="${n.cover?n.title:'Illustrative archive image'}" draggable="false">`}${locked(n)?'<span class="locked-mark"><span>Private</span></span>':''}</span></span></button>`;}).join('');$('#archive-list').innerHTML=list.map((n,i)=>`<button class="archive-choice" data-choice="${i}" aria-current="${active===i}">${n.title}${locked(n)?'<span class="private-symbol">⌑</span>':''}</button>`).join('');$$('[data-choice]').forEach(b=>b.onclick=()=>selectNote(Number(b.dataset.choice)));$$('[data-orbit]').forEach(b=>b.onclick=()=>{if(moved)return;const i=Number(b.dataset.orbit);if(i===active)openNote();else selectNote(i);});privateVault.hydrateCovers($('#orbit'));attachArchivePressure();updateCaption();positionOrbit();}
 function resetArchivePressure(button){

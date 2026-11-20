@@ -5,6 +5,9 @@
   html.classList.add('opening-pending');
   const bootTimeout = setTimeout(() => html.classList.remove('opening-pending'), 6500);
   function start() {
+    if ((location.hash && location.hash !== '#home') || document.querySelector('dialog[open]')) {
+      html.classList.remove('opening-pending'); clearTimeout(bootTimeout); return;
+    }
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const events = new AbortController();
     const { signal } = events;
@@ -30,7 +33,7 @@
       </button>`;
     document.body.append(root); html.classList.remove('opening-pending'); clearTimeout(bootTimeout);
     const previousFocus = document.activeElement;
-    const blocked = [...document.body.children].filter(el => el !== root && !['SCRIPT', 'STYLE', 'LINK'].includes(el.tagName)).map(el => [el, el.inert]);
+    const blocked = [...document.body.children].filter(el => el !== root && !['SCRIPT', 'STYLE', 'LINK', 'DIALOG'].includes(el.tagName)).map(el => [el, el.inert]);
     blocked.forEach(([el]) => { el.inert = true; }); root.focus({ preventScroll: true });
     const lines = [...root.querySelectorAll('.opening-line')];
     // Keep full line widths reserved while each letter appears, so centering is stable.
@@ -203,7 +206,7 @@
       }
     }
     addEventListener('keydown', e => {
-      if (leaving) return;
+      if (leaving || document.querySelector('dialog[open]')) return;
       showHint();
       const key = e.key.toLowerCase();
       const modified = e.metaKey || e.ctrlKey || e.altKey;
