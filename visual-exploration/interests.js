@@ -12,7 +12,7 @@
       card.style.setProperty('--glare-x', `${x*100}%`); card.style.setProperty('--glare-y', `${y*100}%`); card.style.setProperty('--glare','1');
     });
     card.addEventListener('pointerup', () => { start=null; if (!matchMedia('(hover:hover)').matches) reset(); });
-    card.addEventListener('pointercancel', () => { start=null; reset(); });
+    card.addEventListener('pointercancel', () => { dragged=true; start=null; reset(); });
     card.addEventListener('pointerleave', () => { start=null; reset(); });
     card.addEventListener('click', e => {
       if (dragged && e.detail !== 0) { dragged=false; e.preventDefault(); return; }

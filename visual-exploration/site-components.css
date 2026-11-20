@@ -105,3 +105,48 @@ body.motion-live[data-page="about"]::before{content:"";position:fixed;inset:0 0 
 @media(max-width:700px){.bio-profile{grid-column:auto;grid-template-columns:minmax(0,1fr);row-gap:var(--ds-space-14)}}
 
 .interest-images .interest-front img,.interest-images figure:hover .interest-front img{filter:none}
+
+/* Mobile: only the image stage claims project swipes. Everything else scrolls. */
+@media(max-width:700px){
+ body.motion-live[data-page="home"],body.motion-live[data-page="archive"]{overflow-x:hidden;overflow-y:auto}
+ #portfolio-motion{position:relative;inset:auto;display:flex;flex-direction:column;min-height:100svh;padding-block:calc(var(--ds-mobile-header-height) + env(safe-area-inset-top) + var(--ds-space-9)) calc(var(--ds-space-14) + env(safe-area-inset-bottom));box-sizing:border-box}
+ #portfolio-motion>main{display:flex;flex-direction:column;order:2;width:100%}
+ #portfolio-motion #pm-orbit{position:relative;inset:auto;order:1;width:100%;height:var(--ds-mobile-project-height);flex:none;overflow:hidden;touch-action:auto;pointer-events:auto}
+ #portfolio-motion #cards{position:absolute;inset:0;touch-action:auto;pointer-events:auto}
+ #portfolio-motion .card{touch-action:auto}
+ #portfolio-motion:not(.is-greeting):not(.is-archive) .intro,#portfolio-motion .archive-copy:not(.motion-copy-ghost){position:static;inset:auto;order:2;width:var(--page-width);max-height:none;margin:var(--ds-space-9) auto 0;transform:none;overflow:visible}
+ #portfolio-motion .intro h1{font-size:var(--ds-type-title-2)}
+ #portfolio-motion.is-greeting>main>.intro,#portfolio-motion.is-archive>main>.intro,#portfolio-motion:not(.is-archive) .archive-copy{display:none}
+ #portfolio-motion .archive-copy::before{display:none}
+ #portfolio-motion .personal-hero{position:static;inset:auto;order:0;width:var(--page-width);max-height:none;margin:0 auto;overflow:visible;overscroll-behavior:auto;padding:0}
+ #portfolio-motion .hero-exhibition{display:block;height:var(--ds-space-18);min-height:0;flex:none;pointer-events:none}
+ #portfolio-motion .hero-display,#portfolio-motion .hero-display img{height:var(--ds-space-16)}
+ #portfolio-motion.is-greeting #pm-orbit{height:var(--ds-space-20)}
+ #portfolio-motion .scroll-cue{position:static;inset:auto;order:1;transform:none;translate:none;width:max-content;margin:var(--ds-space-9) auto 0}
+ #portfolio-motion #more{position:static;inset:auto;order:3;transform:none;margin:var(--ds-space-10) auto 0;min-height:var(--ds-icon-button-size);padding:var(--ds-space-6)}
+ #portfolio-motion aside{position:static;inset:auto;order:0;width:var(--page-width);margin:0 auto;transform:none;opacity:1;background:none;backdrop-filter:none}
+ #portfolio-motion:not(.is-archive) aside{display:none}
+ #portfolio-motion #index{display:flex;height:auto;max-height:none;padding:0;overflow-x:auto;overflow-y:hidden;mask-image:none;gap:var(--ds-space-9)}
+ #portfolio-motion #index button{display:block;flex:none;width:auto;max-width:none;height:auto;min-height:var(--ds-icon-button-size);padding:var(--ds-space-6) 0;white-space:nowrap}
+ #portfolio-motion .motion-year-filter{position:relative;inset:auto;width:max-content;margin:0 auto var(--ds-space-4)}
+ #portfolio-motion #motion-year-options{left:50%;transform:translateX(-50%)}
+ #portfolio-motion #motion-year{min-height:var(--ds-icon-button-size)}
+ #portfolio-motion #motion-year-options{max-height:50svh}
+ body.motion-live .site-header{position:fixed;z-index:var(--ds-z-header);display:grid;grid-template-columns:minmax(0,1fr);height:auto;margin:0;gap:var(--ds-space-4);padding:calc(var(--ds-space-6) + env(safe-area-inset-top)) var(--page-left) var(--ds-space-6);background:transparent}
+ body.motion-live .site-header::before{content:"";position:absolute;inset:0 0 calc(-1 * var(--ds-space-14));z-index:-1;background:linear-gradient(to bottom,var(--ds-paper) 0%,var(--ds-paper) 52%,transparent 100%);pointer-events:none}
+ .motion-live .site-header .identity{display:none}
+ .motion-live .site-header #access{display:none}
+ .motion-live .site-header #access::after{display:none}
+ .motion-live .site-header #access span{display:none}
+ .motion-live .site-header nav{grid-column:1;grid-row:1;display:flex;margin:0;width:100%;min-width:0;box-sizing:border-box}
+ .motion-live .site-header nav a{display:flex;flex:1;justify-content:center;align-items:center;min-height:calc(var(--ds-icon-button-size) - 2 * var(--ds-nav-inset));padding:0 var(--ds-space-2);white-space:nowrap}
+ body.motion-live[data-page="about"]::before{display:none}
+ #about .biography{padding-top:calc(var(--ds-mobile-header-height) + env(safe-area-inset-top) + var(--ds-space-9))}
+ #password-dialog{max-width:calc(100vw - 2 * var(--ds-space-6));max-height:calc(100dvh - 2 * var(--ds-space-6));overflow:auto;overscroll-behavior:contain}
+ #password-close{display:grid;place-items:center;top:var(--ds-space-2);right:var(--ds-space-2);width:var(--ds-icon-button-size);height:var(--ds-icon-button-size);padding:0}
+ #password-form .password-field input,#password-form .password-row>button,#password-visibility{height:var(--ds-icon-button-size);min-height:var(--ds-icon-button-size)}
+ #password-visibility{width:var(--ds-icon-button-size)}
+ #password-form .password-field input{padding-inline-end:var(--ds-icon-button-size)}
+ #note-reading{padding-top:calc(var(--ds-space-17) + env(safe-area-inset-top));padding-bottom:calc(var(--ds-space-13) + env(safe-area-inset-bottom))}
+ #note-reading #close-note{top:calc(var(--ds-space-8) + env(safe-area-inset-top))}
+}

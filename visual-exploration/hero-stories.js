@@ -68,10 +68,7 @@
   });
   document.addEventListener('pointerdown',event=>{if(!event.target.closest('.hero-object')){touchSelected=null;focused=null;hovered=null;refresh();}});
   hero.querySelector('.hero-exhibition').setAttribute('aria-hidden','true');
-  let touchStart=null;
-  hero.addEventListener('touchstart',event=>{const t=event.touches[0];touchStart={x:t.clientX,y:t.clientY,atBottom:hero.scrollTop+hero.clientHeight>=hero.scrollHeight-2};},{passive:true});
-  hero.addEventListener('touchend',event=>{const t=event.changedTouches[0];if(touchStart?.atBottom&&touchStart.y-t.clientY>55&&Math.abs(t.clientX-touchStart.x)<60)scrollCue.click();touchStart=null;},{passive:true});
-  hero.addEventListener('touchcancel',()=>touchStart=null,{passive:true});
+  // Greeting text scrolls naturally. Project swipes belong to the image stage.
   let assetsReady=false, revealing=false;
   const readyAssets=Promise.all([document.fonts.ready,...[...hero.querySelectorAll('img'),...display.querySelectorAll('img')].map(img=>img.decode().catch(()=>{}))]);
   Promise.race([readyAssets,new Promise(resolve=>setTimeout(resolve,1800))]).then(()=>{

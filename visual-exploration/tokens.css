@@ -164,6 +164,8 @@
   --ds-control-height-sm: 32px;
   --ds-access-width: 160px;
   --ds-card-width: 300px;
+  --ds-mobile-header-height: calc(var(--ds-icon-button-size) + 2 * var(--ds-space-6) + var(--ds-space-1));
+  --ds-mobile-project-height: clamp(calc(var(--ds-space-20) + var(--ds-space-18)), 46svh, var(--ds-dialog-width));
   --ds-icon-button-size: 48px;
   --ds-icon-size-sm: 16px;
   --ds-icon-size: 20px;

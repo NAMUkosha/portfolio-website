@@ -20,6 +20,7 @@ let selectedYear='all';
 const available=()=>mode==='home'?data.slice(0,featuredCount).map((_,i)=>i):data.map((_,i)=>i).filter(i=>selectedYear==='all'||projectEndYear(data[i])===selectedYear);
 const interactable=()=>!root.hidden&&!root.inert&&!realDocument.querySelector('dialog[open]');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const mobileLayout=()=>matchMedia('(max-width:700px)').matches;
 let mode='home',active=-1,frame=0,flight=false,positions=[],wheelTotal=0,lastWheel=0,drag=null,copyAnimation=[];
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const cards=data.map((d,i)=>{
@@ -36,8 +37,17 @@ const cards=data.map((d,i)=>{
 });
 let archiveCursor=null,archiveVelocity=0,cardVelocity=[],transitioning=false;
 function targets(cursor=null){
- const w=document.documentElement.clientWidth,h=innerHeight,m=w<700,ids=available();
+ const m=mobileLayout(),stage=root.querySelector('#cards');
+ const w=m?stage.clientWidth:document.documentElement.clientWidth,h=m?stage.clientHeight:innerHeight,ids=available();
  return cards.map((_,i)=>{
+  // Mobile images share a bounded, in-flow stage; text stays in native page flow.
+  if(m){
+   const list=mode==='home'?data.slice(0,featuredCount).map((_,j)=>j):ids;
+   const greeting=mode==='home'&&active<0,diff=greeting?i-1:list.indexOf(i)-(cursor??list.indexOf(active));
+   const visible=list.includes(i)&&Math.abs(diff)<=1;
+   const width=greeting?w*.26:Math.min(w*(mode==='home'?.72:.62),h*.8);
+   return{x:greeting?w*.5+diff*w*.31:w*.5+diff*w*.86,y:h*.5,s:width/300*(greeting?1:1-Math.min(1,Math.abs(diff))*.4),r:diff*(greeting?4:3),o:visible?(greeting?.32:1-Math.min(1,Math.abs(diff))*.7):0};
+  }
   if(mode==='home'){
    if(active<0){const scale=(m?w*.26:w*.14)/300;return{x:w*(m?.62:.70)+(i-1)*(m?w*.29:w*.15),y:h*(m?.98:.98),s:scale,r:(i-1)*4,o:i<3?.32:0};}
    const diff=i-active,focus=diff===0,visible=i<featuredCount&&Math.abs(diff)<=1;
@@ -79,7 +89,7 @@ function animate(transition=false){
 }
 function paintIndex(cursor){
  const list=document.querySelector('#index'),ids=available(),lo=clamp(Math.floor(cursor),0,ids.length-1),hi=clamp(Math.ceil(cursor),0,ids.length-1),buttons=[...list.children],a=buttons[ids[lo]],b=buttons[ids[hi]];if(!a||!b)return;
- const mobile=innerWidth<700,center=el=>mobile?el.offsetLeft+el.offsetWidth/2:el.offsetTop+el.offsetHeight/2;
+ const mobile=mobileLayout(),center=el=>mobile?el.offsetLeft+el.offsetWidth/2:el.offsetTop+el.offsetHeight/2;
  const offset=center(a)+(center(b)-center(a))*(cursor-lo)-(mobile?list.clientWidth:list.clientHeight)/2;
  if(mobile)list.scrollLeft=offset;else list.scrollTop=offset;
  buttons.forEach((el,i)=>{const distance=Math.abs(ids.indexOf(i)-cursor);el.style.color=distance<.55?'#282828':'#999';});
@@ -152,7 +162,7 @@ function animateSpring(startIndex){
  frame=requestAnimationFrame(tick);
 }
 function choose(index){
- if(transitioning||!interactable())return;
+ if(transitioning||!interactable()||(mobileLayout()&&flight))return;
  const next=clamp(index,mode==='home'?-1:0,(mode==='home'?featuredCount:data.length)-1);
  if(next===active||(mode==='archive'&&!available().includes(next)))return;
  const previousIndex=available().indexOf(active);active=next;if(mode==='home')homeActive=active;
@@ -162,6 +172,7 @@ function setMode(next){if(next===mode)return;cancelAnimationFrame(frame);transit
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setMode(b.dataset.view));document.querySelector('#more').onclick=()=>setMode('archive');
 addEventListener('wheel',e=>{
  if(!interactable()||e.ctrlKey||e.target.closest?.('nav,select,.motion-year-filter'))return;
+ if(mobileLayout())return;
  const hero=e.target.closest?.('.personal-hero');if(hero&&hero.scrollHeight>hero.clientHeight+1&&((e.deltaY>0&&hero.scrollTop+hero.clientHeight<hero.scrollHeight-2)||(e.deltaY<0&&hero.scrollTop>0)))return;
  e.preventDefault();if(transitioning)return;
  const now=performance.now(),delta=(Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY)*(e.deltaMode===1?16:e.deltaMode===2?innerHeight:1);
@@ -172,8 +183,56 @@ addEventListener('wheel',e=>{
  step(Math.sign(wheelTotal));wheelTotal=0;lastWheel=now;
 },{passive:false});
 addEventListener('keydown',e=>{if(!interactable()||e.target.closest?.('input,select,textarea,button,a'))return;if(['ArrowDown','ArrowUp','ArrowLeft','ArrowRight'].includes(e.key)&&!e.target.closest?.('nav')){e.preventDefault();step(['ArrowDown','ArrowRight'].includes(e.key)?1:-1);}});
-const deck=document.querySelector('#cards');deck.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;drag={x:e.clientX,y:e.clientY,moved:false};});deck.addEventListener('pointermove',e=>{if(!drag)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>12)drag.moved=true;});deck.addEventListener('pointerup',e=>{if(!drag)return;const distance=mode==='home'?drag.x-e.clientX:drag.y-e.clientY;if(Math.abs(distance)>35)step(Math.sign(distance));setTimeout(()=>drag=null,0);});deck.addEventListener('pointercancel',()=>drag=null);
-addEventListener('resize',()=>{document.querySelector('.intro').scrollTop=0;cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateSceneControls();});reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateSceneControls();});positions=targets();draw();update();updateSceneControls();
+const deck=document.querySelector('#cards');
+let suppressClickUntil=0;
+const canStep=direction=>mode==='home'
+ ?active+direction>=-1&&active+direction<featuredCount
+ :available().indexOf(active)+direction>=0&&available().indexOf(active)+direction<available().length;
+// Touch Events let Safari/Chrome keep native vertical scrolling until this local
+// stage claims a swipe. Never cancel touchstart, multi-touch or boundary pans.
+deck.addEventListener('touchstart',e=>{
+ suppressClickUntil=0;
+ if(!mobileLayout()||!interactable()||e.touches.length!==1){drag=null;return;}
+ const t=e.touches[0];
+ drag={id:t.identifier,x:t.clientX,y:t.clientY,at:performance.now(),active,mode,
+  blocked:flight||transitioning,axis:null,direction:0,moved:false,claimed:false,released:false};
+},{passive:true});
+deck.addEventListener('touchmove',e=>{
+ if(!drag)return;
+ if(e.touches.length!==1||!interactable()||drag.active!==active||drag.mode!==mode){drag=null;return;}
+ const t=e.touches[0];if(t.identifier!==drag.id)return;
+ const dx=drag.x-t.clientX,dy=drag.y-t.clientY;
+ if(Math.hypot(dx,dy)>8)drag.moved=true;
+ if(drag.blocked||drag.released)return;
+ if(!drag.axis){
+  if(Math.max(Math.abs(dx),Math.abs(dy))<8)return;
+  drag.axis=Math.abs(dx)>Math.abs(dy)?'x':'y';
+  drag.direction=Math.sign(drag.axis==='x'?dx:dy);
+  // Preserve long presses and the browser's edge/back gestures.
+  if(performance.now()-drag.at>600||drag.x<16||drag.x>document.documentElement.clientWidth-16||!canStep(drag.direction)){
+   drag.released=true;return;
+  }
+ }
+ if(!e.cancelable){drag.released=true;return;}
+ e.preventDefault();drag.claimed=true;
+},{passive:false});
+deck.addEventListener('touchend',e=>{
+ if(!drag)return;
+ const gesture=drag;drag=null;
+ const t=[...e.changedTouches].find(t=>t.identifier===gesture.id);if(!t)return;
+ const elapsed=performance.now()-gesture.at;
+ if(gesture.moved||elapsed>600)suppressClickUntil=performance.now()+500;
+ const distance=gesture.axis==='x'?gesture.x-t.clientX:gesture.y-t.clientY;
+ const threshold=Math.max(36,Math.min(64,deck.clientWidth*.12));
+ if(gesture.claimed&&!gesture.blocked&&!gesture.released&&elapsed<=600
+  &&Math.abs(distance)>=threshold&&Math.sign(distance)===gesture.direction
+  &&gesture.active===active&&gesture.mode===mode&&!flight&&!transitioning&&canStep(gesture.direction))step(gesture.direction);
+},{passive:true});
+deck.addEventListener('touchcancel',()=>{if(drag?.moved)suppressClickUntil=performance.now()+500;drag=null;},{passive:true});
+deck.addEventListener('click',e=>{
+ if(e.detail!==0&&performance.now()<suppressClickUntil){e.preventDefault();e.stopImmediatePropagation();}
+},true);
+addEventListener('resize',()=>{document.querySelector('.intro').scrollTop=0;cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateSceneControls();});reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;flight=false;transitioning=false;archiveCursor=null;archiveVelocity=0;cardVelocity=[];positions=targets();draw();updateSceneControls();});update();positions=targets();draw();updateSceneControls();
 
 function step(direction){if(mode==='home')return choose(active+direction);const ids=available();choose(ids[clamp(ids.indexOf(active)+direction,0,ids.length-1)]);}
 document.querySelector('#index').addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();step(e.key==='ArrowDown'?1:-1);}});
@@ -223,7 +282,7 @@ realDocument.addEventListener('click',e=>{
   if(page!=='home')showPage('home');else{active=-1;update(true);animateSpring();}
   if(location.hash!=='#home')location.hash='home';return;
  }
- if(link&&transitioning){e.preventDefault();e.stopImmediatePropagation();}
+ if(link&&transitioning&&!mobileLayout()){e.preventDefault();e.stopImmediatePropagation();}
 },true);
 root.hidden=location.hash==='#about';refreshCovers();if(page==='archive')setMode('archive');
 })();

@@ -19,8 +19,6 @@
 }
 @media(pointer:coarse){.hero-object::before{inset-block:calc(-1 * var(--ds-space-2));clip-path:none}}
 .hero-object img{position:absolute;max-width:none;width:var(--asset-width);height:var(--asset-height);left:var(--asset-left);top:var(--asset-top);object-fit:fill;pointer-events:none}
-.hero-object::after{content:'';position:absolute;width:12px;height:1px;background:#d48a48;bottom:-2px;left:50%;transform:translateX(-50%) scaleX(0);pointer-events:none;transition:transform var(--ds-dur-ui)}
-.hero-object[aria-pressed="true"]::after{transform:translateX(-50%) scaleX(1)}
 .hero-object:focus-visible{outline:2px solid #b87940;outline-offset:4px}
 .hero-object[data-object="hair-tie"]:is(:hover,:focus-visible) img{animation:hero-spring .55s both}
 .hero-object[data-object="coffee-tea"]:is(:hover,:focus-visible) img{animation:hero-cup .65s both}
